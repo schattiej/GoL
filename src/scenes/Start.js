@@ -105,10 +105,17 @@ class StartScene extends Phaser.Scene {
       })
 
     // TODO This needs to be changed to an actual menu screen ----------------------------------------------
-    menuButton.setInteractive()
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        this.scene.start('ExampleScene')
-      })
+        //Something to think about: What could the use of a menu screen be in this scenario?
+        //Possible menu screen implementation ideas:
+            //Volume Control
+            //Simple Resolution Settings
+            //button to return to the start menu
+        //End of List, Steven if you take a peak at this and have any more ideas, please let me know.
+        
+    //menuButton.setInteractive()
+      //.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+        //this.scene.start('ExampleScene')
+      //})
 
     // Add a callback when a key is released
     this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)
