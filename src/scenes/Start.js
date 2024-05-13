@@ -38,7 +38,7 @@ class StartScene extends Phaser.Scene {
     this.load.image('GOL_OptionsButton', 'assets/ArtAssets/OptionsButton.png', { scale: 8 })
 
     // GoLLogo
-    this.load.svg('GoLLogo', 'assets/sprites/GoLLogo.svg', { scale: 6 })
+    this.load.svg('GoLLogo', 'assets/sprites/GoLLogo.svg', { scale: 2 })
 
     // Loading card SVGs
     this.load.svg('catering_back', 'assets/sprites/cards/Catering_back.svg', { scale: 6 })
@@ -82,20 +82,27 @@ class StartScene extends Phaser.Scene {
     Phaser.Display.Bounds.CenterOn(background, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT)
     background.setDepth(0)
 
+    // add a quick title for the game
+    const title = new CustomButton(this, 0, 0, 'GoLLogo', 'GoLLogo', 'Start')
+    this.add.existing(title)
+    title.setScale(0.7, 0.7)
+    Phaser.Display.Bounds.CenterOn(title, 0.5 * CONFIG.DEFAULT_WIDTH, 0.2 * CONFIG.DEFAULT_HEIGHT)
+    title.setDepth(1)
+
     // create buttons for start and menu
-    const startButton = new CustomButton(this, 660, 500, 'GOL_StartButton', 'GOL_StartButton', 'Start')
+    const startButton = new CustomButton(this, 11/32 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_StartButton', 'GOL_StartButton', 'Start')
     this.add.existing(startButton)
     startButton.setScale(0.7, 0.7)
     startButton.setDepth(1)
 
-    const menuButton = new CustomButton(this, 960, 500, 'GOL_MenuButton', 'GOL_MenuButton', 'Menu')
+    const menuButton = new CustomButton(this, 1/2 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_MenuButton', 'GOL_MenuButton', 'Menu')
     this.add.existing(menuButton)
     menuButton.setScale(0.7, 0.7)
     menuButton.setDepth(1)
 
-    const optionsButton = new CustomButton(this, 1310, 500, 'GOL_OptionsButton', 'GOL_OptionsButton', 'Options')
+    const optionsButton = new CustomButton(this, 131/192 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_OptionsButton', 'GOL_OptionsButton', 'Options')
     this.add.existing(optionsButton)
-    optionsButton.setScale(0.65, 0.65)
+    optionsButton.setScale(0.7, 0.7)
     optionsButton.setDepth(1)
 
     // starts game
@@ -111,7 +118,7 @@ class StartScene extends Phaser.Scene {
             //Simple Resolution Settings
             //button to return to the start menu
         //End of List, Steven if you take a peak at this and have any more ideas, please let me know.
-        
+
     //menuButton.setInteractive()
       //.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         //this.scene.start('ExampleScene')
