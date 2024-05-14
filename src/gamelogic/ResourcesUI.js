@@ -15,35 +15,35 @@ class ResourcesUI extends UpgradedContainer {
     this.makeNineSlice()
 
     // Set up text
-    this.add(new StyleIndicator(scene, 0, 0, 'Player Resources:', ''))
+    this.add(new StyleIndicator(scene, -84, 0, 'Player Resources:', ''))
     const resourceText = this.getLatest()
-    resourceText.LeftLeftT(resourceBox)
+    //resourceText.LeftLeftT(resourceBox)
     resourceText.TopTopT(resourceBox)
 
-    this.add(new StyleIndicator(scene, 0, 0, 'Money: $', ''))
+    this.add(new StyleIndicator(scene, -84, 0, 'Money: $', ''))
     const moneyText = this.getLatest()
     this.BuddyUpText(13)
-    moneyText.LeftLeftT(resourceBox)
+    //moneyText.LeftLeftT(resourceBox)
 
-    this.add(new StyleIndicator(scene, 0, 0, 'Popularity: ', ''))
+    this.add(new StyleIndicator(scene, -84, 0, 'Popularity: ', ''))
     const approvalText = this.getLatest()
     this.BuddyUpText(13)
-    approvalText.LeftLeftT(resourceBox)
+    //approvalText.LeftLeftT(resourceBox)
 
-    this.add(new StyleIndicator(scene, 0, 0, 'Attendees: ', ''))
+    this.add(new StyleIndicator(scene, -84, 0, 'Attendees: ', ''))
     const attendeesText = this.getLatest()
     this.BuddyUpText(13)
-    attendeesText.LeftLeftT(resourceBox)
+    //attendeesText.LeftLeftT(resourceBox)
 
-    this.add(new StyleIndicator(scene, 0, 0, 'Time Slots: ', ''))
+    this.add(new StyleIndicator(scene,-84, 0, 'Time Slots: ', ''))
     const timeIndicator = this.getLatest()
     this.BuddyUpText(13)
-    timeIndicator.LeftLeftT(resourceBox)
+    //timeIndicator.LeftLeftT(resourceBox)
 
-    this.add(new StyleIndicator(scene, 0, 0, 'Player Actions Left: ', ''))
+    this.add(new StyleIndicator(scene, -84, 0, 'Player Actions Left: ', ''))
     const turnText = this.getLatest()
     this.BuddyUpText(13)
-    turnText.LeftLeftT(resourceBox)
+    //turnText.LeftLeftT(resourceBox)
 
     this.addSafeText(scene, 0, 0.5, 1, '')
     const turnsIndicator = this.getLatest()

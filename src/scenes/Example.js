@@ -38,6 +38,7 @@ class ExampleScene extends Phaser.Scene {
     this.add.text(.17 * CONFIG.DEFAULT_WIDTH, .45 * CONFIG.DEFAULT_HEIGHT, 'Cards!', { fontFamily: 'Arial', fontSize: '36px', color: '#ffffff' });
     this.add.text(.845 * CONFIG.DEFAULT_WIDTH, .62 * CONFIG.DEFAULT_HEIGHT, 'AREA', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
     this.add.text(.845 * CONFIG.DEFAULT_WIDTH, .52 * CONFIG.DEFAULT_HEIGHT, 'PLAY', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
+    this.add.text(.45 * CONFIG.DEFAULT_WIDTH, .72 * CONFIG.DEFAULT_HEIGHT, 'Hand', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
 
 
     const rUI = new ResourcesUI(this, 0.138 * CONFIG.DEFAULT_WIDTH, 0.33 * CONFIG.DEFAULT_HEIGHT)
