@@ -105,18 +105,22 @@ const WildCardEvent =
 {
   LOSEMONEY_LIGHT: function () {
     DataMaker.game.money -= 30
+    AlertManager.alert('You lost 30 dollars.')
     AdvanceRUI()
   },
   LOSEAPPROVAL_LIGHT: function () {
     DataMaker.game.approval -= 7
+    AlertManager.alert('You lost approval rating.')
     AdvanceRUI()
   },
   LOSEMONEY_HEAVY: function () {
     DataMaker.game.money -= 100
+    AlertManager.alert('You lost 100 dollars.')
     AdvanceRUI()
   },
   LOSEAPPROVAL_HEAVY: function () {
     DataMaker.game.approval -= 15
+    AlertManager.alert('You lost a lot of approval rating.')
     AdvanceRUI()
   },
   ATROCITY: function () {
@@ -189,7 +193,20 @@ const WildcardManager = { // end of game events
     this.isEndOfGameFlag = true
     const EC = DataMaker.game.playzone.endcards
     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
-    let warning = `Something has gone wrong! your ${temp} has happened to become Y and such and such.`
+    switch (temp) {
+      case 'Hotel':
+        warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
+        break
+      case 'Entertainment':
+        warning = `Something has gone wrong! your ${temp} didn't show up!`
+        break
+      case 'Food':
+        warning = `Something has gone wrong! your ${temp} was prepared poorly!`
+        break
+      case 'Guests':
+        warning = `Something has gone wrong! Some of your ${temp} guests showed up with banned items!`
+        break
+    }
     let choices = [
       ['Use Money', WildCardEvent.LOSEMONEY_LIGHT],
       ['Use Time', WildCardEvent.LOSEAPPROVAL_LIGHT],
