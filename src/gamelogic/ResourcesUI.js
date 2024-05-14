@@ -7,8 +7,8 @@ import StyleIndicator from './StyleIndicator.js'
 class ResourcesUI extends UpgradedContainer {
   constructor (scene, x, y) {
     super(scene, x, y)
-    this.width = CONFIG.DEFAULT_WIDTH * 0.3 * 0.5
-    this.height = this.width
+    this.width = CONFIG.DEFAULT_WIDTH * 0.2 * 0.5
+    this.height = CONFIG.DEFAULT_WIDTH * 0.265 * 0.5
     // Colored rectangle
     const resourceBox = new Phaser.GameObjects.Rectangle(scene, 0, 0, this.width, this.height, '0x24B3B8')
     this.add(resourceBox)
@@ -40,7 +40,7 @@ class ResourcesUI extends UpgradedContainer {
     this.BuddyUpText(13)
     timeIndicator.LeftLeftT(resourceBox)
 
-    this.add(new StyleIndicator(scene, 0, 0, 'Player Actions Remaining: ', ''))
+    this.add(new StyleIndicator(scene, 0, 0, 'Player Actions Left: ', ''))
     const turnText = this.getLatest()
     this.BuddyUpText(13)
     turnText.LeftLeftT(resourceBox)

@@ -7,8 +7,8 @@ import StyleIndicator from './StyleIndicator.js'
 class LogisticsUI extends UpgradedContainer {
   constructor (scene, x, y) {
     super(scene, x, y)
-    this.width = CONFIG.DEFAULT_WIDTH * 0.3 * 0.5
-    this.height = this.width
+    this.width = CONFIG.DEFAULT_WIDTH * 0.2 * 0.5
+    this.height = CONFIG.DEFAULT_WIDTH * 0.265 * 0.5
     // Colored rectangle
     const bottom = new Phaser.GameObjects.Rectangle(scene, 0, 0, this.width, this.height, '0x8473B8')
     this.add(bottom)
