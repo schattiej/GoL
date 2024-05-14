@@ -1,0 +1,1 @@
+npm config set package-lock false - Run this command before installing esbuild and I don't believe it generates a lock 
