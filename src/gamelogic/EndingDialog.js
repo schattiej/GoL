@@ -4,6 +4,7 @@ import CONFIG from '../config.js'
 import UpgradedContainer from '../gamelogic/UpgradedContainer.js'
 
 const EndingText = [
+  // STEVEN IS WORKING ON THIS
   'You\'ve made it through the event! Here are the final results:',
   '',
   'What a great time! You did it! Mission accomplished! Woohoo!'
