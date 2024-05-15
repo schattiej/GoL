@@ -104,9 +104,9 @@ const MidgameWildcards =
 const WildCardEvent =
 {
   LOSEMONEY_LIGHT: function () {
-    if(DataMaker.game.money >= 30){
-      DataMaker.game.money -= 30 
-      AlertManager.alert('You lost 30 dollars.')
+    if(DataMaker.game.money >= 60){
+      DataMaker.game.money -= 60
+      AlertManager.alert('You lost 60 dollars.')
       AdvanceRUI()
     }
     else{
@@ -114,14 +114,14 @@ const WildCardEvent =
     }
   },
   LOSEAPPROVAL_LIGHT: function () {
-    DataMaker.game.approval -= 7
+    DataMaker.game.popularity -= 7
     AlertManager.alert('You lost approval rating.')
     AdvanceRUI()
   },
   LOSEMONEY_HEAVY: function () {
-    if(DataMaker.game.money >= 100){
-      DataMaker.game.money -= 100 
-      AlertManager.alert('You lost 100 dollars.')
+    if(DataMaker.game.money >= 250){
+      DataMaker.game.money -= 250
+      AlertManager.alert('You lost 250 dollars.')
       AdvanceRUI()
     }
     else{
@@ -129,18 +129,18 @@ const WildCardEvent =
     }
   },
   LOSEAPPROVAL_HEAVY: function () {
-    if(DataMaker.game.approval >= 15){
-    DataMaker.game.approval -= 15
+    if(DataMaker.game.popularity >= 15){
+    DataMaker.game.popularity -= 15
     AlertManager.alert('You lost a lot of approval rating.')
     AdvanceRUI()
     }
     else{
-      DataMaker.game.approval -= 15
+      DataMaker.game.popularity -= 15
       AlertManager.alert('You are negative in approval rating, Yikes!')
     }
   },
   ATROCITY: function () {
-    DataMaker.game.approval = 0
+    DataMaker.game.popularity = 0
     AlertManager.alert('You have done something terrible, and possibly (definitely) illegal!')
     AdvanceRUI()
   }
@@ -236,7 +236,7 @@ const WildcardManager = { // end of game events
         ]
         break
       case 'Guests':
-        warning = `Something has gone wrong! Some of your ${temp} guests showed up with banned items!`
+        warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
         choices = [
           ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
           ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],

@@ -118,7 +118,7 @@ class Card extends UpgradedContainer {
   GetAndDrawInfo (t) {
     this.cardtype = t
     switch (t) {
-      case 'guest': {
+      case 'hotel': {
         const d = DataMaker.card.makeHotelData1()
 
         if (d.type === 'amenities') {
