@@ -36,8 +36,9 @@ class GameAlert extends Phaser.GameObjects.Container {
 
     const message = this.scene.add.text(-this.width / 2, -this.height / 2, text, { font: '24.11pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
     this.add(message)
-
+    this.setDepth(90000000000000000)
     scene.add.existing(this)
+    
 
     this.x = -this.width / 2
     this.y = CONFIG.DEFAULT_HEIGHT * 0.4
