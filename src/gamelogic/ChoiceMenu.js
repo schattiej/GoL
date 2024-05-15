@@ -10,8 +10,9 @@ class ChoiceMenu extends Phaser.GameObjects.Container { // Class for choosing be
     const bottom = scene.add.image(0, 0, 'curveball_menu')
     this.add(bottom)
 
-    const message = this.scene.add.text(-this.width * 0.55, -this.height * 0.2, WarningText, { font: '30pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
+    const message = this.scene.add.text(-this.width * 0.55, -this.height * 0.2, WarningText, { font: '26pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
     message.setWordWrapWidth(800)
+    //message.setDepth(2)
     this.add(message)
 
     if (options.length > 1) { // Generally places buttons correctly.

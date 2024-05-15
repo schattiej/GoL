@@ -68,7 +68,7 @@ const MidgameWildcards =
     const C = SimpleCM(
       'Your crew needs space to store products at the hotel before the event. The hotel is going to charge you..',
       [
-        ['Pay Hotel', WildCardEvent.LOSEMONEY_HEAVY],
+        ['Pay Hotel 100 Dollars', WildCardEvent.LOSEMONEY_HEAVY],
         ['Ignore/Negotiate', WildCardEvent.LOSEAPPROVAL_LIGHT]
       ])
   },
@@ -76,7 +76,7 @@ const MidgameWildcards =
     const C = SimpleCM(
       'The fire marshal has found an issue with the event\'s floor plan. ',
       [
-        ['Manually Revisit Floor Plan', WildCardEvent.LOSEMONEY_HEAVY],
+        ['Manually Revisit Floor Plan \n(Pay 100 Dollars)', WildCardEvent.LOSEMONEY_HEAVY],
         ['Ask Vendors to Move Themselves', WildCardEvent.LOSEMONEY_HEAVY]
       ])
   },
@@ -84,9 +84,9 @@ const MidgameWildcards =
     const C = SimpleCM(
       'The health inspector has found an issue with the safety of the event\'s food!',
       [
-        ['Use Plan B', WildCardEvent.LOSEMONEY_HEAVY],
-        ['Hire Better Kitchen Staff', WildCardEvent.LOSEMONEY_HEAVY],
-        ['Ignore the Risk', WildCardEvent.LOSEMONEY_HEAVY]
+        ['Use Plan B\n (Pay 30 Dollars)', WildCardEvent.LOSEMONEY_LIGHT],
+        ['Hire Better Kitchen Staff \n(Pay 100 Dollars)', WildCardEvent.LOSEMONEY_HEAVY],
+        ['Ignore the Risk', WildCardEvent.ATROCITY]
       ])
   },
   AV_ORDER: () => {
@@ -104,24 +104,44 @@ const MidgameWildcards =
 const WildCardEvent =
 {
   LOSEMONEY_LIGHT: function () {
-    DataMaker.game.money -= 30
-    AdvanceRUI()
+    if(DataMaker.game.money >= 60){
+      DataMaker.game.money -= 60
+      AlertManager.alert('You lost 60 dollars.')
+      AdvanceRUI()
+    }
+    else{
+      AlertManager.alert('You don\'t have enough money to Pay!')
+    }
   },
   LOSEAPPROVAL_LIGHT: function () {
-    DataMaker.game.approval -= 7
+    DataMaker.game.popularity -= 7
+    AlertManager.alert('You lost approval rating.')
     AdvanceRUI()
   },
   LOSEMONEY_HEAVY: function () {
-    DataMaker.game.money -= 100
-    AdvanceRUI()
+    if(DataMaker.game.money >= 250){
+      DataMaker.game.money -= 250
+      AlertManager.alert('You lost 250 dollars.')
+      AdvanceRUI()
+    }
+    else{
+      AlertManager.alert('You don\'t have enough money to Pay!')
+    }
   },
   LOSEAPPROVAL_HEAVY: function () {
-    DataMaker.game.approval -= 15
+    if(DataMaker.game.popularity >= 15){
+    DataMaker.game.popularity -= 15
+    AlertManager.alert('You lost a lot of approval rating.')
     AdvanceRUI()
+    }
+    else{
+      DataMaker.game.popularity -= 15
+      AlertManager.alert('You are negative in approval rating, Yikes!')
+    }
   },
   ATROCITY: function () {
-    DataMaker.game.approval = 0
-    AlertManager.alert('You have done something terrible, and possibly illegal!')
+    DataMaker.game.popularity = 0
+    AlertManager.alert('You have done something terrible, and possibly (definitely) illegal!')
     AdvanceRUI()
   }
 }
@@ -137,7 +157,7 @@ const WildcardManager = { // end of game events
     const scene = DataMaker.game.RUI.scene
     console.log(scene)
     this.choicemenu = SimpleCM(
-      `It's time - the fabled day of the event has arrived! \n To date, the approval rating of the event based on marketing is: ${DataMaker.game.approval}. \n\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
+      `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.approval}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
       [
         ['Lets go!', () => { this.hotelStatus() }]
       ])
@@ -189,12 +209,41 @@ const WildcardManager = { // end of game events
     this.isEndOfGameFlag = true
     const EC = DataMaker.game.playzone.endcards
     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
-    let warning = `Something has gone wrong! your ${temp} has happened to become Y and such and such.`
-    let choices = [
-      ['Use Money', WildCardEvent.LOSEMONEY_LIGHT],
-      ['Use Time', WildCardEvent.LOSEAPPROVAL_LIGHT],
-      ['Ignore It', WildCardEvent.LOSEAPPROVAL_LIGHT]
-    ]
+    // Switch case to check for the type of warning to be displayed as well as the choices for that warning
+    switch (temp) {
+      case 'Hotel':
+        warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
+        choices = [
+          ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+        ]
+        break
+      case 'Entertainment':
+        warning = `Something has gone wrong! your ${temp} didn't show up!`
+        choices = [
+          ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+        ]
+        break
+      case 'Food':
+        warning = `Something has gone wrong! your ${temp} was prepared poorly!`
+        choices = [
+          ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Who Cares!', WildCardEvent.ATROCITY]
+        ]
+        break
+      case 'Guests':
+        warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
+        choices = [
+          ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
+        ]
+        break
+    }
 
     console.log(DataMaker.game.playzone.endcards)
     if (EC.length === 0) {

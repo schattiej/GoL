@@ -31,14 +31,20 @@ class ExampleScene extends Phaser.Scene {
     this.deckg = this.add.group()
     const deck1 = new Deck(this, 0.07 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg)
     const deck2 = new Deck(this, 0.1567 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'enter')
-    const deck3 = new Deck(this, 0.2434 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'guest')
+    const deck3 = new Deck(this, 0.2434 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'hotel')
     const deck4 = new Deck(this, 0.33 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'funds')
     this.deckg.addMultiple([deck1, deck2, deck3, deck4])
+ // Add text text to scene
+    this.add.text(.17 * CONFIG.DEFAULT_WIDTH, .45 * CONFIG.DEFAULT_HEIGHT, 'Cards!', { fontFamily: 'Arial', fontSize: '36px', color: '#ffffff' });
+    this.add.text(.845 * CONFIG.DEFAULT_WIDTH, .62 * CONFIG.DEFAULT_HEIGHT, 'AREA', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
+    this.add.text(.845 * CONFIG.DEFAULT_WIDTH, .52 * CONFIG.DEFAULT_HEIGHT, 'PLAY', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
+    this.add.text(.45 * CONFIG.DEFAULT_WIDTH, .72 * CONFIG.DEFAULT_HEIGHT, 'Hand', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
 
-    const rUI = new ResourcesUI(this, 0.18 * CONFIG.DEFAULT_WIDTH, 0.33 * CONFIG.DEFAULT_HEIGHT)
-    const lUI = new LogisticsUI(this, 0.24 * CONFIG.DEFAULT_WIDTH, 0.05 * CONFIG.DEFAULT_HEIGHT)
+
+    const rUI = new ResourcesUI(this, 0.138 * CONFIG.DEFAULT_WIDTH, 0.33 * CONFIG.DEFAULT_HEIGHT)
+    const lUI = new LogisticsUI(this, 0.218 * CONFIG.DEFAULT_WIDTH, 0.08 * CONFIG.DEFAULT_HEIGHT)
     const board1 = new Board(this, 0.6 * CONFIG.DEFAULT_WIDTH, 0 * CONFIG.DEFAULT_HEIGHT)
-    const zone1 = new PlayZone(this, cardg, 0.9 * CONFIG.DEFAULT_WIDTH, 0.62 * CONFIG.DEFAULT_HEIGHT)
+    const zone1 = new PlayZone(this, cardg, 0.893 * CONFIG.DEFAULT_WIDTH, 0.615 * CONFIG.DEFAULT_HEIGHT)
     // const startupdialog1 = new StartupDialog(this)
     // const meembus = new StyleIndicator(this, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'whatever', 'oh no!')
     // this.add.existing(meembus)
