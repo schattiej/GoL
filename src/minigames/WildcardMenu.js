@@ -4,6 +4,7 @@ import CONFIG from '../config.js'
 import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
 import AlertManager from '../gamelogic/GameAlert.js'
 import EndingDialog from '../gamelogic/EndingDialog.js'
+import ExampleScene from '../scenes/Example.js'
 
 function SimpleCM (text, options) {
   return new ChoiceMenu(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
@@ -152,160 +153,119 @@ function AdvanceRUI () { // Simple function for updating the RUI and advancing t
   { WildcardManager.makeWarning() }
 }
 
+
+
 const WildcardManager = { // end of game events
   init: function () { // 'Constructor' for this global Wildcard Manager object. Intended to show the beginning dialogue for the end of the game.
     const scene = DataMaker.game.RUI.scene
     console.log(scene)
     this.choicemenu = SimpleCM(
-      `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.approval}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
+      `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.popularity}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
       [
-        ['Lets go!', () => { this.hotelStatus() }]
+        ['Lets go!', () => { this.makeWarning() }]
       ])
-  },
-  // Checks if you have even picked a hotel.
-  hotelStatus: function () {
-    const noHotel = (DataMaker.game.hotel === '')
-
-    if (noHotel) {
-      DataMaker.game.approval -= 15
-      DataMaker.game.RUI.updateText()
-      this.choicemenu = SimpleCM('For whatever reason, you have not selected a hotel deal for your guests - they have to fend for themselves. You lose 15 approval!',
-        [
-          ['Whoops...', () => { this.makeWarning() }]
-          // ['Whoops...', () => { this.roomsStatus() }]
-        ])
-    } else {
-      this.roomsStatus()
-    }
-  },
-  // Checks if you have met the room deal minimum sales for the prices to kick in.
-  roomsStatus: function () {
-    const guestsToRooms = DataMaker.game.attendees / Phaser.Math.RND.between(2, 4)
-    let stipulationBroken = false
-    // let stipulationBroken = true
-
-    for (const rc in DataMaker.game.hotel.roomcards) {
-      const stipulationtoRooms = (rc.stipulation / 100) * DataMaker.game.hotel.main.rooms
-      if (guestsToRooms < stipulationtoRooms) {
-        AlertManager.alert('BRINGUS')
-        stipulationBroken = true
-      } else {
-        AlertManager.alert('CHORBO')
-      }
-    }
-
-    if (stipulationBroken) {
-      this.choicemenu = SimpleCM("You didn't get enough guests for the event - you will incur a fee for not making your promises to the hotel.",
-        [
-          ['Whoops...', () => { this.makeWarning() }]
-        ])
-    } else {
-      this.makeWarning()
-    }
   },
   // Primary loop for the end of the game - where choices must be made!
   makeWarning: function () {
-    const EC = DataMaker.game.playzone.endcards
-    const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
-    // Switch case to check for the type of warning to be displayed as well as the choices for that warning
-    switch (temp) {
-      case 'Hotel':
-        warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
-        choices = [
-          ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
-        ]
-        break
-      case 'Entertainment':
-        warning = `Something has gone wrong! your ${temp} didn't show up!`
-        choices = [
-          ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
-        ]
-        break
-      case 'Food':
-        warning = `Something has gone wrong! your ${temp} was prepared poorly!`
-        choices = [
-          ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Who Cares!', WildCardEvent.ATROCITY]
-        ]
-        break
-      case 'Guests':
-        warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
-        choices = [
-          ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
-        ]
-        break
-    }
+    //const EC = DataMaker.game.playzone.endcards
+    // const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
+    // // Switch case to check for the type of warning to be displayed as well as the choices for that warning
+    // switch (temp) {
+    //   case 'Hotel':
+    //     warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
+    //     choices = [
+    //       ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
+    //       ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
+    //       ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+    //     ]
+    //     break
+    //   case 'Entertainment':
+    //     warning = `Something has gone wrong! your ${temp} didn't show up!`
+    //     choices = [
+    //       ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
+    //       ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
+    //       ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+    //     ]
+    //     break
+    //   case 'Food':
+    //     warning = `Something has gone wrong! your ${temp} was prepared poorly!`
+    //     choices = [
+    //       ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
+    //       ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
+    //       ['Who Cares!', WildCardEvent.ATROCITY]
+    //     ]
+    //     break
+    //   case 'Guests':
+    //     warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
+    //     choices = [
+    //       ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
+    //       ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
+    //       ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
+    //     ]
+    //     break
+    // }
 
-    console.log(DataMaker.game.playzone.endcards)
     if (DataMaker.game.gameEnd === true) {
-
       const ED = new EndingDialog(DataMaker.game.RUI.scene) // If there are no more cards, create the endgame dialogue.
       return
     }
     const EndgameCard = EC.pop() // Remove an endgame card from the stack
     const ename = EndgameCard.cdata.name
 
-    // change to a switch-------------------------------------------------------------------------------------------------------------------------------------
-    // Exhaustive list of possible issues with each card, and possible choices you can make in reponse to them.
-    if (ename.includes('Band')) {
-      const bandname = ename.split(' ')[0]
-      warning = `Oh no - the lead singer of the band ${bandname} has fallen ill, and the band is considering not showing up for the event.\n\nYou could provide a monetary incentive for them to continue, or find another band quickly.\n\nHowever, there's no guarantee that this new band will impress the guests. It may be best to do nothing.`
-      // Outcomes
-      const c1 = ['Pay Band', 'Find New Band', 'Do Nothing'].reverse()
-      choices = choices.map(x => [c1.pop(), x[1]])
-      /// -
-    } else
-    if (ename === 'Laser Tag' || ename === 'Paintball') {
-      warning = `Drats - an accident at the ${ename.toLowerCase()} venue has caused it to shut down for the duration of the event!\n\nThe guests who have already paid will expect reimbursement. Of course, you could wait and see if the venue will reimburse you to lesson the load.`
-      // Outcomes
-      const c1 = ['Pay Guests', 'Wait and See'].reverse()
-      choices = choices.map(x => [c1.pop(), x[1]])
-      /// -
-    } else
-    if (ename.includes('A ')) {
-      const enttype = ename.split(' ')[1]
-      warning = `The ${ename} you hired for the event got injured in a terrible car accident. There is no way they can show up to the event.\n\nYou have a few hours to find someone new or risk having angered customers!`
-      // Outcomes
-      choices = [
-        ['New ' + enttype, WildCardEvent.LOSEMONEY_LIGHT],
-        ['Do Nothing ', WildCardEvent.LOSEMONEY_LIGHT]
-      ]
-      /// -
-    } else
-    if (ename === 'Hiking Trail') {
-      warning = 'One of the guests has suffered from heat stroke and collapsed on the trail. It will take considerable time to discretely bring medical attention to the guest and get them out of here! Rescue workers are en route.'
-      // Outcomes
-      choices = [
-        ['Call Medics', WildCardEvent.LOSEMONEY_LIGHT],
-        ['Do Nothing ', WildCardEvent.ATROCITY]
-      ]
-      /// -
-    } else
-    if (ename === 'Auction') {
-      warning = 'Something unspeakable has been offered for auction and the guests are descending into chaos. If you don\'t act quickly, someone might get hurt.'
-      // Outcomes
-      choices = [
-        ['Evacuate', WildCardEvent.LOSEMONEY_LIGHT],
-        ['Stow Item', WildCardEvent.LOSEMONEY_LIGHT]
-      ]
-      /// -
-    }
-    if (ename === 'Museum Tour') {
-      warning = `A ${Phaser.Math.RND.pick(['terrible leak', 'fire', 'collapse'])} has happened at the museum, and the tour has been called off.`
-      // Outcomes
-      choices = [
-        ['Refund', WildCardEvent.LOSEMONEY_HEAVY],
-        ['Ignore', WildCardEvent.LOSEAPPROVAL_HEAVY]
-      ]
-      /// -
-    }
+    // // change to a switch-------------------------------------------------------------------------------------------------------------------------------------
+    // // Exhaustive list of possible issues with each card, and possible choices you can make in reponse to them.
+    // if (ename.includes('Band')) {
+    //   const bandname = ename.split(' ')[0]
+    //   warning = `Oh no - the lead singer of the band ${bandname} has fallen ill, and the band is considering not showing up for the event.\n\nYou could provide a monetary incentive for them to continue, or find another band quickly.\n\nHowever, there's no guarantee that this new band will impress the guests. It may be best to do nothing.`
+    //   // Outcomes
+    //   const c1 = ['Pay Band', 'Find New Band', 'Do Nothing'].reverse()
+    //   choices = choices.map(x => [c1.pop(), x[1]])
+    //   /// -
+    // } else
+    // if (ename === 'Laser Tag' || ename === 'Paintball') {
+    //   warning = `Drats - an accident at the ${ename.toLowerCase()} venue has caused it to shut down for the duration of the event!\n\nThe guests who have already paid will expect reimbursement. Of course, you could wait and see if the venue will reimburse you to lesson the load.`
+    //   // Outcomes
+    //   const c1 = ['Pay Guests', 'Wait and See'].reverse()
+    //   choices = choices.map(x => [c1.pop(), x[1]])
+    //   /// -
+    // } else
+    // if (ename.includes('A ')) {
+    //   const enttype = ename.split(' ')[1]
+    //   warning = `The ${ename} you hired for the event got injured in a terrible car accident. There is no way they can show up to the event.\n\nYou have a few hours to find someone new or risk having angered customers!`
+    //   // Outcomes
+    //   choices = [
+    //     ['New ' + enttype, WildCardEvent.LOSEMONEY_LIGHT],
+    //     ['Do Nothing ', WildCardEvent.LOSEMONEY_LIGHT]
+    //   ]
+    //   /// -
+    // } else
+    // if (ename === 'Hiking Trail') {
+    //   warning = 'One of the guests has suffered from heat stroke and collapsed on the trail. It will take considerable time to discretely bring medical attention to the guest and get them out of here! Rescue workers are en route.'
+    //   // Outcomes
+    //   choices = [
+    //     ['Call Medics', WildCardEvent.LOSEMONEY_LIGHT],
+    //     ['Do Nothing ', WildCardEvent.ATROCITY]
+    //   ]
+    //   /// -
+    // } else
+    // if (ename === 'Auction') {
+    //   warning = 'Something unspeakable has been offered for auction and the guests are descending into chaos. If you don\'t act quickly, someone might get hurt.'
+    //   // Outcomes
+    //   choices = [
+    //     ['Evacuate', WildCardEvent.LOSEMONEY_LIGHT],
+    //     ['Stow Item', WildCardEvent.LOSEMONEY_LIGHT]
+    //   ]
+    //   /// -
+    // }
+    // if (ename === 'Museum Tour') {
+    //   warning = `A ${Phaser.Math.RND.pick(['terrible leak', 'fire', 'collapse'])} has happened at the museum, and the tour has been called off.`
+    //   // Outcomes
+    //   choices = [
+    //     ['Refund', WildCardEvent.LOSEMONEY_HEAVY],
+    //     ['Ignore', WildCardEvent.LOSEAPPROVAL_HEAVY]
+    //   ]
+    //   /// -
+    // }
 
     this.choicemenu.leave()
     this.choicemenu = SimpleCM(warning, choices)
