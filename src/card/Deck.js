@@ -21,31 +21,25 @@ class Deck extends Phaser.GameObjects.Container {
     this.on('pointerdown', (pointer, localx, localy) => {
       const random = Phaser.Math.RND.integerInRange(1, 100)
       
-      if (random <= 15) {
-        // generate a curveball
-        const b = MidgameWildcards.PULL()
-        if (b === -1) { // if there are no more curveballs left to draw, draw a card instead
-          if(DataMaker.game.dontDraw === true){
-            AlertManager.alert('You Can\'t Draw Hotel.')
+      if(DataMaker.game.dontDraw === false || type != 'guest'){
+        if (random <= 15) {
+          // generate a curveball
+          const b = MidgameWildcards.PULL()
+          if (b === -1) { // if there are no more curveballs left to draw, draw a card instead
+            const c = new Card(scene, this.x, this.y, type)
+            c.setDepth(this.depth + 1)
+            cardgroup.add(c)
+            DataMaker.game.countActions()
           }
-          else{
+        } else { // generate a card
             const c = new Card(scene, this.x, this.y, type)
             c.setDepth(this.depth + 1)
             cardgroup.add(c)  
             DataMaker.game.countActions()
-
-          }
         }
-      } else { // generate a card
-        if(DataMaker.game.dontDraw === true){
-          AlertManager.alert('You Can\'t Draw Hotel.')
-        }
-        else{
-          const c = new Card(scene, this.x, this.y, type)
-          c.setDepth(this.depth + 1)
-          cardgroup.add(c)  
-          DataMaker.game.countActions()
-        }
+      }
+      else if(DataMaker.game.dontDraw === true && type === 'guest'){
+        AlertManager.alert('You Can\'t Draw Hotel.')
       }
     })
 

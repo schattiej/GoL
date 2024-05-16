@@ -31,7 +31,7 @@ class ExampleScene extends Phaser.Scene {
     this.deckg = this.add.group()
     const deck1 = new Deck(this, 0.07 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg)
     const deck2 = new Deck(this, 0.1567 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'enter')
-    const deck3 = new Deck(this, 0.2434 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'hotel')
+    const deck3 = new Deck(this, 0.2434 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'guest')
     const deck4 = new Deck(this, 0.33 * CONFIG.DEFAULT_WIDTH, 0.6 * CONFIG.DEFAULT_HEIGHT, cardg, 'funds')
     this.deckg.addMultiple([deck1, deck2, deck3, deck4])
  // Add text text to scene
