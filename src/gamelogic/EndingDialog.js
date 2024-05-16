@@ -2,6 +2,7 @@ import Phaser, { Data } from 'phaser'
 import DataMaker from '../gamelogic/DataMaker.js'
 import CONFIG from '../config.js'
 import UpgradedContainer from '../gamelogic/UpgradedContainer.js'
+import EndChoice from '../gamelogic/EndTextChoice.js'
 
 const EndingText = [
   // STEVEN IS WORKING ON THIS
