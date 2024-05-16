@@ -148,7 +148,7 @@ const WildCardEvent =
 
 function AdvanceRUI () { // Simple function for updating the RUI and advancing to the next option.
   DataMaker.game.RUI.updateText()
-  if (WildcardManager.isEndOfGameFlag) // Only chains into the next option if we are truly at the end of the game. Untested
+  if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
   { WildcardManager.makeWarning() }
 }
 
@@ -161,7 +161,6 @@ const WildcardManager = { // end of game events
       [
         ['Lets go!', () => { this.hotelStatus() }]
       ])
-    this.isEndOfGameFlag = false
   },
   // Checks if you have even picked a hotel.
   hotelStatus: function () {
@@ -206,7 +205,6 @@ const WildcardManager = { // end of game events
   },
   // Primary loop for the end of the game - where choices must be made!
   makeWarning: function () {
-    this.isEndOfGameFlag = true
     const EC = DataMaker.game.playzone.endcards
     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
     // Switch case to check for the type of warning to be displayed as well as the choices for that warning
@@ -246,7 +244,8 @@ const WildcardManager = { // end of game events
     }
 
     console.log(DataMaker.game.playzone.endcards)
-    if (EC.length === 0) {
+    if (DataMaker.game.gameEnd === true) {
+
       const ED = new EndingDialog(DataMaker.game.RUI.scene) // If there are no more cards, create the endgame dialogue.
       return
     }
