@@ -6,6 +6,7 @@ class ChoiceMenu extends Phaser.GameObjects.Container { // Class for choosing be
     super(scene, x, y)
     this.width = CONFIG.DEFAULT_WIDTH * 0.6
     this.height = CONFIG.DEFAULT_HEIGHT * 0.5
+    this.leaveMenu = false
     // const bottom = new Phaser.GameObjects.Rectangle(scene, 0, 0, this.width, this.height, '0x9938')
     const bottom = scene.add.image(0, 0, 'curveball_menu')
     this.add(bottom)

@@ -70,6 +70,7 @@ const DataMaker = {
       this.eventPayment = 0
       this.dontDraw = false
       this.gameEnd = false
+      this.gooberCheck = false
       // console.log(this.hotel)
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs

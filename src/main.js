@@ -6,6 +6,7 @@ import CONFIG from './config.js'
 // Bringing in our base example scene
 import ExampleScene from './scenes/Example.js'
 import StartScene from './scenes/Start.js'
+import EventScene from './scenes/EventPhase.js'
 import CustomButtonDemoScene from './scenes/CustomButtonDemoScene.ts'
 
 const config = {
@@ -33,9 +34,12 @@ const config = {
 // Initialize the base phaser game object (must always be done once)
 const game = new Phaser.Game(config)
 
+
 // Add an auto-starting ExampleScene
 game.scene.add('StartScene', StartScene)
 game.scene.add('ExampleScene', ExampleScene)
+game.scene.add('EventScene', EventScene)
+
 game.scene.start('StartScene')
 game.scene.add('CustomButtonDemoScene', CustomButtonDemoScene)
 // game.scene.start('CustomButtonDemoScene')
