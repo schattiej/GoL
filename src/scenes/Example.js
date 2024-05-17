@@ -45,7 +45,7 @@ class ExampleScene extends Phaser.Scene {
     const lUI = new LogisticsUI(this, 0.218 * CONFIG.DEFAULT_WIDTH, 0.08 * CONFIG.DEFAULT_HEIGHT)
     const board1 = new Board(this, 0.6 * CONFIG.DEFAULT_WIDTH, 0 * CONFIG.DEFAULT_HEIGHT)
     const zone1 = new PlayZone(this, cardg, 0.893 * CONFIG.DEFAULT_WIDTH, 0.615 * CONFIG.DEFAULT_HEIGHT)
-    // const startupdialog1 = new StartupDialog(this)
+    const startupdialog1 = new StartupDialog(this)
     // const meembus = new StyleIndicator(this, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'whatever', 'oh no!')
     // this.add.existing(meembus)
     // meembus.setVal('yello')
@@ -59,8 +59,9 @@ class ExampleScene extends Phaser.Scene {
   }
 
   keyReleased () {
-    this.scene.start('StartScene')
+    this.scene.start('EventScene')
   }
+
 }
 
 export default ExampleScene

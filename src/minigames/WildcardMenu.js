@@ -4,7 +4,8 @@ import CONFIG from '../config.js'
 import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
 import AlertManager from '../gamelogic/GameAlert.js'
 import EndingDialog from '../gamelogic/EndingDialog.js'
-import ExampleScene from '../scenes/Example.js'
+//import ExampleScene from '../scenes/Example.js'
+import EventScene from '../scenes/EventPhase.js'
 
 function SimpleCM (text, options) {
   return new ChoiceMenu(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
@@ -89,15 +90,6 @@ const MidgameWildcards =
         ['Hire Better Kitchen Staff \n(Pay 100 Dollars)', WildCardEvent.LOSEMONEY_HEAVY],
         ['Ignore the Risk', WildCardEvent.ATROCITY]
       ])
-  },
-  AV_ORDER: () => {
-    const C = SimpleCM(
-      'Placeholder text for AV Order Form',
-      [
-        ['Timboflimbus', WildCardEvent.LOSEMONEY_HEAVY],
-        ['Yok Yag Yid', WildCardEvent.LOSEMONEY_HEAVY],
-        ['Yorbulin', WildCardEvent.LOSEMONEY_HEAVY]
-      ])
   }
 }
 
@@ -116,7 +108,7 @@ const WildCardEvent =
   },
   LOSEAPPROVAL_LIGHT: function () {
     DataMaker.game.popularity -= 7
-    AlertManager.alert('You lost approval rating.')
+    AlertManager.alert('You lost Popularity rating.')
     AdvanceRUI()
   },
   LOSEMONEY_HEAVY: function () {
@@ -137,7 +129,8 @@ const WildCardEvent =
     }
     else{
       DataMaker.game.popularity -= 15
-      AlertManager.alert('You are negative in approval rating, Yikes!')
+      AlertManager.alert('You are negative in popularity rating, Yikes!')
+
     }
   },
   ATROCITY: function () {
@@ -157,60 +150,62 @@ function AdvanceRUI () { // Simple function for updating the RUI and advancing t
 
 const WildcardManager = { // end of game events
   init: function () { // 'Constructor' for this global Wildcard Manager object. Intended to show the beginning dialogue for the end of the game.
-    const scene = DataMaker.game.RUI.scene
-    console.log(scene)
+    //const scene = DataMaker.game.RUI.scene
+    //console.log(scene)
     this.choicemenu = SimpleCM(
       `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.popularity}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
       [
-        ['Lets go!', () => { this.makeWarning() }]
+        ['Lets go!', () => { DataMaker.game.gameScene.start('EventScene') }]
       ])
   },
   // Primary loop for the end of the game - where choices must be made!
   makeWarning: function () {
     //const EC = DataMaker.game.playzone.endcards
-    // const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
-    // // Switch case to check for the type of warning to be displayed as well as the choices for that warning
-    // switch (temp) {
-    //   case 'Hotel':
-    //     warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
-    //     choices = [
-    //       ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
-    //       ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
-    //       ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
-    //     ]
-    //     break
-    //   case 'Entertainment':
-    //     warning = `Something has gone wrong! your ${temp} didn't show up!`
-    //     choices = [
-    //       ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
-    //       ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
-    //       ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
-    //     ]
-    //     break
-    //   case 'Food':
-    //     warning = `Something has gone wrong! your ${temp} was prepared poorly!`
-    //     choices = [
-    //       ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
-    //       ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
-    //       ['Who Cares!', WildCardEvent.ATROCITY]
-    //     ]
-    //     break
-    //   case 'Guests':
-    //     warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
-    //     choices = [
-    //       ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
-    //       ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
-    //       ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
-    //     ]
-    //     break
-    // }
-
+     //const scene = DataMaker.game.RUI.scene
+     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
+     //Switch case to check for the type of warning to be displayed as well as the choices for that warning
+     switch (temp) {
+       case 'Hotel':
+         warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
+         choices = [
+           ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
+           ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
+           ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+         ]
+         break
+       case 'Entertainment':
+         warning = `Something has gone wrong! your ${temp} didn't show up!`
+         choices = [
+           ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
+           ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
+           ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+         ]
+         break
+       case 'Food':
+         warning = `Something has gone wrong! your ${temp} was prepared poorly!`
+         choices = [
+           ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
+           ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
+           ['Who Cares!', WildCardEvent.ATROCITY]
+         ]
+         break
+       case 'Guests':
+         warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
+         choices = [
+           ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
+           ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
+           ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
+         ]
+         break
+     }
+    this.choicemenu.leave()
+    this.choicemenu = SimpleCM(warning, choices)
     if (DataMaker.game.gameEnd === true) {
       const ED = new EndingDialog(DataMaker.game.RUI.scene) // If there are no more cards, create the endgame dialogue.
       return
     }
-    const EndgameCard = EC.pop() // Remove an endgame card from the stack
-    const ename = EndgameCard.cdata.name
+    //const EndgameCard = EC.pop() // Remove an endgame card from the stack
+    //const ename = EndgameCard.cdata.name
 
     // // change to a switch-------------------------------------------------------------------------------------------------------------------------------------
     // // Exhaustive list of possible issues with each card, and possible choices you can make in reponse to them.
@@ -266,10 +261,54 @@ const WildcardManager = { // end of game events
     //   ]
     //   /// -
     // }
-
-    this.choicemenu.leave()
-    this.choicemenu = SimpleCM(warning, choices)
   }
 }
-
-export { WildcardManager, MidgameWildcards }
+const endGameManager = { // end of game events
+  INIT: function () {
+    const scene = DataMaker.game.RUI.scene
+    DataMaker.game.gameEnd = true
+    const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
+    //Switch case to check for the type of warning to be displayed as well as the choices for that warning
+    switch (temp) {
+      case 'Hotel':
+        warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
+        choices = [
+          ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+        ]
+        break
+      case 'Entertainment':
+        warning = `Something has gone wrong! your ${temp} didn't show up!`
+        choices = [
+          ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+        ]
+        break
+      case 'Food':
+        warning = `Something has gone wrong! your ${temp} was prepared poorly!`
+        choices = [
+          ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Who Cares!', WildCardEvent.ATROCITY]
+        ]
+        break
+      case 'Guests':
+        warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
+        choices = [
+          ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
+        ]
+        break
+    }
+   //this.choicemenu.leave()
+   this.choicemenu = SimpleCM(warning, choices)
+   if (DataMaker.game.gameEnd === true) {
+    const ED = new EndingDialog(DataMaker.game.RUI.scene) // If there are no more cards, create the endgame dialogue.
+    //return
+    }
+  }
+}
+export { WildcardManager, MidgameWildcards, endGameManager }

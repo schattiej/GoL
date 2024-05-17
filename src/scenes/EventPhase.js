@@ -1,8 +1,19 @@
 import Phaser from 'phaser'
 import CONFIG from '../config.js'
 import CustomButton from '../scenes/CustomButton.ts'
+import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
+import Hand from '../card/Hand.js'
+import Deck from '../card/Deck.js'
+import Board from '../board/Board.js'
+import PlayZone from '../card/PlayZone.js'
+import DataMaker from '../gamelogic/DataMaker.js'
+import ResourcesUI from '../gamelogic/ResourcesUI.js'
+import { MidgameWildcards, WildcardManager, endGameManager } from '../minigames/WildcardMenu.js'
+import StartupDialog from '../gamelogic/StartupDialog.js'
+import LogisticsUI from '../gamelogic/LogisticsUI.js'
+import StyleIndicator from '../gamelogic/StyleIndicator.js'
 
-class StartScene extends Phaser.Scene {
+class EventScene extends Phaser.Scene {
   init () {
     this.loadingText = this.add.text(
       CONFIG.DEFAULT_WIDTH / 2,
@@ -11,8 +22,8 @@ class StartScene extends Phaser.Scene {
     )
     this.loadingText.setOrigin(0.5, 0.5)
   }
-
   preload () {
+    //loading is done n 'ExampleScene'
     this.load.svg('board', 'assets/sprites/board/GameBoard.svg', { scale: 12 })
     this.load.svg('player_token', 'assets/sprites/tokens/GoL_PlayerToken.svg', { scale: 12 })
     this.load.svg('event_token', 'assets/sprites/tokens/GoL_EventDateToken.svg', { scale: 12 })
@@ -72,66 +83,21 @@ class StartScene extends Phaser.Scene {
   }
 
   create () {
-    // Remove loading text
-    this.loadingText.destroy()
+    const cardg = this.add.group()
+    // Setup variables with world bounds
+    //DataMaker.game.setup(this.scene)
 
-    // Set the background of the menu screen
-    const background = new CustomButton(this, 0, 0, 'BackgroundImage', 'BackgroundImage', 'Start')
-    this.add.existing(background)
-    // background.setScale(0.35, 0.35)
-    Phaser.Display.Bounds.CenterOn(background, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT)
+    // Add background image
+    const background = this.add.image(0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'BackgroundImage')
+    this.children.add(background)
     background.setDepth(0)
 
-    // add a quick title for the game
-    const title = new CustomButton(this, 0, 0, 'GoLLogo', 'GoLLogo', 'Start')
-    this.add.existing(title)
-    title.setScale(0.7, 0.7)
-    Phaser.Display.Bounds.CenterOn(title, 0.5 * CONFIG.DEFAULT_WIDTH, 0.2 * CONFIG.DEFAULT_HEIGHT)
-    title.setDepth(1)
+    const rUI = new ResourcesUI(this, 0.138 * CONFIG.DEFAULT_WIDTH, 0.33 * CONFIG.DEFAULT_HEIGHT)
+    const lUI = new LogisticsUI(this, 0.218 * CONFIG.DEFAULT_WIDTH, 0.08 * CONFIG.DEFAULT_HEIGHT)
 
-    // create buttons for start and menu
-    const startButton = new CustomButton(this, 11/32 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_StartButton', 'GOL_StartButton', 'Start')
-    this.add.existing(startButton)
-    startButton.setScale(0.7, 0.7)
-    startButton.setDepth(1)
+    endGameManager.INIT()
 
-    const menuButton = new CustomButton(this, 1/2 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_MenuButton', 'GOL_MenuButton', 'Menu')
-    this.add.existing(menuButton)
-    menuButton.setScale(0.7, 0.7)
-    menuButton.setDepth(1)
-
-    const optionsButton = new CustomButton(this, 131/192 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_OptionsButton', 'GOL_OptionsButton', 'Options')
-    this.add.existing(optionsButton)
-    optionsButton.setScale(0.7, 0.7)
-    optionsButton.setDepth(1)
-
-    // starts game
-    startButton.setInteractive()
-      .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        this.scene.start('ExampleScene')
-      })
-
-    // TODO This needs to be changed to an actual menu screen ----------------------------------------------
-        //Something to think about: What could the use of a menu screen be in this scenario?
-        //Possible menu screen implementation ideas:
-            //Volume Control
-            //Simple Resolution Settings
-            //button to return to the start menu
-        //End of List, Steven if you take a peak at this and have any more ideas, please let me know.
-
-    //menuButton.setInteractive()
-      //.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        //this.scene.start('ExampleScene')
-      //})
-
-    // Add a callback when a key is released
-    this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)
-  }
-
-  keyReleased () {
-    // console.log('Key released')
-    this.scene.start('ExampleScene')
   }
 }
 
-export default StartScene
+export default EventScene
