@@ -59,7 +59,7 @@ class ExampleScene extends Phaser.Scene {
   }
 
   keyReleased () {
-    this.scene.start('EventScene')
+    this.scene.start('StartScene')
   }
 
 }

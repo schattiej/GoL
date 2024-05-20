@@ -77,6 +77,7 @@ const DataMaker = {
       if (DataMaker.game.hotelDate === DataMaker.game.turnCount + 1) {
         DataMaker.game.HotelPayment()
       }
+      this.actions = 0
     },
     countActions: function () {
       this.actions += 1

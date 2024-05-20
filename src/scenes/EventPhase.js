@@ -1,12 +1,5 @@
 import Phaser from 'phaser'
 import CONFIG from '../config.js'
-import CustomButton from '../scenes/CustomButton.ts'
-import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
-import Hand from '../card/Hand.js'
-import Deck from '../card/Deck.js'
-import Board from '../board/Board.js'
-import PlayZone from '../card/PlayZone.js'
-import DataMaker from '../gamelogic/DataMaker.js'
 import ResourcesUI from '../gamelogic/ResourcesUI.js'
 import { MidgameWildcards, WildcardManager, endGameManager } from '../minigames/WildcardMenu.js'
 import StartupDialog from '../gamelogic/StartupDialog.js'
@@ -14,14 +7,6 @@ import LogisticsUI from '../gamelogic/LogisticsUI.js'
 import StyleIndicator from '../gamelogic/StyleIndicator.js'
 
 class EventScene extends Phaser.Scene {
-  init () {
-    this.loadingText = this.add.text(
-      CONFIG.DEFAULT_WIDTH / 2,
-      CONFIG.DEFAULT_HEIGHT / 2,
-      'Loading ...', { font: '16pt Arial', color: '#FFFFFF', align: 'center' }
-    )
-    this.loadingText.setOrigin(0.5, 0.5)
-  }
   preload () {
     //loading is done n 'ExampleScene'
     this.load.svg('board', 'assets/sprites/board/GameBoard.svg', { scale: 12 })
@@ -83,20 +68,26 @@ class EventScene extends Phaser.Scene {
   }
 
   create () {
+
     const cardg = this.add.group()
     // Setup variables with world bounds
     //DataMaker.game.setup(this.scene)
+    //DataMaker.game.gameScene = this.scene
 
     // Add background image
     const background = this.add.image(0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'BackgroundImage')
     this.children.add(background)
-    background.setDepth(0)
+    background.setDepth(1)
 
     const rUI = new ResourcesUI(this, 0.138 * CONFIG.DEFAULT_WIDTH, 0.33 * CONFIG.DEFAULT_HEIGHT)
     const lUI = new LogisticsUI(this, 0.218 * CONFIG.DEFAULT_WIDTH, 0.08 * CONFIG.DEFAULT_HEIGHT)
 
     endGameManager.INIT()
+    this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)
+  }
 
+  keyReleased () {
+    this.scene.start('StartScene')
   }
 }
 

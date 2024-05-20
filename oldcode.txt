@@ -1,0 +1,57 @@
+    //const EndgameCard = EC.pop() // Remove an endgame card from the stack
+    //const ename = EndgameCard.cdata.name
+
+    // // change to a switch-------------------------------------------------------------------------------------------------------------------------------------
+    // // Exhaustive list of possible issues with each card, and possible choices you can make in reponse to them.
+    // if (ename.includes('Band')) {
+    //   const bandname = ename.split(' ')[0]
+    //   warning = `Oh no - the lead singer of the band ${bandname} has fallen ill, and the band is considering not showing up for the event.\n\nYou could provide a monetary incentive for them to continue, or find another band quickly.\n\nHowever, there's no guarantee that this new band will impress the guests. It may be best to do nothing.`
+    //   // Outcomes
+    //   const c1 = ['Pay Band', 'Find New Band', 'Do Nothing'].reverse()
+    //   choices = choices.map(x => [c1.pop(), x[1]])
+    //   /// -
+    // } else
+    // if (ename === 'Laser Tag' || ename === 'Paintball') {
+    //   warning = `Drats - an accident at the ${ename.toLowerCase()} venue has caused it to shut down for the duration of the event!\n\nThe guests who have already paid will expect reimbursement. Of course, you could wait and see if the venue will reimburse you to lesson the load.`
+    //   // Outcomes
+    //   const c1 = ['Pay Guests', 'Wait and See'].reverse()
+    //   choices = choices.map(x => [c1.pop(), x[1]])
+    //   /// -
+    // } else
+    // if (ename.includes('A ')) {
+    //   const enttype = ename.split(' ')[1]
+    //   warning = `The ${ename} you hired for the event got injured in a terrible car accident. There is no way they can show up to the event.\n\nYou have a few hours to find someone new or risk having angered customers!`
+    //   // Outcomes
+    //   choices = [
+    //     ['New ' + enttype, WildCardEvent.LOSEMONEY_LIGHT],
+    //     ['Do Nothing ', WildCardEvent.LOSEMONEY_LIGHT]
+    //   ]
+    //   /// -
+    // } else
+    // if (ename === 'Hiking Trail') {
+    //   warning = 'One of the guests has suffered from heat stroke and collapsed on the trail. It will take considerable time to discretely bring medical attention to the guest and get them out of here! Rescue workers are en route.'
+    //   // Outcomes
+    //   choices = [
+    //     ['Call Medics', WildCardEvent.LOSEMONEY_LIGHT],
+    //     ['Do Nothing ', WildCardEvent.ATROCITY]
+    //   ]
+    //   /// -
+    // } else
+    // if (ename === 'Auction') {
+    //   warning = 'Something unspeakable has been offered for auction and the guests are descending into chaos. If you don\'t act quickly, someone might get hurt.'
+    //   // Outcomes
+    //   choices = [
+    //     ['Evacuate', WildCardEvent.LOSEMONEY_LIGHT],
+    //     ['Stow Item', WildCardEvent.LOSEMONEY_LIGHT]
+    //   ]
+    //   /// -
+    // }
+    // if (ename === 'Museum Tour') {
+    //   warning = `A ${Phaser.Math.RND.pick(['terrible leak', 'fire', 'collapse'])} has happened at the museum, and the tour has been called off.`
+    //   // Outcomes
+    //   choices = [
+    //     ['Refund', WildCardEvent.LOSEMONEY_HEAVY],
+    //     ['Ignore', WildCardEvent.LOSEAPPROVAL_HEAVY]
+    //   ]
+    //   /// -
+    // }

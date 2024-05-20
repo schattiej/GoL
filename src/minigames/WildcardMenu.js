@@ -100,50 +100,111 @@ const WildCardEvent =
     if(DataMaker.game.money >= 60){
       DataMaker.game.money -= 60
       AlertManager.alert('You lost 60 dollars.')
-      AdvanceRUI()
+      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
     else{
       AlertManager.alert('You don\'t have enough money to Pay!')
+      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
   },
   LOSEAPPROVAL_LIGHT: function () {
     DataMaker.game.popularity -= 7
     AlertManager.alert('You lost Popularity rating.')
-    AdvanceRUI()
+    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
+    }
   },
   LOSEMONEY_HEAVY: function () {
     if(DataMaker.game.money >= 250){
       DataMaker.game.money -= 250
       AlertManager.alert('You lost 250 dollars.')
-      AdvanceRUI()
+      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
     else{
       AlertManager.alert('You don\'t have enough money to Pay!')
+      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
   },
   LOSEAPPROVAL_HEAVY: function () {
     if(DataMaker.game.popularity >= 15){
     DataMaker.game.popularity -= 15
     AlertManager.alert('You lost a lot of approval rating.')
-    AdvanceRUI()
+    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
+    }
     }
     else{
       DataMaker.game.popularity -= 15
       AlertManager.alert('You are negative in popularity rating, Yikes!')
+      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
 
     }
   },
   ATROCITY: function () {
     DataMaker.game.popularity = 0
     AlertManager.alert('You have done something terrible, and possibly (definitely) illegal!')
-    AdvanceRUI()
+    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
+    }
   }
 }
 
 function AdvanceRUI () { // Simple function for updating the RUI and advancing to the next option.
   DataMaker.game.RUI.updateText()
-  if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
-  { WildcardManager.makeWarning() }
+}
+
+function AdvanceRUE () {
+  DataMaker.game.RUI.updateText()
+
+  const rando = Phaser.Math.Between(0, 100)
+    if (rando <=50){
+      endGameManager.createDialog()
+    }
+    else{
+      endGameManager.INIT()
+    }
 }
 
 
@@ -155,113 +216,9 @@ const WildcardManager = { // end of game events
     this.choicemenu = SimpleCM(
       `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.popularity}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
       [
-        ['Lets go!', () => { DataMaker.game.gameScene.start('EventScene') }]
+        ['Lets go!', () => { endGameManager.INIT()/*DataMaker.game.gameScene.start('EventScene')*/ }]
       ])
   },
-  // Primary loop for the end of the game - where choices must be made!
-  makeWarning: function () {
-    //const EC = DataMaker.game.playzone.endcards
-     //const scene = DataMaker.game.RUI.scene
-     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
-     //Switch case to check for the type of warning to be displayed as well as the choices for that warning
-     switch (temp) {
-       case 'Hotel':
-         warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
-         choices = [
-           ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
-           ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
-           ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
-         ]
-         break
-       case 'Entertainment':
-         warning = `Something has gone wrong! your ${temp} didn't show up!`
-         choices = [
-           ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
-           ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
-           ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
-         ]
-         break
-       case 'Food':
-         warning = `Something has gone wrong! your ${temp} was prepared poorly!`
-         choices = [
-           ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
-           ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
-           ['Who Cares!', WildCardEvent.ATROCITY]
-         ]
-         break
-       case 'Guests':
-         warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
-         choices = [
-           ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
-           ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
-           ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
-         ]
-         break
-     }
-    this.choicemenu.leave()
-    this.choicemenu = SimpleCM(warning, choices)
-    if (DataMaker.game.gameEnd === true) {
-      const ED = new EndingDialog(DataMaker.game.RUI.scene) // If there are no more cards, create the endgame dialogue.
-      return
-    }
-    //const EndgameCard = EC.pop() // Remove an endgame card from the stack
-    //const ename = EndgameCard.cdata.name
-
-    // // change to a switch-------------------------------------------------------------------------------------------------------------------------------------
-    // // Exhaustive list of possible issues with each card, and possible choices you can make in reponse to them.
-    // if (ename.includes('Band')) {
-    //   const bandname = ename.split(' ')[0]
-    //   warning = `Oh no - the lead singer of the band ${bandname} has fallen ill, and the band is considering not showing up for the event.\n\nYou could provide a monetary incentive for them to continue, or find another band quickly.\n\nHowever, there's no guarantee that this new band will impress the guests. It may be best to do nothing.`
-    //   // Outcomes
-    //   const c1 = ['Pay Band', 'Find New Band', 'Do Nothing'].reverse()
-    //   choices = choices.map(x => [c1.pop(), x[1]])
-    //   /// -
-    // } else
-    // if (ename === 'Laser Tag' || ename === 'Paintball') {
-    //   warning = `Drats - an accident at the ${ename.toLowerCase()} venue has caused it to shut down for the duration of the event!\n\nThe guests who have already paid will expect reimbursement. Of course, you could wait and see if the venue will reimburse you to lesson the load.`
-    //   // Outcomes
-    //   const c1 = ['Pay Guests', 'Wait and See'].reverse()
-    //   choices = choices.map(x => [c1.pop(), x[1]])
-    //   /// -
-    // } else
-    // if (ename.includes('A ')) {
-    //   const enttype = ename.split(' ')[1]
-    //   warning = `The ${ename} you hired for the event got injured in a terrible car accident. There is no way they can show up to the event.\n\nYou have a few hours to find someone new or risk having angered customers!`
-    //   // Outcomes
-    //   choices = [
-    //     ['New ' + enttype, WildCardEvent.LOSEMONEY_LIGHT],
-    //     ['Do Nothing ', WildCardEvent.LOSEMONEY_LIGHT]
-    //   ]
-    //   /// -
-    // } else
-    // if (ename === 'Hiking Trail') {
-    //   warning = 'One of the guests has suffered from heat stroke and collapsed on the trail. It will take considerable time to discretely bring medical attention to the guest and get them out of here! Rescue workers are en route.'
-    //   // Outcomes
-    //   choices = [
-    //     ['Call Medics', WildCardEvent.LOSEMONEY_LIGHT],
-    //     ['Do Nothing ', WildCardEvent.ATROCITY]
-    //   ]
-    //   /// -
-    // } else
-    // if (ename === 'Auction') {
-    //   warning = 'Something unspeakable has been offered for auction and the guests are descending into chaos. If you don\'t act quickly, someone might get hurt.'
-    //   // Outcomes
-    //   choices = [
-    //     ['Evacuate', WildCardEvent.LOSEMONEY_LIGHT],
-    //     ['Stow Item', WildCardEvent.LOSEMONEY_LIGHT]
-    //   ]
-    //   /// -
-    // }
-    // if (ename === 'Museum Tour') {
-    //   warning = `A ${Phaser.Math.RND.pick(['terrible leak', 'fire', 'collapse'])} has happened at the museum, and the tour has been called off.`
-    //   // Outcomes
-    //   choices = [
-    //     ['Refund', WildCardEvent.LOSEMONEY_HEAVY],
-    //     ['Ignore', WildCardEvent.LOSEAPPROVAL_HEAVY]
-    //   ]
-    //   /// -
-    // }
-  }
 }
 const endGameManager = { // end of game events
   INIT: function () {
@@ -305,10 +262,10 @@ const endGameManager = { // end of game events
     }
    //this.choicemenu.leave()
    this.choicemenu = SimpleCM(warning, choices)
-   if (DataMaker.game.gameEnd === true) {
-    const ED = new EndingDialog(DataMaker.game.RUI.scene) // If there are no more cards, create the endgame dialogue.
-    //return
-    }
+  },
+  createDialog: function () {
+    const ED = new EndingDialog(DataMaker.game.RUI.scene)
   }
+
 }
 export { WildcardManager, MidgameWildcards, endGameManager }

@@ -54,7 +54,7 @@ class ResourcesUI extends UpgradedContainer {
       moneyText.setVal(DataMaker.game.money)
       approvalText.setVal(DataMaker.game.popularity)
       attendeesText.setVal(DataMaker.game.attendees)
-      timeIndicator.setVal(DataMaker.game.timeSlots)
+      timeIndicator.setVal(DataMaker.game.gameScene)
     }
 
     this.setTurns = function (t) {
