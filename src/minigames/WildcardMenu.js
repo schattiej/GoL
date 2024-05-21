@@ -97,6 +97,14 @@ const MidgameWildcards =
         ['Hire Better Kitchen Staff \n(Pay 100 Dollars)', WildCardEvent.LOSEMONEY_HEAVY],
         ['Ignore the Risk', WildCardEvent.ATROCITY]
       ])
+  },
+  AUTHORITY_REMODEL: () => {
+    const C = SimpleCM(
+      'The hotel has to go through some unexpected remodel, they\'ve asked you to move some things!.',
+      [
+        ['Move the stuff', WildCardEvent.LOSEMONEY_LIGHT],
+        ['Let the hotel move the stuff', WildCardEvent.LOSEMONEY_HEAVY]
+      ])
   }
 }
 
@@ -107,7 +115,7 @@ const WildCardEvent =
     if(DataMaker.game.money >= 60){
       DataMaker.game.money -= 60
       AlertManager.alert('You lost 60 dollars.')
-      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      if (DataMaker.game.gameEnd === true) // Only if at end of game
       { 
         AdvanceRUE() 
       }
@@ -117,7 +125,7 @@ const WildCardEvent =
     }
     else{
       AlertManager.alert('You don\'t have enough money to Pay!')
-      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      if (DataMaker.game.gameEnd === true) // Only if at end of game
       { 
         AdvanceRUE() 
       }
@@ -129,7 +137,7 @@ const WildCardEvent =
   LOSEAPPROVAL_LIGHT: function () {
     DataMaker.game.popularity -= 7
     AlertManager.alert('You lost Popularity rating.')
-    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
     { 
       AdvanceRUE() 
     }
@@ -141,7 +149,7 @@ const WildCardEvent =
     if(DataMaker.game.money >= 250){
       DataMaker.game.money -= 250
       AlertManager.alert('You lost 250 dollars.')
-      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      if (DataMaker.game.gameEnd === true) // Only if at end of game
       { 
         AdvanceRUE() 
       }
@@ -151,7 +159,7 @@ const WildCardEvent =
     }
     else{
       AlertManager.alert('You don\'t have enough money to Pay!')
-      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      if (DataMaker.game.gameEnd === true) // Only if at end of game
       { 
         AdvanceRUE() 
       }
@@ -164,7 +172,7 @@ const WildCardEvent =
     if(DataMaker.game.popularity >= 15){
     DataMaker.game.popularity -= 15
     AlertManager.alert('You lost a lot of approval rating.')
-    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    if (DataMaker.game.gameEnd === true) // Only Only if at end of game
     { 
       AdvanceRUE() 
     }
@@ -175,7 +183,7 @@ const WildCardEvent =
     else{
       DataMaker.game.popularity -= 15
       AlertManager.alert('You are negative in popularity rating, Yikes!')
-      if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+      if (DataMaker.game.gameEnd === true) // Only if at end of game
       { 
         AdvanceRUE() 
       }
@@ -188,7 +196,7 @@ const WildCardEvent =
   ATROCITY: function () {
     DataMaker.game.popularity = 0
     AlertManager.alert('You have done something terrible, and possibly (definitely) illegal!')
-    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
     { 
       AdvanceRUE() 
     }
@@ -199,7 +207,7 @@ const WildCardEvent =
   GAINAPPROVAL: function () {
     DataMaker.game.popularity += 7
     AlertManager.alert('You gained approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
     { 
       AdvanceRUE() 
     }
@@ -210,7 +218,19 @@ const WildCardEvent =
   GAINMONEY: function () {
     DataMaker.game.money += 100
     AlertManager.alert('You gained 100 dollars!')
-    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
+    }
+  },
+  LOSEMONEYAPPROVAL: function () {
+    DataMaker.game.money -= 100
+    DataMaker.game.popularity -= 7
+    AlertManager.alert('You lost 100 dollars and approval rating!')
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
     { 
       AdvanceRUE() 
     }
@@ -220,6 +240,7 @@ const WildCardEvent =
   }
 }
 
+//Advance functions for the RUI based on the status of the game
 function AdvanceRUI () { // Simple function for updating the RUI and advancing to the next option.
   DataMaker.game.RUI.updateText()
 }
@@ -250,6 +271,8 @@ const WildcardManager = { // end of game events
       ])
   },
 }
+
+// This is the function that handles the menu pop-ups at the end of the game
 const endGameManager = { // end of game events
   INIT: function () {
     if(DataMaker.game.stopCheck === true){
