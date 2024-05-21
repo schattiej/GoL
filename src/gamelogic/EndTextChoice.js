@@ -5,10 +5,10 @@ let moneyText = '';
 let peopleText = '';
 let reputationText = '';
 
+let finalScoreText = '';
 let moneyScoreText = '';
 let peopleScoreText = '';
 let reputationScoreText = '';
-let finalScoreText = '';
 
 moneyScore = 0;
 peopleScore = 0;
@@ -84,6 +84,7 @@ function popularityComment(reputation) {
     }
 }
 
+
 function returnFinalText(money_, people_, reputation_) {
     moneyComment(money_);
     peopleComment(people_);
@@ -96,16 +97,22 @@ function returnFinalText(money_, people_, reputation_) {
     return finalText;
 }
 
-function returnScore() {
+export function returnScore(money_, people_, reputation_) {
+    moneyComment(money_);
+    peopleComment(people_);
+    popularityComment(reputation_);
+
+    totalScore = moneyScore + peopleScore + reputationScore;
+
     moneyScoreText = moneyScore + '/5' + '\n';
     peopleScoreText = peopleScore + '/5' + '\n';
     reputationScoreText = reputationScore + '/5' + '\n';
 
-    totalScore = moneyScore+peopleScore+reputationScore + '\n';
+    FinalScoreText += moneyScoreText + peopleScoreText + reputationScoreText
+        + 'Total Score: ' + totalScore + '/15';
 
-    finalScoreText = moneyScoreText + peopleScoreText + reputationScoreText + totalScore;
+    return finalScoreText;
 
-    return finalScoreText
 }
 
 export default returnFinalText;
