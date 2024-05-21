@@ -6,9 +6,16 @@ import AlertManager from '../gamelogic/GameAlert.js'
 import EndingDialog from '../gamelogic/EndingDialog.js'
 //import ExampleScene from '../scenes/Example.js'
 import EventScene from '../scenes/EventPhase.js'
+import EndCard from '../card/EndCard.js'
+import EventDialog from '../gamelogic/EventDialog.js'
+
 
 function SimpleCM (text, options) {
   return new ChoiceMenu(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
+}
+
+function SimpleEM (text, options){
+  return new EndCard(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
 }
 
 // The list of possible midgame wildcard events aka curveballs
@@ -188,6 +195,28 @@ const WildCardEvent =
     else{
       AdvanceRUI()
     }
+  },
+  GAINAPPROVAL: function () {
+    DataMaker.game.popularity += 7
+    AlertManager.alert('You gained approval rating!')
+    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
+    }
+  },
+  GAINMONEY: function () {
+    DataMaker.game.money += 100
+    AlertManager.alert('You gained 100 dollars!')
+    if (DataMaker.game.gameEnd === true) // Only chains into the next option if we are truly at the end of the game. Untested
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
+    }
   }
 }
 
@@ -199,11 +228,12 @@ function AdvanceRUE () {
   DataMaker.game.RUI.updateText()
 
   const rando = Phaser.Math.Between(0, 100)
-    if (rando <=50){
+    if (rando <=0 && DataMaker.game.countEnd < 4){
       endGameManager.createDialog()
     }
     else{
       endGameManager.INIT()
+      DataMaker.game.countEnd  += 1
     }
 }
 
@@ -216,15 +246,19 @@ const WildcardManager = { // end of game events
     this.choicemenu = SimpleCM(
       `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.popularity}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
       [
-        ['Lets go!', () => { endGameManager.INIT()/*DataMaker.game.gameScene.start('EventScene')*/ }]
+        ['Lets go!', () => { endGameManager.INIT() }]
       ])
   },
 }
 const endGameManager = { // end of game events
   INIT: function () {
+    if(this.stop === true){
+    const endDia = new EventDialog(DataMaker.game.RUI.scene)
+    }
+    this.stop = true
     const scene = DataMaker.game.RUI.scene
     DataMaker.game.gameEnd = true
-    const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests'])
+    const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests', 'Celebrity', 'Fire', 'Weather', 'Power', 'Donation'])
     //Switch case to check for the type of warning to be displayed as well as the choices for that warning
     switch (temp) {
       case 'Hotel':
@@ -259,9 +293,47 @@ const endGameManager = { // end of game events
           ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
         ]
         break
+      case 'Celebrity':
+        warning = 'Wow! A world famous celebrity has been spotted at the event!'
+        choices = [
+          ['Greet them and say hi!', WildCardEvent.GAINAPPROVAL],
+          ['Send them home', WildCardEvent.LOSEAPPROVAL_HEAVY]
+        ]
+        break
+      case 'Fire':
+        warning = 'A fire alarm has been triggered at the event! What do you do?'
+        choices = [
+          ['Escort Everyone Outside', WildCardEvent.GAINAPPROVAL],
+          ['Take Time to investigate yourself', WildCardEvent.LOSEAPPROVAL_HEAVY],
+          ['Ensure there is no problem', WildCardEvent.ATROCITY]
+        ]
+      break
+      case 'Weather':
+        warning = 'Some awful weather has been reported at the event! What do you do?'
+        choices = [
+          ['Wait for it to pass', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Ensure safe travels', WildCardEvent.LOSE_MONEY_LIGHT],
+          ['Eh, it will be fine.', WildCardEvent.LOSEAPPROVAL_HEAVY]
+        ]
+      break
+      case 'Power':
+        warning = 'The Power Went Out! What do you do?'
+        choices = [
+          ['Wait for it to pass', WildCardEvent.GAINAPPROVAL],
+          ['Pay for hotel generators', WildCardEvent.LOSEAPPROVAL_HEAVY],
+          ['Eh, it will be fine.', WildCardEvent.LOSEAPPROVAL_HEAVY]
+        ]
+      break
+      case 'Donation':
+        warning = 'Yippee! You Received a Donation due to your high approval rating!'
+        choices = [
+          ['Accept the Money', WildCardEvent.GAINMONEY],
+          ['Deny the Money', WildCardEvent.LOSEAPPROVAL_HEAVY]
+        ]
+      break
     }
    //this.choicemenu.leave()
-   this.choicemenu = SimpleCM(warning, choices)
+   this.choicemenu = SimpleEM(warning, choices)
   },
   createDialog: function () {
     const ED = new EndingDialog(DataMaker.game.RUI.scene)
