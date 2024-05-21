@@ -70,13 +70,14 @@ const DataMaker = {
       this.eventPayment = 0
       this.dontDraw = false
       this.gameEnd = false
-      this.gooberCheck = false
+      this.countEnd = 0
       // console.log(this.hotel)
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
       if (DataMaker.game.hotelDate === DataMaker.game.turnCount + 1) {
         DataMaker.game.HotelPayment()
       }
+      this.actions = 0
     },
     countActions: function () {
       this.actions += 1

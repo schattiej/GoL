@@ -2,8 +2,12 @@ import Phaser, { Data } from 'phaser'
 import DataMaker from '../gamelogic/DataMaker.js'
 import CONFIG from '../config.js'
 import UpgradedContainer from '../gamelogic/UpgradedContainer.js'
+
 //import EndTextChoice from '../gamelogic/EndTextChoice.js'
 import returnFinalText from '../gamelogic/EndTextChoice.js'
+
+import StartScene from '../scenes/Start.js'
+
 
 const EndingText = [
   'You\'ve made it through the event! Here are the final results:',
@@ -32,12 +36,12 @@ class EndingDialog extends UpgradedContainer {
     const endingStats =
     `Final Reputation: ${ DataMaker.game.popularity}
     Final Attendance: ${DataMaker.game.attendees}
-    Remaining Floor Space: ${DataMaker.game.timeSlots}
+    Remaining Floor Space: ${DataMaker.game.gameScene}
     `
     megaPage[1] = endingStats
     megaPage[2] = returnFinalText(DataMaker.game.money, DataMaker.game.attendees, DataMaker.game.popularity)
     const B1 = new StartupButton(scene, -600, this.height * 0.25, 'Next', () => {
-      if (currentPage < megaPage.length) {
+      if (currentPage < megaPage.length-1) {
         mainText.setText(megaPage[currentPage])
         currentPage++
       } else {

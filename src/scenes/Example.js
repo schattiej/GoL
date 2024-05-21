@@ -11,6 +11,7 @@ import { MidgameWildcards, WildcardManager } from '../minigames/WildcardMenu.js'
 import StartupDialog from '../gamelogic/StartupDialog.js'
 import LogisticsUI from '../gamelogic/LogisticsUI.js'
 import StyleIndicator from '../gamelogic/StyleIndicator.js'
+import EventDialog from '../gamelogic/EventDialog.js'
 
 class ExampleScene extends Phaser.Scene {
   preload () {
@@ -59,7 +60,7 @@ class ExampleScene extends Phaser.Scene {
   }
 
   keyReleased () {
-    this.scene.start('EventScene')
+    this.scene.start('StartScene')
   }
 
 }
