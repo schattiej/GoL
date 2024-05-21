@@ -71,6 +71,7 @@ const DataMaker = {
       this.dontDraw = false
       this.gameEnd = false
       this.countEnd = 0
+      this.stopCheck = false
       // console.log(this.hotel)
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
@@ -96,6 +97,7 @@ const DataMaker = {
       if (this.turnCount === this.dueDate) {
         AlertManager.alertN(['The date of the event has arrived!', 'It\'s time to see how things play out.'])
         this.gameEnd = true
+        this.stopCheck = true
       }
     },
     HotelPayment: function () {

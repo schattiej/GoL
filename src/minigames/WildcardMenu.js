@@ -228,12 +228,12 @@ function AdvanceRUE () {
   DataMaker.game.RUI.updateText()
 
   const rando = Phaser.Math.Between(0, 100)
-    if (rando <=0 && DataMaker.game.countEnd < 4){
-      endGameManager.createDialog()
+    if (rando >=50 && DataMaker.game.countEnd < 4){
+      endGameManager.INIT()
+      DataMaker.game.countEnd  += 1      
     }
     else{
-      endGameManager.INIT()
-      DataMaker.game.countEnd  += 1
+      endGameManager.createDialog()
     }
 }
 
@@ -252,10 +252,10 @@ const WildcardManager = { // end of game events
 }
 const endGameManager = { // end of game events
   INIT: function () {
-    if(this.stop === true){
+    if(DataMaker.game.stopCheck === true){
     const endDia = new EventDialog(DataMaker.game.RUI.scene)
     }
-    this.stop = true
+    DataMaker.game.stopCheck = false
     const scene = DataMaker.game.RUI.scene
     DataMaker.game.gameEnd = true
     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests', 'Celebrity', 'Fire', 'Weather', 'Power', 'Donation'])
