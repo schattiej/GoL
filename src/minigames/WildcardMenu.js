@@ -5,7 +5,6 @@ import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
 import AlertManager from '../gamelogic/GameAlert.js'
 import EndingDialog from '../gamelogic/EndingDialog.js'
 //import ExampleScene from '../scenes/Example.js'
-import EventScene from '../scenes/EventPhase.js'
 import EndCard from '../card/EndCard.js'
 import EventDialog from '../gamelogic/EventDialog.js'
 

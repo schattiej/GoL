@@ -15,6 +15,7 @@ class StyleIndicator extends UpgradedContainer {
     // this.width = Phaser.Display.Bounds.GetRight(this.val) - Phaser.Display.Bounds.GetLeft(this.title)
   }
 
+  //bouncing effect for the animation backlog
   bounceMove () {
     this.LeftRight(this.val, this.title)
     const oX = this.val.x
@@ -34,6 +35,7 @@ class StyleIndicator extends UpgradedContainer {
     })
   }
 
+  //textGlide effect for the animation backlog
   textGlide (v) { // Unused, attempt to glide or interpolate numbers
     const oV = Number(this.val)
     const nV = Number(v)

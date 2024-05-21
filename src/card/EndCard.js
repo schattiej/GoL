@@ -44,7 +44,7 @@ class EndCard extends UpgradedContainer {
         this.setDepth(1000)
         this.y = 0
         this.scale = 0.2
-        this.scene.tweens.add({ // Every ChoiceMenu flies in from the top of the screen.
+        this.scene.tweens.add({ // Every EndCard flies in from the top of the screen.
           targets: this,
           y: y,
           scale: .4,

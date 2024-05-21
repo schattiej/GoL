@@ -5,6 +5,7 @@ let moneyText = '';
 let peopleText = '';
 let reputationText = '';
 
+//comments made based on how much money people have
 function moneyComment(money) {
     if (money < 0) {
         moneyText = 'You have overspent on expenses and could not gain enough back. This negatively impacts your final score significantly';
@@ -23,6 +24,7 @@ function moneyComment(money) {
     }
 }
 
+//comments made based on the popularity of the event
 function peopleComment(people) {
     if (people <= 0) {
         peopleText = 'What a truly catastrophic event. No one has arrived. This event is an automatic failure.';
@@ -41,6 +43,7 @@ function peopleComment(people) {
     }
 }
 
+//choosing the reputation and popularity
 function popularityComment(reputation) {
     if (reputation <= 0) {
         reputationText = 'There is not enough goodwill for any of us here today. This massively negatively impacts your score.';
@@ -59,6 +62,7 @@ function popularityComment(reputation) {
     }
 }
 
+//Returning function for the text that will be displayed
 function returnFinalText(money_, people_, reputation_) {
     moneyComment(money_);
     peopleComment(people_);

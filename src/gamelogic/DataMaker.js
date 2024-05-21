@@ -230,6 +230,7 @@ const DataMaker = {
       DataMaker.game.money += money
       DataMaker.game.RUI.updateText()
     },
+    //making data for the hotel cards, mainly the package that is drawn
     makeHotelData1: function () { // The hotel cards work a bit differently
       const hotel = {
         name: 'The Hilton Hotel Package',
@@ -252,6 +253,7 @@ const DataMaker = {
       const c = r_p([hotel, amenities])
       return c
     },
+    //making the entertainment data cards
     makeEntertainmentData1: function () {
       const speaker = {
         name: 'Subject Matter Expert',
@@ -278,6 +280,7 @@ const DataMaker = {
       const c = r_p([speaker, professional, demonstration])
       return c
     },
+    //making the marketing data cards
     makeMarketingData1: function () {
       const radio = {
         name: '15 Second Radio Ad',
@@ -302,6 +305,7 @@ const DataMaker = {
       const c = r_p([billboard, socialMedia, radio])
       return c
     },
+    //making the fun data cards
     makeFundData1: function () { // Now called the Sponsor deck. Intended to generate revenue, whereas Marketing generates interest in the event / participation.
       const sponsorNames = ['Zonko Cola', 'Beanslinger Billy', 'Dragons and Donuts', 'The Ouch Time']
       const sponsor = {
