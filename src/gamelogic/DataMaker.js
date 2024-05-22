@@ -56,9 +56,9 @@ const DataMaker = {
       this.timeSlots = r_btwn(3, 5)
       this.popularity = 0
       this.attendees = 0
-      this.startDate = r_btwn(1, 12)
-      this.dueDate = this.startDate + 12
-      this.hotelDate = this.startDate + 6
+      this.startDate =0
+      this.dueDate = 12
+      this.hotelDate = 6
       this.turnCount = this.startDate
       this.actions = 0
       this.banquet_complete = false
@@ -68,12 +68,16 @@ const DataMaker = {
       this.gameScene = mainScene
       this.hotel.setup()
       this.eventPayment = 0
+      this.dontDraw = false
+      this.gameEnd = false
+      this.countEnd = 0
       // console.log(this.hotel)
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
       if (DataMaker.game.hotelDate === DataMaker.game.turnCount + 1) {
         DataMaker.game.HotelPayment()
       }
+      this.actions = 0
     },
     countActions: function () {
       this.actions += 1
@@ -87,9 +91,11 @@ const DataMaker = {
     turnNotifications: function () {
       if (this.turnCount === this.hotelDate) {
         AlertManager.alertN(['The date for the hotel contract just passed.', 'Cards from the Hotel deck have no effect now.'])
+        this.dontDraw = true
       }
       if (this.turnCount === this.dueDate) {
         AlertManager.alertN(['The date of the event has arrived!', 'It\'s time to see how things play out.'])
+        this.gameEnd = true
       }
     },
     HotelPayment: function () {

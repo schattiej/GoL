@@ -9,7 +9,7 @@ class PlayZone extends Phaser.GameObjects.Container {
   constructor (scene, cardgroup, x, y) {
     super(scene, 0, 0)
     this.width = CONFIG.DEFAULT_WIDTH * 0.2 * 0.6
-    this.height = this.width * (363 / 259)
+    this.height = CONFIG.DEFAULT_HEIGHT * .28
     this.cardqueue = []
     this.endcards = []
     this.incards = []
@@ -21,6 +21,7 @@ class PlayZone extends Phaser.GameObjects.Container {
     this.makeNineSlice()
 
     this.add(new StyleIndicator(scene, -100, -150, 'Play Cards Here', ''))
+
 
     scene.input.on('pointerup', () => {
       /* To add more 'play during a turn' functionality,

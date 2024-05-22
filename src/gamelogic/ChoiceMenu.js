@@ -6,12 +6,14 @@ class ChoiceMenu extends Phaser.GameObjects.Container { // Class for choosing be
     super(scene, x, y)
     this.width = CONFIG.DEFAULT_WIDTH * 0.6
     this.height = CONFIG.DEFAULT_HEIGHT * 0.5
+    this.leaveMenu = false
     // const bottom = new Phaser.GameObjects.Rectangle(scene, 0, 0, this.width, this.height, '0x9938')
     const bottom = scene.add.image(0, 0, 'curveball_menu')
     this.add(bottom)
 
-    const message = this.scene.add.text(-this.width * 0.55, -this.height * 0.2, WarningText, { font: '30pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
+    const message = this.scene.add.text(-this.width * 0.55, -this.height * 0.2, WarningText, { font: '26pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
     message.setWordWrapWidth(800)
+    //message.setDepth(2)
     this.add(message)
 
     if (options.length > 1) { // Generally places buttons correctly.
