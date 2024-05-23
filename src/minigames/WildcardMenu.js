@@ -376,16 +376,16 @@ const endGameManager = { // end of game events
         case 0:
           random = Phaser.Math.RND.integerInRange(1, 100)
         if (random >5){
-          warning = 'Holy Cow! A Well known !'
+          warning = 'Oh No! A random youtuber made a 2 hour video essay about your event! You\'re cooked!'
           choices = [
-            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+            ['man...', WildCardEvent.GAINAPPROVAL]
           ]
         }
         break
         case 2:
           random = Phaser.Math.RND.integerInRange(1, 100)
         if (random >5){
-          warning = 'Holy Cow! A Well known !'
+          warning = 'You had a pretty average turnout.'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
@@ -394,7 +394,7 @@ const endGameManager = { // end of game events
         case 3:
           random = Phaser.Math.RND.integerInRange(1, 100)
         if (random >5){
-          warning = 'Holy Cow! A Well known !'
+          warning = 'Wow, A famous local dropped by!'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
@@ -403,7 +403,7 @@ const endGameManager = { // end of game events
         case 4:
           random = Phaser.Math.RND.integerInRange(1, 100)
         if (random >5){
-          warning = 'Holy Cow! A Well known !'
+          warning = 'Wow, A well known youtuber decided to check out your event!'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
@@ -412,7 +412,7 @@ const endGameManager = { // end of game events
         case 5:
           random = Phaser.Math.RND.integerInRange(1, 100)
         if (random >5){
-          warning = 'Holy Cow! A Well known !'
+          warning = 'Oh My! A celebrity came to checkout your event!'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
@@ -428,16 +428,16 @@ const endGameManager = { // end of game events
       case 0:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'Oh No! A random youtuber made a 2 hour video essay about your event! You\'re cooked!!'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Oh no...', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 2:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'You had a good reputation!'
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
@@ -446,27 +446,27 @@ const endGameManager = { // end of game events
       case 3:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'A local news station decided to cover your event!'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 4:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'A state news station decided to cover your event!'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 5:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'National news decided to cover your even!'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
@@ -479,45 +479,57 @@ const endGameManager = { // end of game events
       case 0:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'Oh my goodness, you have like no money left! How will you manage your event?'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['I guess we will see...', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 2:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'You have a decent amount of money, do you want to take a chance and invest in some better amenities?'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Better Food!', WildCardEvent.GAINAPPROVAL],
+          ['Better HandSoap!', WildCardEvent.GAINAPPROVAL],
+          ['Better Music!', WildCardEvent.GAINAPPROVAL],
+          ['Nah, let\'s save money!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 3:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'You have a decent amount of money, would you like to invest in some amenities?'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Better Food!', WildCardEvent.GAINAPPROVAL],
+          ['Better HandSoap!', WildCardEvent.GAINAPPROVAL],
+          ['Better Music!', WildCardEvent.GAINAPPROVAL],
+          ['Nah, let\'s save money!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 4:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'You have a really good amount of money, would you like to invest in some amenities?'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Better Food!', WildCardEvent.GAINAPPROVAL],
+          ['Better HandSoap!', WildCardEvent.GAINAPPROVAL],
+          ['Better Music!', WildCardEvent.GAINAPPROVAL],
+          ['Nah, let\'s save money!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
       case 5:
         random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! A Well known !'
+        warning = 'You have so much money that you are swimming in green. Nobody in the world is ready for your wealth, would you like to invest in some amenities?'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Better Food!', WildCardEvent.GAINAPPROVAL],
+          ['Better HandSoap!', WildCardEvent.GAINAPPROVAL],
+          ['Better Music!', WildCardEvent.GAINAPPROVAL],
+          ['Nah, let\'s save money!', WildCardEvent.GAINAPPROVAL]
         ]
       }
       break
