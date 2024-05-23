@@ -380,8 +380,6 @@ const endGameManager = { // end of game events
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
-
-        return SimpleEM(warning, choices)
         }
         break
         case 2:
@@ -391,8 +389,6 @@ const endGameManager = { // end of game events
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
-
-        return SimpleEM(warning, choices)
         }
         break
         case 3:
@@ -402,8 +398,6 @@ const endGameManager = { // end of game events
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
-
-        return SimpleEM(warning, choices)
         }
         break
         case 4:
@@ -413,8 +407,6 @@ const endGameManager = { // end of game events
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
-
-        return SimpleEM(warning, choices)
         }
         break
         case 5:
@@ -424,11 +416,11 @@ const endGameManager = { // end of game events
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
           ]
-
-        return SimpleEM(warning, choices)
         }
         break
     }
+
+    return SimpleEM(warning, choices)
   },
   highChanceReputation: function () {
     //Card chance based on the reputation score
@@ -440,8 +432,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 2:
@@ -451,8 +441,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 3:
@@ -462,8 +450,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 4:
@@ -473,8 +459,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 5:
@@ -484,11 +468,10 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
-  }
+    }
+    return SimpleEM(warning, choices)
   },
 
   highChanceMoney: function () {
@@ -500,8 +483,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 2:
@@ -511,8 +492,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 3:
@@ -522,8 +501,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 4:
@@ -533,8 +510,6 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
       case 5:
@@ -544,11 +519,10 @@ const endGameManager = { // end of game events
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
-
-      return SimpleEM(warning, choices)
       }
       break
-  }
+    }
+    return SimpleEM(warning, choices)
   }
 }
 export { WildcardManager, MidgameWildcards, endGameManager }
