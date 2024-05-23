@@ -5,7 +5,7 @@ import UpgradedContainer from '../gamelogic/UpgradedContainer.js'
 
 //import EndTextChoice from '../gamelogic/EndTextChoice.js'
 import returnFinalText from '../gamelogic/EndTextChoice.js'
-import returnScore from '../gamelogic/EndScore.js'
+import returnScore, { getMoneyScore, getAttendanceScore, getReputationScore, rateScores } from '../gamelogic/EndScore.js';
 
 
 import StartScene from '../scenes/Start.js'
