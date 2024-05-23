@@ -45,7 +45,7 @@ class EndingDialog extends UpgradedContainer {
     megaPage[2] = returnFinalText(DataMaker.game.money, DataMaker.game.attendees, DataMaker.game.popularity)
     megaPage[3] = returnScore(DataMaker.game.money, DataMaker.game.attendees, DataMaker.game.popularity)
     const B1 = new StartupButton(scene, -600, this.height * 0.25, 'Next', () => {
-      if (currentPage < megaPage.length-1) {
+      if (currentPage < megaPage.length) {
         mainText.setText(megaPage[currentPage])
         currentPage++
       } else {
