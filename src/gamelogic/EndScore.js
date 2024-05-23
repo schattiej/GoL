@@ -85,7 +85,7 @@ import returnScore, { getMoneyScore, getAttendanceScore, getReputationScore, rat
 
 */
 
-export function rateScores() {
+export function rateScores(money_, attendance_, reputation_) {
     checkMoney(money_);
     checkAttendance(attendance_);
     checkReputation(reputation_);
@@ -106,7 +106,7 @@ export function getReputationScore() {
 
 function returnScore(money_, attendance_, reputation_) {
 
-    rateScores();
+    rateScores(money_, attendance_, reputation_);
 
     scoreText = `Money Score: ` + moneyScore + `/5` + `\n` +
         `Attendance Score: ` + attendanceScore + `/5` + `\n` +

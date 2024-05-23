@@ -353,16 +353,16 @@ const endGameManager = { // end of game events
   createDialog: function () {
     const ED = new EndingDialog(DataMaker.game.RUI.scene)
   },
-  highChance: function () {
-    if (placeholder){
-      warning = 'Yippee! You Received a Donation due to your high approval rating!'
-      choices = [
-        ['Accept the Money', WildCardEvent.GAINMONEY]
-      ]
+  //highChance: function () {
+    //if (placeholder){
+      //warning = 'Yippee! You Received a Donation due to your high approval rating!'
+      //choices = [
+        //['Accept the Money', WildCardEvent.GAINMONEY]
+      //]
 
-      return SimpleEM(warning, choices)
-    }
-  }
+      //return SimpleEM(warning, choices)
+    //}
+  //}
 
 }
 export { WildcardManager, MidgameWildcards, endGameManager }
