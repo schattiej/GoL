@@ -33,7 +33,7 @@
     "phaser": "^3.60.0"
   },
   "dependencies": {
-    "esbuild": "^0.21.2",
+    "esbuild": "^0.21.3",
     "phaser3-rex-plugins": "^1.1.74"
   }
 }

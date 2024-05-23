@@ -41,19 +41,15 @@ class ExampleScene extends Phaser.Scene {
     this.add.text(.845 * CONFIG.DEFAULT_WIDTH, .52 * CONFIG.DEFAULT_HEIGHT, 'PLAY', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
     this.add.text(.45 * CONFIG.DEFAULT_WIDTH, .72 * CONFIG.DEFAULT_HEIGHT, 'Hand', { fontFamily: 'Arial', fontSize: '80px', color: '#ffffff' });
 
-
+// Add the statistics menu to the scene
     const rUI = new ResourcesUI(this, 0.138 * CONFIG.DEFAULT_WIDTH, 0.33 * CONFIG.DEFAULT_HEIGHT)
     const lUI = new LogisticsUI(this, 0.218 * CONFIG.DEFAULT_WIDTH, 0.08 * CONFIG.DEFAULT_HEIGHT)
     const board1 = new Board(this, 0.6 * CONFIG.DEFAULT_WIDTH, 0 * CONFIG.DEFAULT_HEIGHT)
     const zone1 = new PlayZone(this, cardg, 0.893 * CONFIG.DEFAULT_WIDTH, 0.615 * CONFIG.DEFAULT_HEIGHT)
     const startupdialog1 = new StartupDialog(this)
-    // const meembus = new StyleIndicator(this, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'whatever', 'oh no!')
-    // this.add.existing(meembus)
-    // meembus.setVal('yello')
 
     MidgameWildcards.INIT()
     MidgameWildcards.POPULATE()
-    // MidgameWildcards.AV_ORDER()
 
     // Add a callback when a key is released
     this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)

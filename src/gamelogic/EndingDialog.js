@@ -83,6 +83,7 @@ class EndingDialog extends UpgradedContainer {
   }
 }
 
+//A button class that can be used for the ending dialogue
 class StartupButton extends UpgradedContainer { // Class for the buttons inside of the ChoiceMenu
   constructor (scene, x, y, text, callback) {
     super(scene, x, y)

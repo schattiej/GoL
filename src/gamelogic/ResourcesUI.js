@@ -71,6 +71,7 @@ class ResourcesUI extends UpgradedContainer {
     scene.add.existing(this)
   }
 
+  //not entirely sure what this is because it's poorly named.
   makeNineSlice () {
     const drambo = this.scene.make.nineslice({
       x: 0,

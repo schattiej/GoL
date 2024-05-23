@@ -65,6 +65,7 @@ class ChoiceMenu extends Phaser.GameObjects.Container { // Class for choosing be
   }
 }
 
+//WildcardButton is a custom button for the choice menu
 class WildcardButton extends Phaser.GameObjects.Container { // Class for the buttons inside of the ChoiceMenu
   constructor (scene, x, y, text, callback) {
     super(scene, x, y)
