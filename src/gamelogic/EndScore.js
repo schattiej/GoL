@@ -75,25 +75,48 @@ function checkReputation(reputation) {
     }
 }
 
-/*
+/* 
 
 Exported Function
 
+To export functions into the main, paste this import. When retrieving the scores, just call the function.
+Remember that the score is assigned when return score is called.
+import returnScore, { getMoneyScore, getAttendanceScore, getReputationScore, rateScores } from '../gamelogic/EndScore.js';
+
 */
 
-function returnScore(money_, attendance_, reputation_) {
+export function rateScores() {
     checkMoney(money_);
     checkAttendance(attendance_);
     checkReputation(reputation_);
+}
 
-    scoreText = `Money Score: ` + moneyScore + `/5` + `\n`      +
-                `Attendance Score: ` + attendanceScore + `/5` + `\n` +
-                `Reputation Score: ` + reputationScore + `/5` + `\n` +
-                `Total Score: ` + (moneyScore + attendanceScore + reputationScore) + `/15` + `\n`;
+export function getMoneyScore() {
+    return moneyScore;
+}
+
+export function getAttendanceScore() {
+    return attendanceScore;
+}
+
+export function getReputationScore() {
+    return reputationScore;
+}
+
+
+function returnScore(money_, attendance_, reputation_) {
+
+    rateScores();
+
+    scoreText = `Money Score: ` + moneyScore + `/5` + `\n` +
+        `Attendance Score: ` + attendanceScore + `/5` + `\n` +
+        `Reputation Score: ` + reputationScore + `/5` + `\n` +
+        `Total Score: ` + (moneyScore + attendanceScore + reputationScore) + `/15` + `\n`;
 
     return scoreText;
 
 }
+
 
 
 export default returnScore;
