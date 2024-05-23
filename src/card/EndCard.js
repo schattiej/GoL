@@ -35,8 +35,8 @@ class EndCard extends UpgradedContainer {
           }
         } else { // If there's only one option, special placement of that button
           const Choice = options[0]
-          const NewButton = new WildcardButton(scene, this.width * 0.42, 0, Choice[0], Choice[1])
-          NewButton.displayWidth = this.displayWidth * 0.25
+          const NewButton = new WildcardButton(scene, 0, this.height / 2, Choice[0], Choice[1])
+          NewButton.displayWidth = this.displayWidth * 0.55
           if (autoClose) { NewButton.on('pointerup', () => { this.leave() }) } // If AutoClose is true, picking an option will close the dialog box.
           this.add(NewButton)
         }

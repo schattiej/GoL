@@ -7,6 +7,7 @@ import EndingDialog from '../gamelogic/EndingDialog.js'
 //import ExampleScene from '../scenes/Example.js'
 import EndCard from '../card/EndCard.js'
 import EventDialog from '../gamelogic/EventDialog.js'
+import returnScore, { getMoneyScore, getAttendanceScore, getReputationScore, rateScores } from '../gamelogic/EndScore.js';
 
 
 function SimpleCM (text, options) {
@@ -247,6 +248,22 @@ function AdvanceRUI () { // Simple function for updating the RUI and advancing t
 function AdvanceRUE () {
   DataMaker.game.RUI.updateText()
 
+  if (DataMaker.game.attCheck === true){
+    DataMaker.game.attCheck = false
+    endGameManager.highChanceReputation()
+    DataMaker.game.popCheck = true
+  }
+  else if(DataMaker.game.popCheck === true){
+    DataMaker.game.popCheck = false
+    endGameManager.highChanceMoney()
+    DataMaker.game.moneyCheck = true
+  }
+  else if(DataMaker.game.moneyCheck === true){
+    DataMaker.game.moneyCheck = false
+    endGameManager.INIT()
+  }
+
+  else if (DataMaker.game.fullCheck === true){
   const rando = Phaser.Math.Between(0, 100)
     if (rando >=50 && DataMaker.game.countEnd < 4){
       endGameManager.INIT()
@@ -255,8 +272,8 @@ function AdvanceRUE () {
     else{
       endGameManager.createDialog()
     }
+  }
 }
-
 
 
 const WildcardManager = { // end of game events
@@ -266,7 +283,7 @@ const WildcardManager = { // end of game events
     this.choicemenu = SimpleCM(
       `It's time - the fabled day of the event has arrived! \n\n To date, the approval rating of the event based on marketing is: ${DataMaker.game.popularity}. \n\n To Date, the remaining money you have is: ${DataMaker.game.money}.\n As the event goes on, there may be hiccups that affect the total approval rating, as well as the additional approval from the entertainment venues themselves. Manage well, and you may make a lot of guests happy!\n\nManage poorly, and you may suffer the consequences...`,
       [
-        ['Lets go!', () => { endGameManager.INIT() }]
+        ['Lets go!', () => { endGameManager.highChanceAttendance() }]
       ])
   },
 }
@@ -280,6 +297,7 @@ const endGameManager = { // end of game events
     DataMaker.game.stopCheck = false
     const scene = DataMaker.game.RUI.scene
     DataMaker.game.gameEnd = true
+    DataMaker.game.fullCheck = true
     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests', 'Celebrity', 'Fire', 'Weather', 'Power'])
     //Switch case to check for the type of warning to be displayed as well as the choices for that warning
     switch (temp) {
@@ -353,16 +371,158 @@ const endGameManager = { // end of game events
   createDialog: function () {
     const ED = new EndingDialog(DataMaker.game.RUI.scene)
   },
-  //highChance: function () {
-    //if (placeholder){
-      //warning = 'Yippee! You Received a Donation due to your high approval rating!'
-      //choices = [
-        //['Accept the Money', WildCardEvent.GAINMONEY]
-      //]
+  highChanceAttendance: function () {
+      switch (getAttendanceScore()) {
+        case 0:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+        }
+        break
+        case 2:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+        }
+        break
+        case 3:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+        }
+        break
+        case 4:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+        }
+        break
+        case 5:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+        }
+        break
+    }
 
-      //return SimpleEM(warning, choices)
-    //}
-  //}
+    return SimpleEM(warning, choices)
+  },
+  highChanceReputation: function () {
+    //Card chance based on the reputation score
+    switch (getReputationScore()) {
+      case 0:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 2:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 3:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 4:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 5:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+    }
+    return SimpleEM(warning, choices)
+  },
 
+  highChanceMoney: function () {
+    switch (getMoneyScore()) {
+      case 0:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 2:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 3:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 4:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+      case 5:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+      }
+      break
+    }
+    return SimpleEM(warning, choices)
+  }
 }
 export { WildcardManager, MidgameWildcards, endGameManager }
