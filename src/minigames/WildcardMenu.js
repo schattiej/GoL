@@ -372,184 +372,183 @@ const endGameManager = { // end of game events
     const ED = new EndingDialog(DataMaker.game.RUI.scene)
   },
   highChanceAttendance: function () {
-    if (getAttendanceScore() === 0){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >5){
-        warning = 'Holy Cow! A Well known !'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getAttendanceScore() === 2){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >50){
-        warning = 'Holy Cow! A Well known !'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getAttendanceScore() === 3){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >50){
-        warning = 'Holy Cow! A Well known !'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if(getAttendanceScore() === 4){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if(random > 25){
-        warning = 'Holy Cow! A Celebrity Showed up!'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
+      switch (getAttendanceScore()) {
+        case 0:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
 
         return SimpleEM(warning, choices)
-      }
-    }
-    else if(getAttendanceScore() === 5){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if(random > 5){
-        warning = 'Holy Cow! A Celebrity Showed up!'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
+        }
+        break
+        case 2:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
 
         return SimpleEM(warning, choices)
-      }
+        }
+        break
+        case 3:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+
+        return SimpleEM(warning, choices)
+        }
+        break
+        case 4:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+
+        return SimpleEM(warning, choices)
+        }
+        break
+        case 5:
+          random = Phaser.Math.RND.integerInRange(1, 100)
+        if (random >5){
+          warning = 'Holy Cow! A Well known !'
+          choices = [
+            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ]
+
+        return SimpleEM(warning, choices)
+        }
+        break
     }
   },
   highChanceReputation: function () {
     //Card chance based on the reputation score
-    if (getReputationScore() === 0){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >0){
-        warning = 'Oh No! A random youtuber made a hit video essay about your event!'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getReputationScore() === 2){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >0){
-        warning = 'You had a pretty average reputation tbh no cap on jah!'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getReputationScore() === 3){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >50){
-        warning = 'Holy Cow! Local News is here to cover the event!'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getReputationScore() === 4){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >25){
-        warning = 'Holy Cow! State news is here to cover the event!'
-        choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getReputationScore() === 5){
-      random = Phaser.Math.RND.integerInRange(1, 100)
+    switch (getReputationScore()) {
+      case 0:
+        random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'Holy Cow! National news is here to cover the event!'
+        warning = 'Holy Cow! A Well known !'
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
 
       return SimpleEM(warning, choices)
       }
-    }
+      break
+      case 2:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+      case 3:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+      case 4:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+      case 5:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+  }
   },
 
   highChanceMoney: function () {
-    if (getMoneyScore() === 0){
-      random = Phaser.Math.RND.integerInRange(1, 100)
+    switch (getMoneyScore()) {
+      case 0:
+        random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-       warning = 'You don\'t actually have like any money left champ, sorry!'
+        warning = 'Holy Cow! A Well known !'
         choices = [
-          ['Oh No!', WildCardEvent.GAINAPPROVAL]
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
 
       return SimpleEM(warning, choices)
       }
-    }
-    else if (getMoneyScore() === 2){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >25){
-       warning = 'You have some money left, wanna take a risk and invest in some food?'
-        choices = [
-          ['Yes!', WildCardEvent.GAINAPPROVAL],
-          ['No!', WildCardEvent.LOSEAPPROVAL_LIGHT]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getMoneyScore() === 3){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >50){
-       warning = 'You have a good amount of money champ! Would you like to invest in anything?'
-        choices = [
-          ['Yes!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getMoneyScore() === 4){
-      random = Phaser.Math.RND.integerInRange(1, 100)
-      if (random >25){
-        warning = 'You have a good amount of money champ! Would you like to invest in anything?'
-        choices = [
-          ['Yes!', WildCardEvent.GAINAPPROVAL],
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL],
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL],
-          ['Nah, I\'m Good!', WildCardEvent.GAINAPPROVAL]
-        ]
-
-      return SimpleEM(warning, choices)
-      }
-    }
-    else if (getMoneyScore() === 5){
-      random = Phaser.Math.RND.integerInRange(1, 100)
+      break
+      case 2:
+        random = Phaser.Math.RND.integerInRange(1, 100)
       if (random >5){
-        warning = 'You have a good amount of money champ! Would you like to invest in anything?'
+        warning = 'Holy Cow! A Well known !'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL],
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL],
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL],
-          ['Nah, I\'m Good!', WildCardEvent.GAINAPPROVAL]
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
         ]
 
       return SimpleEM(warning, choices)
       }
-    }
+      break
+      case 3:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+      case 4:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+      case 5:
+        random = Phaser.Math.RND.integerInRange(1, 100)
+      if (random >5){
+        warning = 'Holy Cow! A Well known !'
+        choices = [
+          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+        ]
+
+      return SimpleEM(warning, choices)
+      }
+      break
+  }
   }
 }
 export { WildcardManager, MidgameWildcards, endGameManager }
