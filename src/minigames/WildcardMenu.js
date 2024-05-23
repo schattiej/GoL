@@ -280,7 +280,7 @@ const endGameManager = { // end of game events
     DataMaker.game.stopCheck = false
     const scene = DataMaker.game.RUI.scene
     DataMaker.game.gameEnd = true
-    const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests', 'Celebrity', 'Fire', 'Weather', 'Power', 'Donation'])
+    const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests', 'Celebrity', 'Fire', 'Weather', 'Power'])
     //Switch case to check for the type of warning to be displayed as well as the choices for that warning
     switch (temp) {
       case 'Hotel':
@@ -346,19 +346,22 @@ const endGameManager = { // end of game events
           ['Eh, it will be fine.', WildCardEvent.LOSEAPPROVAL_HEAVY]
         ]
       break
-      case 'Donation':
-        warning = 'Yippee! You Received a Donation due to your high approval rating!'
-        choices = [
-          ['Accept the Money', WildCardEvent.GAINMONEY],
-          ['Deny the Money', WildCardEvent.LOSEAPPROVAL_HEAVY]
-        ]
-      break
     }
    //this.choicemenu.leave()
    this.choicemenu = SimpleEM(warning, choices)
   },
   createDialog: function () {
     const ED = new EndingDialog(DataMaker.game.RUI.scene)
+  },
+  highChance: function () {
+    if (placeholder){
+      warning = 'Yippee! You Received a Donation due to your high approval rating!'
+      choices = [
+        ['Accept the Money', WildCardEvent.GAINMONEY]
+      ]
+
+      return SimpleEM(warning, choices)
+    }
   }
 
 }
