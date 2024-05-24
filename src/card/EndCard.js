@@ -14,10 +14,15 @@ class EndCard extends UpgradedContainer {
         const bottom = scene.add.image(0, 0, 'funds_front')
         this.add(bottom)
     
-        const message = this.scene.add.text(-this.width * 0.35, -this.height * 0.1, WarningText, { font: '48pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
+        const statText = 'You currently have $' + DataMaker.game.money +'in your pockets.'
+
+        const message = this.scene.add.text(-this.width * 0.42, -this.height * 0.1, WarningText, { font: '48pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
+        const messageTwo = this.scene.add.text(-this.width * 0.42, -this.height * -.8, statText, { font: '48pt "Franklin Gothic Book"', color: '#231f20', align: 'center' })
         message.setWordWrapWidth(1000)
+        messageTwo.setWordWrapWidth(1000)
         //message.setDepth(2)
         this.add(message)
+        this.add(messageTwo)
     
         if (options.length > 1) { // Generally places buttons correctly.
           const buttonSize = (this.height * 0.6)
@@ -35,7 +40,7 @@ class EndCard extends UpgradedContainer {
           }
         } else { // If there's only one option, special placement of that button
           const Choice = options[0]
-          const NewButton = new WildcardButton(scene, 0, this.height / 2, Choice[0], Choice[1])
+          const NewButton = new WildcardButton(scene, this.width *.16 , this.height / 2, Choice[0], Choice[1])
           NewButton.displayWidth = this.displayWidth * 0.55
           if (autoClose) { NewButton.on('pointerup', () => { this.leave() }) } // If AutoClose is true, picking an option will close the dialog box.
           this.add(NewButton)
