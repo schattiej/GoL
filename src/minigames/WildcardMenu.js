@@ -446,7 +446,7 @@ const endGameManager = { // end of game events
     this.att = getAttendanceScore()
       switch (this.att) {
         case 0:
-        if (this.random >5){
+        if (this.random >0){
           warning = 'Sweet bippy! Nobody but close friends came!'
           choices = [
             ['man...', WildCardEvent.GAINAPPROVAL]
@@ -454,7 +454,7 @@ const endGameManager = { // end of game events
         }
         break
         case 2:
-        if (this.random >5){
+        if (this.random >0){
           warning = 'You had a pretty average turnout.'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
@@ -462,7 +462,7 @@ const endGameManager = { // end of game events
         }
         break
         case 3:
-        if (this.random >5){
+        if (this.random >0){
           warning = 'Wow, A famous local dropped by!'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
@@ -470,7 +470,7 @@ const endGameManager = { // end of game events
         }
         break
         case 4:
-        if (this.random >5){
+        if (this.random >0){
           warning = 'Wow, A well known youtuber decided to check out your event!'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
@@ -478,7 +478,7 @@ const endGameManager = { // end of game events
         }
         break
         case 5:
-        if (this.random >5){
+        if (this.random >0){
           warning = 'Oh My! A celebrity came to checkout your event!'
           choices = [
             ['Wowzer!', WildCardEvent.GAINAPPROVAL]
@@ -490,11 +490,12 @@ const endGameManager = { // end of game events
     return SimpleEM(warning, choices)
   },
   highChanceReputation: function () {
+    rateScores(DataMaker.game.money, DataMaker.game.att, DataMaker.game.popularity)
     this.random = Phaser.Math.RND.integerInRange(1, 100)
     this.rep = getReputationScore()
     switch (this.rep) {
       case 0:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'Oh No! A random youtuber made a 2 hour video essay about your event! You\'re cooked!!'
         choices = [
           ['Oh no...', WildCardEvent.GAINAPPROVAL]
@@ -502,7 +503,7 @@ const endGameManager = { // end of game events
       }
       break
       case 2:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'You had a good reputation!'
         choices = [
           ['Wowzer!', WildCardEvent.GAINAPPROVAL]
@@ -510,7 +511,7 @@ const endGameManager = { // end of game events
       }
       break
       case 3:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'A local news station decided to cover your event!'
         choices = [
           ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
@@ -518,7 +519,7 @@ const endGameManager = { // end of game events
       }
       break
       case 4:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'A state news station decided to cover your event!'
         choices = [
           ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
@@ -526,7 +527,7 @@ const endGameManager = { // end of game events
       }
       break
       case 5:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'National news decided to cover your even!'
         choices = [
           ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
@@ -538,11 +539,12 @@ const endGameManager = { // end of game events
   },
 
   highChanceMoney: function () {
+    rateScores(DataMaker.game.money, DataMaker.game.att, DataMaker.game.popularity)
     this.random = Phaser.Math.RND.integerInRange(1, 100)
     this.mon = getMoneyScore()
     switch (this.mon) {
       case 0:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'Oh my goodness, you have like no money left! How will you manage your event?'
         choices = [
           ['I guess we will see...', WildCardEvent.NOTHING]
@@ -550,7 +552,7 @@ const endGameManager = { // end of game events
       }
       break
       case 2:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'You have a decent amount of money, do you want to take a chance and invest in some better amenities?'
         choices = [
           ['Better Food!', WildCardEvent.GAINAPPROVAL],
@@ -561,7 +563,7 @@ const endGameManager = { // end of game events
       }
       break
       case 3:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'You have a decent amount of money, would you like to invest in some amenities?'
         choices = [
           ['Better Food!', WildCardEvent.LOSEMONEYLIGHTGAINAPPROVALL],
@@ -572,7 +574,7 @@ const endGameManager = { // end of game events
       }
       break
       case 4:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'You have a really good amount of money, would you like to invest in some amenities?'
         choices = [
           ['Better Food!', WildCardEvent.LOSEMONEYMEDIUMGAINAPPROVAL],
@@ -583,7 +585,7 @@ const endGameManager = { // end of game events
       }
       break
       case 5:
-      if (this.random >5){
+      if (this.random >0){
         warning = 'You have so much money that you are swimming in green. Nobody in the world is ready for your wealth, would you like to invest in some amenities?'
         choices = [
           ['Better Food!', WildCardEvent.LOSEMONEYHIGHGAINAPPROVAL],
