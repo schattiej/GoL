@@ -305,6 +305,39 @@ const WildCardEvent =
     else{
       AdvanceRUI()
     }
+  },
+  WAITEVENT: function () {
+    const rando = Phaser.Math.Between(0, 100)
+
+    if(rando >= 0 && rando <=50){
+      AlertManager.alert('Thank goodness, They showed up')
+      AdvanceRUE()
+    }
+    else if(rando >= 51 && rando <= 100){
+      AlertManager.alert('Oh, oh dear, they didn\' show')
+      DataMaker.game.popularity -= 15
+      AdvanceRUE()
+    }
+  },
+  WAITFOOD: function () {
+    const rando = Phaser.Math.Between(0,100)
+
+    if(rando>= 0 && rando <= 50){
+      AlertManager.alert('Thank goodness, they made new food!')
+      AdvanceRUE()
+    }
+    else if(rando >= 51 && rando <=100){
+      if(DataMaker.game.money >= 150){
+      AlertManager.alert('Oh no, they couldn\'t cook in time! You are forced to buy new food')
+      DataMaker.game.money -= 150
+      }
+      else if(DataMaker.game.money < 150){
+        AlertManager.alert('Oh no, oh dear, they couldn\t cook in time! You have to pay whatever you have left for left overs and your guests aren\'t happy!')
+        DataMaker.game.money -= DataMaker.game.money 
+        DataMaker.game.popularity -= 15
+      }
+      AdvanceRUE()
+    }
   }
 }
 
@@ -373,16 +406,16 @@ const endGameManager = { // end of game events
       case 'Hotel':
         warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
         choices = [
-          ['Pay the Hotel ', WildCardEvent.LOSEMONEY_LIGHT],
+          ['Pay the Hotel ', WildCardEvent.LOSEMONEY_HEAVY],
           ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_HEAVY]
         ]
         break
       case 'Entertainment':
         warning = `Something has gone wrong! your ${temp} didn't show up!`
         choices = [
-          ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Wait to see if they show up', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_HEAVY],
+          ['Wait to see if they show up', WildCardEvent.WAITEVENT],
           ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
         ]
         break
@@ -390,7 +423,7 @@ const endGameManager = { // end of game events
         warning = `Something has gone wrong! your ${temp} was prepared poorly!`
         choices = [
           ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Wait for the cooks to make new food', WildCardEvent.LOSEAPPROVAL_LIGHT],
+          ['Wait for the cooks to make new food', WildCardEvent.WAITFOOD],
           ['Who Cares!', WildCardEvent.ATROCITY]
         ]
         break
@@ -429,7 +462,7 @@ const endGameManager = { // end of game events
         warning = 'The Power Went Out! What do you do?'
         choices = [
           ['Wait for it to pass', WildCardEvent.GAINAPPROVAL],
-          ['Pay for hotel generators', WildCardEvent.LOSEAPPROVAL_HEAVY],
+          ['Pay for hotel generators', WildCardEvent.LOSEMONEY_HEAVY],
           ['Eh, it will be fine.', WildCardEvent.LOSEAPPROVAL_HEAVY]
         ]
       break
