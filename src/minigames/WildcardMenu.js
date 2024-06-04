@@ -409,10 +409,9 @@ const endGameManager = { // end of game events
     const endDia = new EventDialog(DataMaker.game.RUI.scene)
     }
     DataMaker.game.stopCheck = false
-    //const scene = DataMaker.game.RUI.scene
-    //DataMaker.game.gameEnd = true
     DataMaker.game.fullCheck = true
     const temp = Phaser.Math.RND.pick(['Hotel', 'Entertainment', 'Food', 'Guests', 'Celebrity', 'Fire', 'Weather', 'Power'])
+    
     //Switch case to check for the type of warning to be displayed as well as the choices for that warning
     switch (temp) {
       case 'Hotel':
