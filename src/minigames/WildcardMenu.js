@@ -135,14 +135,27 @@ const WildCardEvent =
     }
   },
   LOSEAPPROVAL_LIGHT: function () {
-    DataMaker.game.popularity -= 7
-    AlertManager.alert('You lost Popularity rating.')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
+    if(DataMaker.game.popularity >= 7){
+      DataMaker.game.popularity -= 7
+      AlertManager.alert('You lost Popularity rating.')
+      if (DataMaker.game.gameEnd === true) // Only if at end of game
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
     else{
-      AdvanceRUI()
+      DataMaker.game.popularity = 0
+      AlertManager.alert('You have zero approval rating, yikes!')
+      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
   },
   LOSEMONEY_HEAVY: function () {
@@ -170,27 +183,26 @@ const WildCardEvent =
   },
   LOSEAPPROVAL_HEAVY: function () {
     if(DataMaker.game.popularity >= 15){
-    DataMaker.game.popularity -= 15
-    AlertManager.alert('You lost a lot of approval rating.')
-    if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-    }
-    else{
       DataMaker.game.popularity -= 15
-      AlertManager.alert('You are negative in popularity rating, Yikes!')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
+      AlertManager.alert('You lost a lot of approval rating.')
+      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
       { 
         AdvanceRUE() 
       }
       else{
         AdvanceRUI()
       }
-
+    }
+    else{
+      DataMaker.game.popularity = 0
+      AlertManager.alert('You have zero approval rating, yikes!')
+      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
+      { 
+        AdvanceRUE() 
+      }
+      else{
+        AdvanceRUI()
+      }
     }
   },
   ATROCITY: function () {
@@ -367,7 +379,7 @@ function AdvanceRUE () {
   }
   else if (DataMaker.game.fullCheck === true){
   const rando = Phaser.Math.Between(0, 100)
-    if (rando >=50 && DataMaker.game.countEnd < 4){
+    if (rando >=50 && DataMaker.game.countEnd <= 4){
       endGameManager.INIT()
       DataMaker.game.countEnd  += 1      
     }
