@@ -39,7 +39,7 @@ class EndingDialog extends UpgradedContainer {
     const endingStats =
     `Final Reputation: ${ DataMaker.game.popularity}
     Final Attendance: ${DataMaker.game.attendees}
-    Remaining Floor Space: ${DataMaker.game.gameScene}
+    Remaining Money: ${DataMaker.game.money}
     `
     megaPage[1] = endingStats
     megaPage[2] = returnFinalText(DataMaker.game.money, DataMaker.game.attendees, DataMaker.game.popularity)
