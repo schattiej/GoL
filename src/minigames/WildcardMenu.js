@@ -111,103 +111,15 @@ const MidgameWildcards =
 // The list of possible outcomes for each event. Presented as a sort of pseudo-enum for easy naming and reuse.
 const WildCardEvent =
 {
-  LOSEMONEY_LIGHT: function () {
-    if(DataMaker.game.money >= 60){
-      DataMaker.game.money -= 60
-      AlertManager.alert('You lost 60 dollars.')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
+  ADD_VARIABLE: function (money, popularity) {
+    DataMaker.game.money += money
+    DataMaker.game.popularity += popularity
+    if(money > 0 ){
+      AlertManager.alert('You gained $${money}')
     }
-    else{
-      AlertManager.alert('You don\'t have enough money to Pay!')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
+    if(popularity > 0){
+      AlertManager.alert('You gained $${popularity}')
     }
-  },
-  LOSEAPPROVAL_LIGHT: function () {
-    if(DataMaker.game.popularity >= 7){
-      DataMaker.game.popularity -= 7
-      AlertManager.alert('You lost Popularity rating.')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
-    }
-    else{
-      DataMaker.game.popularity = 0
-      AlertManager.alert('You have zero approval rating, yikes!')
-      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
-    }
-  },
-  LOSEMONEY_HEAVY: function () {
-    if(DataMaker.game.money >= 250){
-      DataMaker.game.money -= 250
-      AlertManager.alert('You lost 250 dollars.')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
-    }
-    else{
-      AlertManager.alert('You don\'t have enough money to Pay!')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
-    }
-  },
-  LOSEAPPROVAL_HEAVY: function () {
-    if(DataMaker.game.popularity >= 15){
-      DataMaker.game.popularity -= 15
-      AlertManager.alert('You lost a lot of approval rating.')
-      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
-    }
-    else{
-      DataMaker.game.popularity = 0
-      AlertManager.alert('You have zero approval rating, yikes!')
-      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
-    }
-  },
-  ATROCITY: function () {
-    DataMaker.game.popularity = 0
-    AlertManager.alert('You have done something terrible, and possibly (definitely) illegal!')
     if (DataMaker.game.gameEnd === true) // Only if at end of game
     { 
       AdvanceRUE() 
@@ -216,139 +128,57 @@ const WildCardEvent =
       AdvanceRUI()
     }
   },
-  GAINAPPROVAL: function () {
-    DataMaker.game.popularity += 7
-    AlertManager.alert('You gained approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
+  SUB_VARIABLE: function (money, popularity) {
+    if(DataMaker.game.money >= money){
+      DataMaker.game.money -= money
+      AlertManager.alert('You lost $${money}')
     }
     else{
-      AdvanceRUI()
+      DataMaker.game.money = 0
+      AlertManager.alert('You have no money left')
     }
-  },
-  GAINMONEY: function () {
-    DataMaker.game.money += 100
-    AlertManager.alert('You gained 100 dollars!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  LOSEMONEYAPPROVAL: function () {
-    DataMaker.game.money -= 100
-    DataMaker.game.popularity -= 7
-    AlertManager.alert('You lost 100 dollars and some approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  GAINAPPROVALHIGH: function () {
-    DataMaker.game.popularity += 15
-    AlertManager.alert('You gained a lot of approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  GAINMONEYHIGH: function () {
-    DataMaker.game.money += 250
-    AlertManager.alert('You gained a lot of money!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  LOSEMONEYLIGHTGAINAPPROVAL: function () {
-    DataMaker.game.money -= 100
-    DataMaker.game.popularity += 7
-    AlertManager.alert('You lost 100 dollars, but got good approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  LOSEMONEYMEDIUMGAINAPPROVAL: function () {
-    DataMaker.game.money -= 150
-    DataMaker.game.popularity += 10
-    AlertManager.alert('You lost a lot of money, but got some approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  LOSEMONEYHIGHGAINAPPROVAL: function () {
-    DataMaker.game.money -= 250
-        DataMaker.game.popularity += 15
-        AlertManager.alert('You lost a lot of money, but got a lot of approval rating!')
-        if (DataMaker.game.gameEnd === true) // Only if at end of game
-        { 
-          AdvanceRUE() 
-        }
-        else{
-          AdvanceRUI()
-        }
-  },
-  NOTHING: function () {
-    AlertManager.alert('Nothing happened.')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
-  },
-  WAITEVENT: function () {
-    const rando = Phaser.Math.Between(0, 100)
 
-    if(rando >= 0 && rando <=50){
-      AlertManager.alert('Thank goodness, They showed up')
-      AdvanceRUE()
+    if (DataMaker.game.popularity )
+    DataMaker.game.popularity -= popularity
+
+    if(popularity < 0){
+      AlertManager.alert('You are in bad... $${popularity}')
     }
-    else if(rando >= 51 && rando <= 100){
-      AlertManager.alert('Oh, oh dear, they didn\' show')
-      DataMaker.game.popularity -= 15
-      AdvanceRUE()
+
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
     }
   },
-  WAITFOOD: function () {
-    const rando = Phaser.Math.Between(0,100)
-
-    if(rando>= 0 && rando <= 50){
-      AlertManager.alert('Thank goodness, they made new food!')
-      AdvanceRUE()
+  ADD_SUB_VARIABLE: function (money, popularity, monPop) {
+    if(monPop === true){
+      DataMaker.game.money += money
+      if(DataMaker.game.popularity >= popularity){
+        DataMaker.game.popularity -= popularity
+      }
+      else if(DataMaker.game.popularity < popularity){
+        DataMaker.game.popularity = 0
+      }
     }
-    else if(rando >= 51 && rando <=100){
-      if(DataMaker.game.money >= 150){
-      AlertManager.alert('Oh no, they couldn\'t cook in time! You are forced to buy new food')
-      DataMaker.game.money -= 150
+    if(monPop === false){
+      DataMaker.game.popularity += popularity
+      if(DataMaker.game.money >= money){
+        DataMaker.game.money -=money
       }
-      else if(DataMaker.game.money < 150){
-        AlertManager.alert('Oh no, oh dear, they couldn\t cook in time! You have to pay whatever you have left for left overs and your guests aren\'t happy!')
-        DataMaker.game.money -= DataMaker.game.money 
-        DataMaker.game.popularity -= 15
+      if(DataMaker.game.money <money){
+        DataMaker.game.money = 0
       }
-      AdvanceRUE()
+    }
+
+    if (DataMaker.game.gameEnd === true) // Only if at end of game
+    { 
+      AdvanceRUE() 
+    }
+    else{
+      AdvanceRUI()
     }
   }
 }
@@ -417,64 +247,64 @@ const endGameManager = { // end of game events
       case 'Hotel':
         warning = `Something has gone wrong! your ${temp} experienced issues with double booking!`
         choices = [
-          ['Pay the Hotel ', WildCardEvent.LOSEMONEY_HEAVY],
-          ['Wait it out', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_HEAVY]
+          ['Pay the Hotel ', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Wait it out', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Who Cares?', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
         break
       case 'Entertainment':
         warning = `Something has gone wrong! your ${temp} didn't show up!`
         choices = [
-          ['Pay Someone New Quick!', WildCardEvent.LOSEMONEY_HEAVY],
-          ['Wait to see if they show up', WildCardEvent.WAITEVENT],
-          ['Who Cares?', WildCardEvent.LOSEAPPROVAL_LIGHT]
+          ['Pay Someone New Quick!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Wait to see if they show up', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Who Cares?', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
         break
       case 'Food':
         warning = `Something has gone wrong! your ${temp} was prepared poorly!`
         choices = [
-          ['Buy New Food!', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Wait for the cooks to make new food', WildCardEvent.WAITFOOD],
-          ['Who Cares!', WildCardEvent.ATROCITY]
+          ['Buy New Food!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Wait for the cooks to make new food', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Who Cares!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
         break
       case 'Guests':
         warning = `Something has gone wrong! Some of your ${temp} showed up with banned items!`
         choices = [
-          ['Store them in a secure area', WildCardEvent.LOSEMONEY_LIGHT],
-          ['Send them home to come back', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Ignore It', WildCardEvent.LOSEAPPROVAL_HEAVY]
+          ['Store them in a secure area', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Send them home to come back', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Ignore It', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
         break
       case 'Celebrity':
         warning = 'Wow! A world famous celebrity has been spotted at the event!'
         choices = [
-          ['Greet them and say hi!', WildCardEvent.GAINAPPROVAL],
-          ['Send them home', WildCardEvent.LOSEAPPROVAL_HEAVY]
+          ['Greet them and say hi!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Send them home', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
         break
       case 'Fire':
         warning = 'A fire alarm has been triggered at the event! What do you do?'
         choices = [
-          ['Escort Everyone Outside', WildCardEvent.GAINAPPROVAL],
-          ['Take Time to investigate yourself', WildCardEvent.LOSEAPPROVAL_HEAVY],
-          ['Ensure there is no problem', WildCardEvent.ATROCITY]
+          ['Escort Everyone Outside', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Take Time to investigate yourself', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Ensure there is no problem', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       break
       case 'Weather':
         warning = 'Some awful weather has been reported at the event! What do you do?'
         choices = [
-          ['Wait for it to pass', WildCardEvent.LOSEAPPROVAL_LIGHT],
-          ['Ensure safe travels', WildCardEvent.LOSE_MONEY_LIGHT],
-          ['Eh, it will be fine.', WildCardEvent.LOSEAPPROVAL_HEAVY]
+          ['Wait for it to pass', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Ensure safe travels', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Eh, it will be fine.', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       break
       case 'Power':
         warning = 'The Power Went Out! What do you do?'
         choices = [
-          ['Wait for it to pass', WildCardEvent.GAINAPPROVAL],
-          ['Pay for hotel generators', WildCardEvent.LOSEMONEY_HEAVY],
-          ['Eh, it will be fine.', WildCardEvent.LOSEAPPROVAL_HEAVY]
+          ['Wait for it to pass', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Pay for hotel generators', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Eh, it will be fine.', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       break
     }
@@ -493,7 +323,7 @@ const endGameManager = { // end of game events
         if (this.random >0){
           warning = 'Sweet bippy! Nobody but close friends came!'
           choices = [
-            ['man...', WildCardEvent.GAINAPPROVAL]
+            ['man...', WildCardEvent.SUB_VARIABLE(100, 0)]
           ]
         }
         break
@@ -501,7 +331,7 @@ const endGameManager = { // end of game events
         if (this.random >0){
           warning = 'You had a pretty average turnout.'
           choices = [
-            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+            ['Wowzer!', WildCardEvent.SUB_VARIABLE(0, 0)]
           ]
         }
         break
@@ -509,7 +339,7 @@ const endGameManager = { // end of game events
         if (this.random >0){
           warning = 'Wow, A famous local dropped by!'
           choices = [
-            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+            ['Wowzer!', WildCardEvent.SUB_VARIABLE(0, 0)]
           ]
         }
         break
@@ -517,7 +347,7 @@ const endGameManager = { // end of game events
         if (this.random >0){
           warning = 'Wow, A well known youtuber decided to check out your event!'
           choices = [
-            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+            ['Wowzer!', WildCardEvent.SUB_VARIABLE(0, 0)]
           ]
         }
         break
@@ -525,12 +355,12 @@ const endGameManager = { // end of game events
         if (this.random >0){
           warning = 'Oh My! A celebrity came to checkout your event!'
           choices = [
-            ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+            ['Wowzer!', WildCardEvent.SUB_VARIABLE(0, 0)]
           ]
         }
         break
     }
-
+    DataMaker.game.attCheck = true
     return SimpleEM(warning, choices)
   },
   highChanceReputation: function () {
@@ -542,7 +372,7 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'Oh No! A random youtuber made a 2 hour video essay about your event! You\'re cooked!!'
         choices = [
-          ['Oh no...', WildCardEvent.GAINAPPROVAL]
+          ['Oh no...', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -550,7 +380,7 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'You had a good reputation!'
         choices = [
-          ['Wowzer!', WildCardEvent.GAINAPPROVAL]
+          ['Wowzer!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -558,7 +388,7 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'A local news station decided to cover your event!'
         choices = [
-          ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
+          ['Wave to mom!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -566,7 +396,7 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'A state news station decided to cover your event!'
         choices = [
-          ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
+          ['Wave to mom!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -574,7 +404,7 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'National news decided to cover your even!'
         choices = [
-          ['Wave to mom!', WildCardEvent.GAINAPPROVAL]
+          ['Wave to mom!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -591,7 +421,7 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'Oh my goodness, you have like no money left! How will you manage your event?'
         choices = [
-          ['I guess we will see...', WildCardEvent.NOTHING]
+          ['I guess we will see...', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -599,10 +429,10 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'You have a decent amount of money, do you want to take a chance and invest in some better amenities?'
         choices = [
-          ['Better Food!', WildCardEvent.GAINAPPROVAL],
-          ['Better HandSoap!', WildCardEvent.GAINAPPROVAL],
-          ['Better Music!', WildCardEvent.GAINAPPROVAL],
-          ['Nah, let\'s save money!', WildCardEvent.NOTHING]
+          ['Better Food!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better HandSoap!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better Music!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Nah, let\'s save money!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -610,10 +440,10 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'You have a decent amount of money, would you like to invest in some amenities?'
         choices = [
-          ['Better Food!', WildCardEvent.LOSEMONEYLIGHTGAINAPPROVALL],
-          ['Better HandSoap!', WildCardEvent.LOSEMONEYLIGHTGAINAPPROVALL],
-          ['Better Music!', WildCardEvent.LOSEMONEYLIGHTGAINAPPROVAL],
-          ['Nah, let\'s save money!', WildCardEvent.NOTHING]
+          ['Better Food!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better HandSoap!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better Music!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Nah, let\'s save money!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -621,10 +451,10 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'You have a really good amount of money, would you like to invest in some amenities?'
         choices = [
-          ['Better Food!', WildCardEvent.LOSEMONEYMEDIUMGAINAPPROVAL],
-          ['Better HandSoap!', WildCardEvent.LOSEMONEYMEDIUMGAINAPPROVAL],
-          ['Better Music!', WildCardEvent.LOSEMONEYMEDIUMGAINAPPROVAL],
-          ['Nah, let\'s save money!', WildCardEvent.NOTHING]
+          ['Better Food!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better HandSoap!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better Music!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Nah, let\'s save money!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
@@ -632,10 +462,10 @@ const endGameManager = { // end of game events
       if (this.random >0){
         warning = 'You have so much money that you are swimming in green. Nobody in the world is ready for your wealth, would you like to invest in some amenities?'
         choices = [
-          ['Better Food!', WildCardEvent.LOSEMONEYHIGHGAINAPPROVAL],
-          ['Better HandSoap!', WildCardEvent.LOSEMONEYHIGHGAINAPPROVAL],
-          ['Better Music!', WildCardEvent.LOSEMONEYHIGHGAINAPPROVAL],
-          ['Nah, let\'s save money!', WildCardEvent.NOTHING]
+          ['Better Food!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better HandSoap!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Better Music!', WildCardEvent.SUB_VARIABLE(100, 0)],
+          ['Nah, let\'s save money!', WildCardEvent.SUB_VARIABLE(100, 0)]
         ]
       }
       break
