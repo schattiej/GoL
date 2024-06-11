@@ -9,11 +9,12 @@ import EndCard from '../card/EndCard.js'
 import EventDialog from '../gamelogic/EventDialog.js'
 import returnScore, { getMoneyScore, getAttendanceScore, getReputationScore, rateScores } from '../gamelogic/EndScore.js';
 
-
-function SimpleCM (text, options) {
+//choice menu for the regular cards
+function SimpleCM (text, options, endBool) {
   return new ChoiceMenu(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
 }
 
+//choice menu for the ending cards
 function SimpleEM (text, options){
   return new EndCard(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
 }
@@ -37,43 +38,26 @@ const MidgameWildcards =
     if (MidgameWildcards.POSSIBLE_WILDCARDS.length === 0) { return -1 }
     Phaser.Math.RND.shuffle(MidgameWildcards.POSSIBLE_WILDCARDS)
     const curveball = MidgameWildcards.POSSIBLE_WILDCARDS.pop()
-    switch (curveball) {
-      case 1: {
-        MidgameWildcards.DELIVERY_NEEDED()
-        break
-      } case 2: {
-        MidgameWildcards.AUTHORITY_FIRE()
-        break
-      } case 3: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 4: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 5: {
-        MidgameWildcards.DELIVERY_NEEDED()
-        break
-      } case 6: {
-        MidgameWildcards.AUTHORITY_FIRE()
-        break
-      } case 7: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 8: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 9: {
-        MidgameWildcards.DELIVERY_NEEDED()
-        break
-      } case 10: {
-        MidgameWildcards.AUTHORITY_FIRE()
-        break
-      } default:
-        MidgameWildcards.DELIVERY_NEEDED()
-    }
+
+    const events = [
+      MidgameWildcards.DELIVERY_NEEDED, // 1
+      MidgameWildcards.AUTHORITY_FIRE,  // 2
+      MidgameWildcards.AUTHORITY_FOOD,  // 3
+      MidgameWildcards.AUTHORITY_FOOD,  // 4
+      MidgameWildcards.DELIVERY_NEEDED, // 5
+      MidgameWildcards.AUTHORITY_FIRE,  // 6
+      MidgameWildcards.AUTHORITY_FOOD,  // 7
+      MidgameWildcards.AUTHORITY_FOOD,  // 8
+      MidgameWildcards.DELIVERY_NEEDED, // 9
+      MidgameWildcards.AUTHORITY_FIRE   // 10
+    ]
+    
+    const event = events[curveball - 1]
+    event()
+
     return 1
   },
-  DELIVERY_NEEDED: (cdata) => {
+  DELIVERY_NEEDED: () => {
     const C = SimpleCM(
       'Your crew needs space to store products at the hotel before the event. The hotel is going to charge you..',
       [

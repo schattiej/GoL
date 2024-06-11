@@ -330,6 +330,12 @@ const DataMaker = {
         attendees: r_btwn(10, 20),
         popularity: 10
       }
+      const youtubeAd = {
+        name : 'YouTube Campaign',
+        cost: 200,
+        attendees: r_btwn(25, 50),
+        popularity: 15
+      }
       const billboard = {
         name: 'Billboard Ad',
         cost: 800,
