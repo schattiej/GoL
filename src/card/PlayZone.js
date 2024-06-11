@@ -123,19 +123,10 @@ class PlayZone extends Phaser.GameObjects.Container {
           return
         }
       }
-      /* Unknown Use Case */
-      if (card.cardtype === 'enter') {
-        this.endcards.push(card) // Put the card in the endcards stack to be used later
-      }
 
       if (card.cdata.turns) {
         this.cardqueue.push([DataMaker.game.turnCount + card.cdata.turns, card.cdata]) // Put the card in the queue to have an effect on future turns.
       }
-
-      if (card.cdata.type === 'partnership') {
-        this.cardqueue.push([DataMaker.game.turnCount + 1, card.cdata]) // Put the card in the queue to have an effect on future turns.
-      }
-      DataMaker.card.play(card.cdata)
 
       /* 
 
@@ -178,20 +169,11 @@ class PlayZone extends Phaser.GameObjects.Container {
       if (cdata.money) {
         moneySum += cdata.money
         DataMaker.card.addMoney(cdata.money)
+
       } else if (cdata.cost) {
         costSum += cdata.cost
         // Pay the cost of the card every turn until the turns are up
         DataMaker.card.payCost(cdata.cost)
-      } else if (cdata.type === 'partnership') {
-        const data = {
-          fee: cdata.pFee,
-          money: cdata.pMoney,
-          turns: cdata.pTurns,
-          deadline: cdata.deadline
-        }
-        const c = new Card(this.scene, CONFIG.DEFAULT_WIDTH * 0.5, CONFIG.DEFAULT_HEIGHT * 0.8, cdata.type, data)
-        c.setDepth(this.depth + 1)
-        this.cardgroup.add(c)
       }
 
       // Remove the card from the queue if the turns are up. -1 is so that the user pays the proper number of times

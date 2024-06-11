@@ -238,25 +238,47 @@ const DataMaker = {
     },
     //making data for the hotel cards, mainly the package that is drawn
     makeHotelData1: function () { // The hotel cards work a bit differently
-      const hotel = {
-        name: 'The Hilton Hotel Package',
-        type: 'hotel',
-        cost: 750,
-        attendeeCap: 500,
-        popularity: 20,
-        feePercent: 0.8,
-        discount: 150,
-        fee: 100
+      const amenityName = Phaser.Math.RND.pick(['Hot Tub and Pool', 'Hotel Bar', 'Continental Breakfast', 'Hotel Gym'])
+      amenities = []
+      switch(amenityName){
+        case 'Hot Tub and Pool':
+          amenities = {
+            name: amenityName,
+            type: 'amenities',
+            cost: 50,
+            hotelAttendees: 10,
+            hotelPopularity: 10
+          }
+          break
+        case 'Hotel Bar':
+          amenities = {
+            name: amenityName,
+            type: 'amenities',
+            cost: 50,
+            hotelAttendees: 10,
+            hotelPopularity: 10
+          }
+          break
+        case 'Continental Breakfast':
+          amenities = {
+            name: amenityName,
+            type: 'amenities',
+            cost: 50,
+            hotelAttendees: 10,
+            hotelPopularity: 10
+          }
+          break
+        case 'Hotel Gym':
+          amenities = {
+            name: amenityName,
+            type: 'amenities',
+            cost: 50,
+            hotelAttendees: 10,
+            hotelPopularity: 10
+          }
+          break
       }
-      const amenityName = ['Hot Tub and Pool', 'Hotel Bar', 'Continental Breakfast', 'Hotel Gym']
-      const amenities = {
-        name: r_p(amenityName),
-        type: 'amenities',
-        cost: 50,
-        hotelAttendees: 10,
-        hotelPopularity: 10
-      }
-      const c = r_p([hotel, amenities])
+      const c = amenities
       return c
     },
     //making the entertainment data cards
@@ -283,7 +305,14 @@ const DataMaker = {
         timeSlots: 2,
         popularity: 100
       }
-      const c = r_p([speaker, professional, demonstration])
+      const band = {
+        name: 'Awesome band',
+        eventPayment: 400,
+        cost: 400,
+        timeSlots: 2,
+        popularity: 80
+      }
+      const c = r_p([speaker, professional, demonstration, band])
       return c
     },
     //making the marketing data cards
@@ -301,14 +330,26 @@ const DataMaker = {
         attendees: r_btwn(10, 20),
         popularity: 10
       }
+      const youtubeAd = {
+        name : 'YouTube Campaign',
+        cost: 200,
+        attendees: r_btwn(25, 50),
+        popularity: 15
+      }
       const billboard = {
         name: 'Billboard Ad',
         cost: 800,
         attendees: r_btwn(50, 75),
         popularity: 25
       }
+      const publicFigure = {
+        name: 'Public Figure',
+        cost: 1000,
+        attendees: r_btwn(75,100),
+        popularity: 50
+      }
 
-      const c = r_p([billboard, socialMedia, radio])
+      const c = r_p([billboard, socialMedia, radio, publicFigure])
       return c
     },
     //making the fun data cards
@@ -359,26 +400,6 @@ const DataMaker = {
     },
     lerp: function (a, b, t) {
       return a + (b - a) * t
-    },
-    makeDumbWord: function () {
-      const starts = ['muh', 'scrimbo', 'scrumbus', 'jungle', 'timby', 'jangle', 'umby', 'flumbo']
-      const ends = ['wimble', 'flimble', 'nimble', 'blera', 'sandler', 'dubble', 'krox']
-      return starts[Math.floor(Math.random() * starts.length)] + ends[Math.floor(Math.random() * ends.length)]
-    },
-    makeHotelName: function () {
-      const options = 'Schmyatt,Daleston,Smechner,Sky Mantis,Smiletown,Everlife,Greenwhoa,Sleepzone'.split(',')
-      return r_p(options)
-    },
-    makeDummyData: function () {
-      return String.fromCharCode(65 + Math.floor(Math.random() * 25)).repeat(5)
-    },
-    makeBetterDummyData: function () {
-      let os = ''
-      for (let i = 0; i < 4; i++) {
-        os += this.makeDumbWord()
-        os += ' '
-      }
-      return os
     }
   }
 }

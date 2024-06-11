@@ -9,11 +9,12 @@ import EndCard from '../card/EndCard.js'
 import EventDialog from '../gamelogic/EventDialog.js'
 import returnScore, { getMoneyScore, getAttendanceScore, getReputationScore, rateScores } from '../gamelogic/EndScore.js';
 
-
-function SimpleCM (text, options) {
+//choice menu for the regular cards
+function SimpleCM (text, options, endBool) {
   return new ChoiceMenu(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
 }
 
+//choice menu for the ending cards
 function SimpleEM (text, options){
   return new EndCard(DataMaker.game.RUI.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, text, options, true)
 }
@@ -37,43 +38,26 @@ const MidgameWildcards =
     if (MidgameWildcards.POSSIBLE_WILDCARDS.length === 0) { return -1 }
     Phaser.Math.RND.shuffle(MidgameWildcards.POSSIBLE_WILDCARDS)
     const curveball = MidgameWildcards.POSSIBLE_WILDCARDS.pop()
-    switch (curveball) {
-      case 1: {
-        MidgameWildcards.DELIVERY_NEEDED()
-        break
-      } case 2: {
-        MidgameWildcards.AUTHORITY_FIRE()
-        break
-      } case 3: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 4: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 5: {
-        MidgameWildcards.DELIVERY_NEEDED()
-        break
-      } case 6: {
-        MidgameWildcards.AUTHORITY_FIRE()
-        break
-      } case 7: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 8: {
-        MidgameWildcards.AUTHORITY_FOOD()
-        break
-      } case 9: {
-        MidgameWildcards.DELIVERY_NEEDED()
-        break
-      } case 10: {
-        MidgameWildcards.AUTHORITY_FIRE()
-        break
-      } default:
-        MidgameWildcards.DELIVERY_NEEDED()
-    }
+
+    const events = [
+      MidgameWildcards.DELIVERY_NEEDED, // 1
+      MidgameWildcards.AUTHORITY_FIRE,  // 2
+      MidgameWildcards.AUTHORITY_FOOD,  // 3
+      MidgameWildcards.AUTHORITY_FOOD,  // 4
+      MidgameWildcards.DELIVERY_NEEDED, // 5
+      MidgameWildcards.AUTHORITY_FIRE,  // 6
+      MidgameWildcards.AUTHORITY_FOOD,  // 7
+      MidgameWildcards.AUTHORITY_FOOD,  // 8
+      MidgameWildcards.DELIVERY_NEEDED, // 9
+      MidgameWildcards.AUTHORITY_FIRE   // 10
+    ]
+    
+    const event = events[curveball - 1]
+    event()
+
     return 1
   },
-  DELIVERY_NEEDED: (cdata) => {
+  DELIVERY_NEEDED: () => {
     const C = SimpleCM(
       'Your crew needs space to store products at the hotel before the event. The hotel is going to charge you..',
       [
@@ -115,220 +99,117 @@ const WildCardEvent =
     if(DataMaker.game.money >= 60){
       DataMaker.game.money -= 60
       AlertManager.alert('You lost 60 dollars.')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
     else{
       AlertManager.alert('You don\'t have enough money to Pay!')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
+    AdvanceRUI()
   },
   LOSEAPPROVAL_LIGHT: function () {
     if(DataMaker.game.popularity >= 7){
       DataMaker.game.popularity -= 7
       AlertManager.alert('You lost Popularity rating.')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
     else{
       DataMaker.game.popularity = 0
       AlertManager.alert('You have zero approval rating, yikes!')
-      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
+    AdvanceRUI()
   },
   LOSEMONEY_HEAVY: function () {
     if(DataMaker.game.money >= 250){
       DataMaker.game.money -= 250
       AlertManager.alert('You lost 250 dollars.')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
     else{
       AlertManager.alert('You don\'t have enough money to Pay!')
-      if (DataMaker.game.gameEnd === true) // Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
+    AdvanceRUI()
   },
   LOSEAPPROVAL_HEAVY: function () {
     if(DataMaker.game.popularity >= 15){
       DataMaker.game.popularity -= 15
       AlertManager.alert('You lost a lot of approval rating.')
-      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
     else{
       DataMaker.game.popularity = 0
       AlertManager.alert('You have zero approval rating, yikes!')
-      if (DataMaker.game.gameEnd === true) // Only Only if at end of game
-      { 
-        AdvanceRUE() 
-      }
-      else{
-        AdvanceRUI()
-      }
     }
+    AdvanceRUI()
   },
   ATROCITY: function () {
     DataMaker.game.popularity = 0
     AlertManager.alert('You have done something terrible, and possibly (definitely) illegal!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+    AdvanceRUI()
   },
   GAINAPPROVAL: function () {
     DataMaker.game.popularity += 7
     AlertManager.alert('You gained approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   GAINMONEY: function () {
     DataMaker.game.money += 100
     AlertManager.alert('You gained 100 dollars!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   LOSEMONEYAPPROVAL: function () {
     DataMaker.game.money -= 100
     DataMaker.game.popularity -= 7
     AlertManager.alert('You lost 100 dollars and some approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   GAINAPPROVALHIGH: function () {
     DataMaker.game.popularity += 15
     AlertManager.alert('You gained a lot of approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   GAINMONEYHIGH: function () {
     DataMaker.game.money += 250
     AlertManager.alert('You gained a lot of money!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   LOSEMONEYLIGHTGAINAPPROVAL: function () {
     DataMaker.game.money -= 100
     DataMaker.game.popularity += 7
     AlertManager.alert('You lost 100 dollars, but got good approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   LOSEMONEYMEDIUMGAINAPPROVAL: function () {
     DataMaker.game.money -= 150
     DataMaker.game.popularity += 10
     AlertManager.alert('You lost a lot of money, but got some approval rating!')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   LOSEMONEYHIGHGAINAPPROVAL: function () {
     DataMaker.game.money -= 250
         DataMaker.game.popularity += 15
         AlertManager.alert('You lost a lot of money, but got a lot of approval rating!')
-        if (DataMaker.game.gameEnd === true) // Only if at end of game
-        { 
-          AdvanceRUE() 
-        }
-        else{
-          AdvanceRUI()
-        }
+
+        AdvanceRUI()
   },
   NOTHING: function () {
     AlertManager.alert('Nothing happened.')
-    if (DataMaker.game.gameEnd === true) // Only if at end of game
-    { 
-      AdvanceRUE() 
-    }
-    else{
-      AdvanceRUI()
-    }
+
+    AdvanceRUI()
   },
   WAITEVENT: function () {
     const rando = Phaser.Math.Between(0, 100)
 
     if(rando >= 0 && rando <=50){
       AlertManager.alert('Thank goodness, They showed up')
-      AdvanceRUE()
+      AdvanceRUI()
     }
     else if(rando >= 51 && rando <= 100){
       AlertManager.alert('Oh, oh dear, they didn\' show')
       DataMaker.game.popularity -= 15
-      AdvanceRUE()
+      AdvanceRUI()
     }
   },
   WAITFOOD: function () {
@@ -336,7 +217,7 @@ const WildCardEvent =
 
     if(rando>= 0 && rando <= 50){
       AlertManager.alert('Thank goodness, they made new food!')
-      AdvanceRUE()
+      AdvanceRUI()
     }
     else if(rando >= 51 && rando <=100){
       if(DataMaker.game.money >= 150){
@@ -348,7 +229,7 @@ const WildCardEvent =
         DataMaker.game.money -= DataMaker.game.money 
         DataMaker.game.popularity -= 15
       }
-      AdvanceRUE()
+      AdvanceRUI()
     }
   }
 }
@@ -356,35 +237,32 @@ const WildCardEvent =
 //Advance functions for the RUI based on the status of the game
 function AdvanceRUI () { // Simple function for updating the RUI and advancing to the next option.
   DataMaker.game.RUI.updateText()
-}
-
-function AdvanceRUE () {
-  DataMaker.game.RUI.updateText()
-
-  if (DataMaker.game.fullCheck === false){
-    if (DataMaker.game.attCheck === true){
-      DataMaker.game.attCheck = false
-      endGameManager.highChanceReputation()
-      DataMaker.game.popCheck = true
+  if(DataMaker.game.gameEnd === true){
+    if (DataMaker.game.fullCheck === false){
+      if (DataMaker.game.attCheck === true){
+        DataMaker.game.attCheck = false
+        endGameManager.highChanceReputation()
+        DataMaker.game.popCheck = true
+      }
+      else if(DataMaker.game.popCheck === true){
+        DataMaker.game.popCheck = false
+        endGameManager.highChanceMoney()
+        DataMaker.game.moneyCheck = true
+      }
+      else if(DataMaker.game.moneyCheck === true){
+        DataMaker.game.moneyCheck = false
+        endGameManager.INIT()
+      }
     }
-    else if(DataMaker.game.popCheck === true){
-      DataMaker.game.popCheck = false
-      endGameManager.highChanceMoney()
-      DataMaker.game.moneyCheck = true
-    }
-    else if(DataMaker.game.moneyCheck === true){
-      DataMaker.game.moneyCheck = false
-      endGameManager.INIT()
-    }
-  }
-  else if (DataMaker.game.fullCheck === true){
-  const rando = Phaser.Math.Between(0, 100)
-    if (rando >=50 && DataMaker.game.countEnd <= 4){
-      endGameManager.INIT()
-      DataMaker.game.countEnd  += 1      
-    }
-    else{
-      endGameManager.createDialog()
+    else if (DataMaker.game.fullCheck === true){
+    const rando = Phaser.Math.Between(0, 100)
+      if (rando >=50 && DataMaker.game.countEnd <= 4){
+        endGameManager.INIT()
+        DataMaker.game.countEnd  += 1      
+      }
+      else{
+        endGameManager.createDialog()
+      }
     }
   }
 }
@@ -489,6 +367,7 @@ const endGameManager = { // end of game events
     rateScores(DataMaker.game.money, DataMaker.game.att, DataMaker.game.popularity)
     this.random = Phaser.Math.RND.integerInRange(1, 100)
     this.att = getAttendanceScore()
+    DataMaker.game.attCheck = true
       switch (this.att) {
         case 0:
         if (this.random >0){

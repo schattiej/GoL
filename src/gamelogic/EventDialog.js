@@ -66,14 +66,7 @@ class EventDialog extends UpgradedContainer {
     }).LeftLeftT(bottom).BottomBottomT(bottom)
     this.add(B1)
 
-    /*
-    this.addSafeText(this.scene, 0, 0.25, 1.9, 'Floor space currently available: ' + DataMaker.game.floorSpace + ' square meters')
-    this.addSafeText(this.scene, 0, 0.25, 1.9, 'Your guaranteed guest count is: ' + DataMaker.game.attendees + ' guests')
-    this.BuddyUpText()
-    this.addSafeText(this.scene, 0, 0.25, 1.9, 'Your currently have: $' + DataMaker.game.money)
-    this.BuddyUpText()
-    */
-    this.depth = 200000000000
+    this.depth = 200
 
     scene.add.existing(this)
     this.enter()
