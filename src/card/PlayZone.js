@@ -8,7 +8,7 @@ import Card from '../card/Card.js'
 class PlayZone extends Phaser.GameObjects.Container {
   constructor (scene, cardgroup, x, y) {
     super(scene, 0, 0)
-    this.width = CONFIG.DEFAULT_WIDTH * 0.2 * 0.6
+    this.width = CONFIG.DEFAULT_WIDTH * 0.2 * 0.8
     this.height = CONFIG.DEFAULT_HEIGHT * .28
     this.cardqueue = []
     this.endcards = []
@@ -16,22 +16,32 @@ class PlayZone extends Phaser.GameObjects.Container {
     this.locked = false
 
     const playBox = new Phaser.GameObjects.Rectangle(scene, 0, 0, this.width, this.height, '0xff5500')
-    playBox.setVisible(false)
+    playBox.setVisible(true)
     this.add(playBox)
     this.makeNineSlice()
 
     this.add(new StyleIndicator(scene, -100, -150, 'Play Cards Here', ''))
+
+    /*
+     *
+     * sets notDonePlaying to false while clicking down.
+     * 
+     */
+    scene.input.on('pointerdown', () => {
+
+      this.notDonePlaying = false;
+
+    })
 
 
     scene.input.on('pointerup', () => {
       /* To add more 'play during a turn' functionality,
       remove the filter at the end that only allows market cards in.
       Then below in Play Cards, filter using a switch / if statements. Only use the cardqueue for cards that will have an effect later. */
+
       this.incards = cardgroup.children.getArray().filter((c) => { return (Phaser.Geom.Intersects.RectangleToRectangle(playBox.getBounds(), c.getBounds())) })
-      if (this.incards.length === 0) {
-        this.notDonePlaying = false
-      }
       this.incards.forEach(element => { this.ReadyForPlay(element) })
+
     })
 
     DataMaker.game.playzone = this
@@ -45,30 +55,37 @@ class PlayZone extends Phaser.GameObjects.Container {
         targets: card,
         x: this.x,
         y: this.y - (this.height * 0.2),
-        displayWidth: this.displayWidth * 0.6,
-        displayHeight: this.displayHeight * 0.6,
-        duration: 50
+        displayWidth: card.displayWidth * 0.6,
+        displayHeight: card.displayHeight * 0.6,
+        duration: 100
       })
     }
 
     card.inPlay = true
     this.PlayCards()
   }
-
+  /*
+   * 
+   * Returns a card (c) to the bottom center of the screen using tweens. Could implement a function later that directly returns to the hand instead but we'll see.
+   * 
+   */
   DiscardCard (c) {
     this.scene.tweens.add({
       targets: c,
       y: CONFIG.DEFAULT_HEIGHT * 0.8,
       x: CONFIG.DEFAULT_WIDTH * 0.5,
-      duration: 600
+      duration: 100
     })
+    console.log("Card returned back to hand")
   }
 
   PlayCards () {
     console.log(this.incards)
     console.log(DataMaker.game.hotel.main)
     if (this.notDonePlaying) { console.log('Not done'); return }
+
     this.incards.forEach(card => {
+      /* Hotel */
       if (card.cdata.type === 'hotel') {
         if (DataMaker.game.hotel.name !== '') { // Don't play the card if you already played a hotel
           AlertManager.alert('You can only have one hotel deal')
@@ -76,13 +93,13 @@ class PlayZone extends Phaser.GameObjects.Container {
           return
         }
       }
-
+      /* Cost */
       if (card.cdata.cost > DataMaker.game.money && card.cdata.type !== 'hotel') { // Don't play the card if you don't have enough money. Warn the player!
         AlertManager.alert('This card costs too much.')
         this.DiscardCard(card)
         return
       }
-
+      /* Guessing Here but this would indicate that a card would not have a payoff by the time the game ended. For example, using money cards on Month 11. */
       if (card.cdata.turnsNeeded) {
         if ((DataMaker.game.dueDate - DataMaker.game.turnCount) < card.cdata.turnsNeeded) { // Don't play the card if there isn't enough time to play it. Not sure if the functionality for this is in, other than that it won't let you play it.
           AlertManager.alert("There isn't enough time to prepare this card!")
@@ -90,6 +107,7 @@ class PlayZone extends Phaser.GameObjects.Container {
           return
         }
       }
+      /* Action Points */
       if (card.cdata.actions) {
         if (DataMaker.game.actions > 2) { // Don't play the card if there isn't enough time to play it. Not sure if the functionality for this is in, other than that it won't let you play it.
           AlertManager.alert("You don't have enough actions to play this card!")
@@ -97,7 +115,7 @@ class PlayZone extends Phaser.GameObjects.Container {
           return
         }
       }
-
+      /* Time Slots */
       if (card.cdata.timeSlots > 0) {
         if (DataMaker.game.timeSlots < card.cdata.timeSlots) {
           AlertManager.alert("You don't have enough time slots to play this card.")
@@ -105,7 +123,7 @@ class PlayZone extends Phaser.GameObjects.Container {
           return
         }
       }
-
+      /* Unknown Use Case */
       if (card.cardtype === 'enter') {
         this.endcards.push(card) // Put the card in the endcards stack to be used later
       }
@@ -113,22 +131,39 @@ class PlayZone extends Phaser.GameObjects.Container {
       if (card.cdata.turns) {
         this.cardqueue.push([DataMaker.game.turnCount + card.cdata.turns, card.cdata]) // Put the card in the queue to have an effect on future turns.
       }
+
       if (card.cdata.type === 'partnership') {
         this.cardqueue.push([DataMaker.game.turnCount + 1, card.cdata]) // Put the card in the queue to have an effect on future turns.
       }
       DataMaker.card.play(card.cdata)
 
-      this.notDonePlaying = true
+      /* 
+
+        This should move the card up before destroying it
+
+        Known Issues: Card will get stuck sometimes, caught and unable to destroy itself. It snaps to the new location but cannot destroy itself. Unable to figure out the
+        logic that is causing this at the moment.
+
+      */
       this.scene.tweens.add({
         targets: card,
         y: this.y + (this.height / 2 - card.height),
-        duration: 250,
+        duration: 300,
         onComplete: function () {
-          card.destroy()
+
+
+          setTimeout(() => {
+            card.destroy()
+            console.log("card destroyed!")
+          }, 100)
+
         }
       })
     })
+    this.notDonePlaying = true
     this.incards = []
+
+
   }
 
   EndTurnCards () {
