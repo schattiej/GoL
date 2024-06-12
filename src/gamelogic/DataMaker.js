@@ -52,7 +52,7 @@ const DataMaker = {
   game: {
     chooseClient: function () {},
     setup: function (mainScene) {
-      this.money = r_btwn(750, 1000)
+      this.money = r_btwn(850, 1000)
       this.timeSlots = r_btwn(3, 5)
       this.popularity = 0
       this.attendees = 0
