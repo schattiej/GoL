@@ -42,16 +42,16 @@ function checkAttendance(people) {
     if (people <= 0) {
         attendanceScore = 0;
     }
-    else if (people < 50) {
+    else if (people < 250) {
         attendanceScore = 2;
     }
-    else if (people >= 50 && people < 125) {
+    else if (people >= 250 && people < 500) {
         attendanceScore = 3;
     }
-    else if (people >= 125 && people < 250) {
+    else if (people >= 500 && people < 750) {
         attendanceScore = 4;
     }
-    else if (people >= 250) {
+    else if (people >= 750) {
         attendanceScore = 5;
     }
 
@@ -61,16 +61,16 @@ function checkReputation(reputation) {
     if (reputation <= 0) {
         reputationScore = 0;
     }
-    else if (reputation <= 50) {
+    else if (reputation <= 75) {
         reputationScore = 2;
     }
-    else if (reputation > 50 && reputation <= 125) {
+    else if (reputation > 75 && reputation <= 150) {
         reputationScore = 3;
     }
-    else if (reputation > 125 && reputation < 250) {
+    else if (reputation > 150 && reputation < 300) {
         reputationScore = 4;
     }
-    else if (reputation >= 250) {
+    else if (reputation >= 300) {
         reputationScore = 5;
     }
 }

@@ -52,7 +52,7 @@ const DataMaker = {
   game: {
     chooseClient: function () {},
     setup: function (mainScene) {
-      this.money = r_btwn(750, 1000)
+      this.money = r_btwn(850, 1000)
       this.timeSlots = r_btwn(3, 5)
       this.popularity = 0
       this.attendees = 0
@@ -329,6 +329,12 @@ const DataMaker = {
         cost: 50,
         attendees: r_btwn(10, 20),
         popularity: 10
+      }
+      const youtubeAd = {
+        name : 'YouTube Campaign',
+        cost: 200,
+        attendees: r_btwn(25, 50),
+        popularity: 15
       }
       const billboard = {
         name: 'Billboard Ad',
