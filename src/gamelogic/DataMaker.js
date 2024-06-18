@@ -76,6 +76,7 @@ const DataMaker = {
       this.popCheck = false
       this.moneyCheck = false
       this.fullCheck = false
+      this.hotelToPopRatio = 1/5
       // console.log(this.hotel)
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
@@ -103,6 +104,7 @@ const DataMaker = {
         this.gameEnd = true
         this.stopCheck = true
         this.attCheck = true
+        this.hotelToPopRatio = DataMaker.game.hotel.attendees / DataMaker.game.attendees
 
       }
     },
