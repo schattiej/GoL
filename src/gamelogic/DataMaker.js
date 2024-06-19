@@ -52,11 +52,11 @@ const DataMaker = {
   game: {
     chooseClient: function () {},
     setup: function (mainScene) {
-      this.money = r_btwn(850, 1000)
-      this.timeSlots = r_btwn(3, 5)
+      this.money = 0
+      this.timeSlots = 0
       this.popularity = 0
       this.attendees = 0
-      this.startDate =0
+      this.startDate =0 
       this.dueDate = 12
       this.hotelDate = 6
       this.turnCount = this.startDate
@@ -77,7 +77,36 @@ const DataMaker = {
       this.moneyCheck = false
       this.fullCheck = false
       this.hotelToPopRatio = 1/5
-      // console.log(this.hotel)
+
+      //boolean values for the different game modes
+      this.modeOne = false
+      this.modeTwo = false
+      this.modeThree = false
+    },
+    makeData: function(){
+      //checks for this 
+      if(this.modeOne === true){
+        this.money = r_btwn(850, 1000)
+        this.timeSlots = r_btwn(3, 5)
+        this.popularity = 0
+        this.attendees = 0
+        this.startDate =0 
+      }
+      else if(this.modeTwo === true){
+        this.money = r_btwn(850, 1000)
+        this.timeSlots = r_btwn(3, 5)
+        this.popularity = 0
+        this.attendees = 0
+        this.startDate =0 
+      }
+      else if(this.modeThree === true){
+        this.money = r_btwn(850, 1000)
+        this.timeSlots = r_btwn(3, 5)
+        this.popularity = 0
+        this.attendees = 0
+        this.startDate =0 
+      }
+
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
       if (DataMaker.game.hotelDate === DataMaker.game.turnCount + 1) {
