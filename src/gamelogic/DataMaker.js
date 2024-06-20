@@ -2,6 +2,8 @@ import Phaser, { Data } from 'phaser'
 import CONFIG from '../config'
 import AlertManager from '../gamelogic/GameAlert.js'
 import { MidgameWildcards } from '../minigames/WildcardMenu'
+import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
+
 
 function r_p () { return Phaser.Math.RND.pick(...arguments) }
 function r_btwn () { return Phaser.Math.RND.between(...arguments) }
@@ -83,28 +85,33 @@ const DataMaker = {
       this.modeTwo = false
       this.modeThree = false
     },
+    makeChoices: function(){
+      warning = `Choose a game mode!`
+      choices = [
+        ['Play Yoga Convention', () => {this.makeData()}]
+      ]
+
+      new ChoiceMenu(this.gameScene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, warning, choices, true)
+    },
     makeData: function(){
       //checks for this 
-      if(this.modeOne === true){
+      if(choice === "modeOne"){
         this.money = r_btwn(850, 1000)
         this.timeSlots = r_btwn(3, 5)
         this.popularity = 0
-        this.attendees = 0
-        this.startDate =0 
+        this.attendees = 0 
       }
       else if(this.modeTwo === true){
         this.money = r_btwn(850, 1000)
         this.timeSlots = r_btwn(3, 5)
         this.popularity = 0
         this.attendees = 0
-        this.startDate =0 
       }
       else if(this.modeThree === true){
         this.money = r_btwn(850, 1000)
         this.timeSlots = r_btwn(3, 5)
         this.popularity = 0
         this.attendees = 0
-        this.startDate =0 
       }
 
     },

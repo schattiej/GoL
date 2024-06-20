@@ -1,16 +1,9 @@
 import Phaser from 'phaser'
 import CONFIG from '../config.js'
 import CustomButton from '../scenes/CustomButton.ts'
+import { OneScene, TwoScene, ThreeScene} from '../gamelogic/passingInfo.js'
 
-class StartScene extends Phaser.Scene {
-  init () {
-    this.loadingText = this.add.text(
-      CONFIG.DEFAULT_WIDTH / 2,
-      CONFIG.DEFAULT_HEIGHT / 2,
-      'Loading ...', { font: '16pt Arial', color: '#FFFFFF', align: 'center' }
-    )
-    this.loadingText.setOrigin(0.5, 0.5)
-  }
+class MenuScene extends Phaser.Scene {
 
   preload () {
     this.load.svg('board', 'assets/sprites/board/GameBoard.svg', { scale: 12 })
@@ -90,17 +83,17 @@ class StartScene extends Phaser.Scene {
     title.setDepth(1)
 
     // create buttons for start and menu
-    const startButton = new CustomButton(this, 11/32 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_StartButton', 'GOL_StartButton', 'Start')
+    const startButton = new CustomButton(this, 11/32 * CONFIG.DEFAULT_WIDTH, 18/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_StartButton', 'GOL_StartButton', 'Start')
     this.add.existing(startButton)
     startButton.setScale(0.7, 0.7)
     startButton.setDepth(1)
 
-    const menuButton = new CustomButton(this, 1/2 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_MenuButton', 'GOL_MenuButton', 'Menu')
+    const menuButton = new CustomButton(this, 1/2 * CONFIG.DEFAULT_WIDTH, 18/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_MenuButton', 'GOL_MenuButton', 'Menu')
     this.add.existing(menuButton)
     menuButton.setScale(0.7, 0.7)
     menuButton.setDepth(1)
 
-    const optionsButton = new CustomButton(this, 131/192 * CONFIG.DEFAULT_WIDTH, 25/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_OptionsButton', 'GOL_OptionsButton', 'Options')
+    const optionsButton = new CustomButton(this, 131/192 * CONFIG.DEFAULT_WIDTH, 18/54 * CONFIG.DEFAULT_HEIGHT, 'GOL_OptionsButton', 'GOL_OptionsButton', 'Options')
     this.add.existing(optionsButton)
     optionsButton.setScale(0.7, 0.7)
     optionsButton.setDepth(1)
@@ -108,7 +101,8 @@ class StartScene extends Phaser.Scene {
     // starts game
     startButton.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        this.scene.start('MenuScene')
+        this.scene.start('ExampleScene')
+
       })
 
     // TODO This needs to be changed to an actual menu screen ----------------------------------------------
@@ -134,4 +128,4 @@ class StartScene extends Phaser.Scene {
   }
 }
 
-export default StartScene
+export default MenuScene
