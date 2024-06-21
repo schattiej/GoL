@@ -1,7 +1,6 @@
 import Phaser from 'phaser'
 import CONFIG from '../config.js'
 import CustomButton from '../scenes/CustomButton.ts'
-import { OneScene, TwoScene, ThreeScene} from '../gamelogic/passingInfo.js'
 
 class MenuScene extends Phaser.Scene {
 

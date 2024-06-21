@@ -7,7 +7,9 @@ import CONFIG from './config.js'
 import ExampleScene from './scenes/Example.js'
 import StartScene from './scenes/Start.js'
 import MenuScene from './scenes/Menu.js'
-import CustomButtonDemoScene from './scenes/CustomButtonDemoScene.ts'
+import ChoiceTwoScene from './scenes/ChoiceTwoScene.js'
+import ChoiceThreeScene from './scenes/ChoiceThreeScene.js'
+//import CustomButtonDemoScene from './scenes/CustomButtonDemoScene.ts'
 
 const config = {
   // Configure Phaser graphics settings
@@ -39,6 +41,8 @@ const game = new Phaser.Game(config)
 game.scene.add('StartScene', StartScene)
 game.scene.add('MenuScene', MenuScene)
 game.scene.add('ExampleScene', ExampleScene)
+game.scene.add('ChoiceTwoScene', ChoiceTwoScene)
+game.scene.add('ChoiceThreeScene', ChoiceThreeScene)
 
 game.scene.start('StartScene')
 game.scene.add('CustomButtonDemoScene', CustomButtonDemoScene)

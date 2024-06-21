@@ -54,10 +54,25 @@ const DataMaker = {
   game: {
     chooseClient: function () {},
     setup: function (mainScene) {
-      this.money = 0
-      this.timeSlots = 0
-      this.popularity = 0
-      this.attendees = 0
+
+      // if(mainScene === ExampleScene){
+      //   this.money = 0
+      //   this.timeSlots = 0
+      //   this.popularity = 0
+      //   this.attendees = 0
+      // }
+      // if(mainScene === ChoiceTwoScene){
+      //   this.money = 0
+      //   this.timeSlots = 0
+      //   this.popularity = 0
+      //   this.attendees = 0
+      // }
+      // if(mainScene === ChoiceThreeScene){
+      //   this.money = 0
+      //   this.timeSlots = 0
+      //   this.popularity = 0
+      //   this.attendees = 0
+      // }
       this.startDate =0 
       this.dueDate = 12
       this.hotelDate = 6
@@ -79,41 +94,6 @@ const DataMaker = {
       this.moneyCheck = false
       this.fullCheck = false
       this.hotelToPopRatio = 1/5
-
-      //boolean values for the different game modes
-      this.modeOne = false
-      this.modeTwo = false
-      this.modeThree = false
-    },
-    makeChoices: function(){
-      warning = `Choose a game mode!`
-      choices = [
-        ['Play Yoga Convention', () => {this.makeData()}]
-      ]
-
-      new ChoiceMenu(this.gameScene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, warning, choices, true)
-    },
-    makeData: function(){
-      //checks for this 
-      if(choice === "modeOne"){
-        this.money = r_btwn(850, 1000)
-        this.timeSlots = r_btwn(3, 5)
-        this.popularity = 0
-        this.attendees = 0 
-      }
-      else if(this.modeTwo === true){
-        this.money = r_btwn(850, 1000)
-        this.timeSlots = r_btwn(3, 5)
-        this.popularity = 0
-        this.attendees = 0
-      }
-      else if(this.modeThree === true){
-        this.money = r_btwn(850, 1000)
-        this.timeSlots = r_btwn(3, 5)
-        this.popularity = 0
-        this.attendees = 0
-      }
-
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
       if (DataMaker.game.hotelDate === DataMaker.game.turnCount + 1) {
