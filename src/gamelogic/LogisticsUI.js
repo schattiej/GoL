@@ -17,7 +17,10 @@ class LogisticsUI extends UpgradedContainer {
 
     // this.addSafeText(this.scene, 0, 0.5, 1, 'Hotel: X')
     // const hotelIndicator = this.getLatest()
-    const hotelIndicator = new StyleIndicator(scene, -84, 0, 'Hotel: ', 'The Flimpy')
+    if(DataMaker.game.nameSceneChoice === 'Example'){
+      const hotelIndicator = new StyleIndicator(scene, -84, 0, 'Hotel: ', 'The Flimpy')   
+    }
+
     const amenitiesIndicator = new StyleIndicator(scene, -84, 0, 'Amenities: ', '0')
     const attendeeCapsIndicator = new StyleIndicator(scene, -84, 0, 'Attendee Cap: ', '0')
     const popularityIndicator = new StyleIndicator(scene, -84, 0, 'Popularity: ', '0')
