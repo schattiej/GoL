@@ -3,6 +3,10 @@ import CONFIG from '../config'
 import AlertManager from '../gamelogic/GameAlert.js'
 import { MidgameWildcards } from '../minigames/WildcardMenu'
 import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
+import ChoiceTwoScene from '../scenes/ChoiceTwoScene.js'
+import ChoiceThreeScene from '../scenes/ChoiceThreeScene.js'
+import ExampleScene from '../scenes/Example.js'
+
 
 
 function r_p () { return Phaser.Math.RND.pick(...arguments) }
@@ -53,26 +57,36 @@ const DataMaker = {
   },
   game: {
     chooseClient: function () {},
-    setup: function (mainScene) {
+    setup: function (mainScene, nameScene) {
 
-      // if(mainScene === ExampleScene){
-      //   this.money = 0
-      //   this.timeSlots = 0
-      //   this.popularity = 0
-      //   this.attendees = 0
-      // }
-      // if(mainScene === ChoiceTwoScene){
-      //   this.money = 0
-      //   this.timeSlots = 0
-      //   this.popularity = 0
-      //   this.attendees = 0
-      // }
-      // if(mainScene === ChoiceThreeScene){
-      //   this.money = 0
-      //   this.timeSlots = 0
-      //   this.popularity = 0
-      //   this.attendees = 0
-      // }
+      switch(nameScene){
+        case 'Two':
+          this.money = r_btwn(750, 850)
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+        case 'Three':
+          this.money = r_btwn(750, 850)
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+        case 'Example':
+          //regular event example. Mid Money stats
+          this.money = r_btwn(750, 850)
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+        default:
+          this.money = 0
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+      }
+
       this.startDate =0 
       this.dueDate = 12
       this.hotelDate = 6

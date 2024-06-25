@@ -108,7 +108,7 @@ class StartScene extends Phaser.Scene {
     // starts game
     startButton.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-        this.scene.start('MenuScene')
+        this.scene.start('ExampleScene')
       })
 
     // TODO This needs to be changed to an actual menu screen ----------------------------------------------

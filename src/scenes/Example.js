@@ -23,7 +23,7 @@ class ExampleScene extends Phaser.Scene {
   create () {
     const cardg = this.add.group()
     // Setup variables with world bounds
-    DataMaker.game.setup(this.scene)
+    DataMaker.game.setup(this.Scene, 'Example')
 
     // Add background image
     const background = this.add.image(0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'playspace')
