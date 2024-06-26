@@ -51,7 +51,18 @@ const DataMaker = {
   },
   game: {
     chooseClient: function () {},
-    setup: function (mainScene) {
+    setup: function (mainScene, sceneSelect = "default") {
+      switch (sceneSelect){
+        case 'default':
+          console.log("default case selected...")
+        case 'work':
+          console.log("work case selected...")
+        case 'yoga':
+          console.log("yoga case selected...")
+        case 'concert':
+          console.log("concert case selected...")
+
+      }
       this.money = r_btwn(750, 1000)
       this.timeSlots = r_btwn(3, 5)
       this.popularity = 0

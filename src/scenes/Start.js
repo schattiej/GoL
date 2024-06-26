@@ -106,6 +106,7 @@ class StartScene extends Phaser.Scene {
     optionsButton.setDepth(1)
 
     // starts game
+    // 
     startButton.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
         this.scene.start('ExampleScene')
@@ -128,10 +129,10 @@ class StartScene extends Phaser.Scene {
     this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)
   }
 
-  keyReleased () {
-    // console.log('Key released')
-    this.scene.start('ExampleScene')
-  }
+  // keyReleased () {
+  //   // console.log('Key released')
+  //   this.scene.start('ExampleScene')
+  // }
 }
 
 export default StartScene
