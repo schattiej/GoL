@@ -51,8 +51,8 @@ const DataMaker = {
   },
   game: {
     chooseClient: function () {},
-    setup: function (mainScene, sceneSelect = "default") {
-      switch (sceneSelect){
+    setUpGame: function (mainScene, sceneSelect = "default") {
+      switch (sceneSelect) {
         case 'default':
           console.log("default case selected...")
         case 'work':
@@ -156,6 +156,7 @@ const DataMaker = {
         this.discount = 0
         this.fee = 0
         this.attendees = 0
+        
       }
     }
 
