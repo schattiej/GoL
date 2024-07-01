@@ -3,9 +3,6 @@ import CONFIG from '../config.js'
 import CustomButton from '../scenes/CustomButton.ts'
 
 class StartScene extends Phaser.Scene {
-
-  modifier = "default"
-
   init () {
     this.loadingText = this.add.text(
       CONFIG.DEFAULT_WIDTH / 2,
@@ -112,9 +109,6 @@ class StartScene extends Phaser.Scene {
     // 
     startButton.setInteractive()
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-
-
-
         this.scene.start('ExampleScene')
       })
 
@@ -139,12 +133,6 @@ class StartScene extends Phaser.Scene {
   //   // console.log('Key released')
   //   this.scene.start('ExampleScene')
   // }
-
-  getModifier() {
-    return modifier
-    }
 }
-
-
 
 export default StartScene
