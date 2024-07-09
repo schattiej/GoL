@@ -53,7 +53,7 @@ class EndingDialog extends UpgradedContainer {
       }
     })
     this.add(B1)
-    this.depth = 200000000000
+    this.depth = 200
 
     scene.add.existing(this)
     this.enter()

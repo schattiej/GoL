@@ -46,7 +46,7 @@ class EndCard extends UpgradedContainer {
           this.add(NewButton)
         }
     
-        this.setDepth(1000)
+        this.setDepth(500)
         this.y = 0
         this.scale = 0.2
         this.scene.tweens.add({ // Every EndCard flies in from the top of the screen.
@@ -102,7 +102,7 @@ class EndCard extends UpgradedContainer {
             bottom.setFillStyle('0x390383')
           })
     
-        this.setDepth(1000)
+        this.setDepth(500)
         Phaser.Display.Bounds.CenterOn(this, x, y)
         scene.add.existing(this)
       }
