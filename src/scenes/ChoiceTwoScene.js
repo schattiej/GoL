@@ -15,7 +15,7 @@ import EventDialog from '../gamelogic/EventDialog.js'
 import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
 
 
-class ExampleScene extends Phaser.Scene {
+class ChoiceTwoScene extends Phaser.Scene {
   preload () {
     // Loading is done in 'StartScene'
   }
@@ -23,8 +23,15 @@ class ExampleScene extends Phaser.Scene {
   create () {
     const cardg = this.add.group()
     // Setup variables with world bounds
-    DataMaker.game.setup(this.Scene, 'Example')
+    DataMaker.game.setup(this.scene, 'Two')
 
+    //const warning = 'Choose a game mode!'
+    //const choices = ['Play Yoga Convention', DataMaker.makeData()]
+
+
+    //new ChoiceMenu(this.scene, 0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, warning, ['Play Yoga Convention', DataMaker.makeData()], true)
+
+    //DataMaker.game.makeChoices()                                                                                                           
     // Add background image
     const background = this.add.image(0.5 * CONFIG.DEFAULT_WIDTH, 0.5 * CONFIG.DEFAULT_HEIGHT, 'playspace')
     this.children.add(background)
@@ -56,4 +63,5 @@ class ExampleScene extends Phaser.Scene {
   }
 }
 
-export default ExampleScene
+export default ChoiceTwoScene
+
