@@ -87,7 +87,6 @@ const DataMaker = {
           break
       }
 
-      this.nameSceneChoice = nameScene
       this.startDate =0 
       this.dueDate = 12
       this.hotelDate = 6
