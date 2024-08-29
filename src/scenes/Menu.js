@@ -118,7 +118,7 @@ class MenuScene extends Phaser.Scene {
       //})
 
     // Add a callback when a key is released
-    this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)
+    //this.input.keyboard.on('keyup-SPACE', this.keyReleased, this)
   }
 
   keyReleased () {

@@ -4,7 +4,7 @@ import DataMaker from '../gamelogic/DataMaker.js'
 import { WildcardManager } from '../minigames/WildcardMenu.js'
 
 class Board extends Phaser.GameObjects.Container {
-  constructor (scene, x, y) {
+  constructor(scene, x, y) {
     super(scene, x, y)
     const bImage = scene.add.image(0, 0, 'board')
     this.add(bImage)
@@ -18,10 +18,17 @@ class Board extends Phaser.GameObjects.Container {
 
     this.setInteractive()
 
+    // CLICKS TO ADVANCE TURN. DEBUG PURPOSES ONLY.
+/*
     this.on('pointerdown', (pointer, localX, localY) => {
       this.AdvanceTurn()
     })
 
+*/
+
+// ENABLES MOVING WHEEL UP AND DOWN. 
+
+/*
     this.returntween = 0
     this.on('wheel', (pointer, deltaX, deltaY, deltaZ) => {
       if (this.bstate === 'mainevent') { return }
@@ -37,8 +44,14 @@ class Board extends Phaser.GameObjects.Container {
         delay: 700
       })
     })
+      
+      */
 
     // Alternate controls for observing board. Z down to move board down. Releasing Z moves it back up.
+    // Disabled because of inconvenience
+
+    /* 
+    
     this.okaymove = false
     this.SetupInOut()
     scene.input.keyboard.on('keydown-Z', () => {
@@ -62,7 +75,9 @@ class Board extends Phaser.GameObjects.Container {
           duration: 300
         })
       }
-    })
+    }) 
+
+    */
 
     const ft = this.PlaceToken('event_token', DataMaker.game.dueDate)
     const ht = this.PlaceToken('contract_token', DataMaker.game.hotelDate)
@@ -77,12 +92,12 @@ class Board extends Phaser.GameObjects.Container {
     Phaser.Display.Bounds.CenterOn(x, y)
   }
 
-  SetupInOut () {
+  SetupInOut() {
     this.on('pointerover', () => { this.okaymove = true })
     this.on('pointerout', () => { this.okaymove = false })
   }
 
-  FinalPhaseTransition () {
+  FinalPhaseTransition() {
     this.bstate = 'mainevent'
     this.scene.tweens.add({
       targets: this,
@@ -109,7 +124,7 @@ class Board extends Phaser.GameObjects.Container {
     })
   }
 
-  AdvanceTurn () {
+  AdvanceTurn() {
     if (this.bstate !== 'turning' && this.bstate !== 'mainevent') {
       this.MoveToken(this.playerToken, this.player_loc)
       this.SpinBoard(this.player_loc)
@@ -118,7 +133,7 @@ class Board extends Phaser.GameObjects.Container {
     }
   }
 
-  PlaceToken (kind, boardCoord, boardDepth = false) {
+  PlaceToken(kind, boardCoord, boardDepth = false) {
     const tempSpot = this.GetSpot(boardCoord, boardDepth)
     const aImage = this.scene.add.image(tempSpot.x, tempSpot.y, kind)
     aImage.displayWidth = CONFIG.HAND_ORBITAL / 12
@@ -129,7 +144,7 @@ class Board extends Phaser.GameObjects.Container {
     return aImage
   }
 
-  MoveToken (t, nDir, nDepth = false) {
+  MoveToken(t, nDir, nDepth = false) {
     const a = this.GetSpot(nDir, nDepth)
     this.scene.tweens.add({
       targets: t,
@@ -143,7 +158,7 @@ class Board extends Phaser.GameObjects.Container {
     })
   }
 
-  RealignBoard () {
+  RealignBoard() {
     const SpotAngle = (Math.PI) / 6
     this.scene.tweens.add({
       targets: this,
@@ -159,7 +174,7 @@ class Board extends Phaser.GameObjects.Container {
     })
   }
 
-  SpinBoard (turns) {
+  SpinBoard(turns) {
     // DataMaker.game.RUI.scene.sound.play
     this.scene.sound.play('confirm')
     if (this.bstate === 'mainevent') {
@@ -224,7 +239,7 @@ class Board extends Phaser.GameObjects.Container {
     }
   }
 
-  GetSpot (travel, isInner) {
+  GetSpot(travel, isInner) {
     const RefPoint = new Phaser.Geom.Point(Phaser.Display.Bounds.GetCenterX(this.list[0]), Phaser.Display.Bounds.GetCenterY(this.list[0]))
     const spacer = isInner ? this.height * 0.2 : this.height * 0.31
     const SpotPoint = new Phaser.Geom.Point(RefPoint.x, RefPoint.y + spacer)
