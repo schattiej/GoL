@@ -75,6 +75,24 @@ function checkReputation(reputation) {
     }
 }
 
+function checkRatio(mainRatio){
+    if (mainRatio <= 0){
+        ratScore = 0;
+    }
+    else if (mainRatio <= 1/10){
+        ratScore = 2;
+    }
+    else if (mainRatio >1/10 && mainRation <= 1.5/10){
+        ratScore = 3;
+    }
+    else if (mainRatio >1.5/10 && mainRation <= 2.5/10){
+        ratScore = 4;
+    }
+    else if (mainRatio >2.5/10){
+        ratScore = 5;
+    }
+}
+
 /* 
 
 Exported Function

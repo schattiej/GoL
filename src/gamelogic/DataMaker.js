@@ -2,6 +2,12 @@ import Phaser, { Data } from 'phaser'
 import CONFIG from '../config'
 import AlertManager from '../gamelogic/GameAlert.js'
 import { MidgameWildcards } from '../minigames/WildcardMenu'
+import ChoiceMenu from '../gamelogic/ChoiceMenu.js'
+import ChoiceTwoScene from '../scenes/ChoiceTwoScene.js'
+import ChoiceThreeScene from '../scenes/ChoiceThreeScene.js'
+import ExampleScene from '../scenes/Example.js'
+
+
 
 function r_p () { return Phaser.Math.RND.pick(...arguments) }
 function r_btwn () { return Phaser.Math.RND.between(...arguments) }
@@ -51,12 +57,37 @@ const DataMaker = {
   },
   game: {
     chooseClient: function () {},
-    setup: function (mainScene) {
-      this.money = r_btwn(850, 1000)
-      this.timeSlots = r_btwn(3, 5)
-      this.popularity = 0
-      this.attendees = 0
-      this.startDate =0
+    setup: function (mainScene, nameScene) {
+
+      switch(nameScene){
+        case 'Two':
+          this.money = r_btwn(750, 850)
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+        case 'Three':
+          this.money = r_btwn(750, 850)
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+        case 'Example':
+          //regular event example. Mid Money stats
+          this.money = r_btwn(750, 850)
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+        default:
+          this.money = 0
+          this.timeSlots = 0
+          this.popularity = 0
+          this.attendees = 0
+          break
+      }
+
+      this.startDate =0 
       this.dueDate = 12
       this.hotelDate = 6
       this.turnCount = this.startDate
@@ -76,7 +107,7 @@ const DataMaker = {
       this.popCheck = false
       this.moneyCheck = false
       this.fullCheck = false
-      // console.log(this.hotel)
+      this.hotelToPopRatio = 1/5
     },
     postTurn: function () { // currently does nothing, stuff that happens between turns, orginal was used for curveballs
       if (DataMaker.game.hotelDate === DataMaker.game.turnCount + 1) {
@@ -103,6 +134,7 @@ const DataMaker = {
         this.gameEnd = true
         this.stopCheck = true
         this.attCheck = true
+        this.hotelToPopRatio = DataMaker.game.hotel.attendees / DataMaker.game.attendees
 
       }
     },
