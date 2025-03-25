@@ -10,22 +10,28 @@ Before beginning, you will need to have the following installed on your developm
 
 ## Getting Started
 
+1. Open the link provided below and clone the repository to your IDE.
+
 GitHub Link:
 [https://github.com/schattiej/GoL]
 
-Once created, clone/checkout a local copy on your computer and install the dependencies.
+2. Using the bash terminal, enter the following command
 
 ``` bash
-
-git https://github.com/schattiej/GoL
-cd phaser-esbuild-typescript-template
-npm install
-
+npm install   # You will receive lots of warning errors and vulnerability errors, ignore these
 ```
 
 ## How To Build and Run
-To run commands, open any terminal and change to the root directory of your local working copy.  The terminal that is built into VS Code works well and already starts in the right directory.  Press `Ctrl + ~` to bring it up.  I highly recommend switching the default terminal to be 'Bash' instead of 'Powershell' on windows.
+>> Assumes you are using VS Code
+>> Assumes you are using Git/GitBash Terminal
 
+Press `Ctrl + ~` to open your terminal.
+
+Enter the following command into the terminal:
+
+```bash
+npm run build
+```
 The `public/index.html` file contains a `<script src="bundle.js">` tag, which means we need to create `public/bundle.js`. The npm command `npm run build` tells ESBuild how to create this bundle, starting with `src/main.js` and including all its dependencies.
 
 `npm run dev` starts a local server on port 3000 that serves the contents of `public`.  Any request for `bundle.js` will cause it to automatically rebuild your game and then it will serve the results live.  Simply open `localhost:3000` in your browser and as you edit your code, have the developer-tools open.  When you refresh the page, it will automatically rebuild your game and serve the latest version. Make sure you have your browser's caching disabled (usually under the 'Network' tab of the developer tools).
