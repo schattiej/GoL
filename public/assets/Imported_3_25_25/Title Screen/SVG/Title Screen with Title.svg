@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1951.21 1420.26">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #321c66;
+      }
+
+      .cls-2 {
+        fill: #7e79a2;
+      }
+
+      .cls-3 {
+        font-family: ImprintMT-Shadow, 'Imprint MT Shadow';
+        font-size: 353px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #d6cfc8;
+      }
+
+      .cls-5 {
+        fill: #23114c;
+      }
+
+      .cls-4 {
+        font-family: ProximaNova-Regular, 'Proxima Nova';
+        font-size: 50px;
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-7 {
+        fill: #1d1435;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="976.36" y1="0" x2="976.36" y2="1420.26" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#bd779c"/>
+      <stop offset=".14" stop-color="#a5648d" stop-opacity="1"/>
+      <stop offset=".4" stop-color="#7f4574" stop-opacity="1"/>
+      <stop offset=".63" stop-color="#632f63" stop-opacity="1"/>
+      <stop offset=".84" stop-color="#522158" stop-opacity="1"/>
+      <stop offset="1" stop-color="#4d1d55" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <rect class="cls-6" x="1.51" width="1949.7" height="1420.26"/>
+    <g>
+      <path class="cls-7" d="M387.92,539.4h112.88c9.64,141.73,19.28,283.47,28.92,425.2h-162.12c6.78-141.73,13.55-283.47,20.33-425.2Z"/>
+      <rect class="cls-7" x="1438.88" y="579.78" width="98.46" height="304.29"/>
+      <path class="cls-7" d="M1513.94,753.88h-23.3c3-85.66,6-171.32,9-256.99h7.32c2.33,85.66,4.65,171.32,6.98,256.99Z"/>
+      <path class="cls-7" d="M1483.43,753.88h-23.3c3-85.66,6-171.32,9-256.99h7.32c2.33,85.66,4.65,171.32,6.98,256.99Z"/>
+      <rect class="cls-7" x="1.51" y="908.75" width="222.88" height="304.29"/>
+      <rect class="cls-7" x="1728.33" y="900.46" width="222.88" height="304.29"/>
+      <rect class="cls-7" x="1490.96" y="835.63" width="222.88" height="304.29"/>
+      <rect class="cls-7" x="1224.62" y="781" width="222.88" height="304.29"/>
+      <rect class="cls-7" x="872.68" y="811.26" width="222.88" height="304.29"/>
+      <rect class="cls-7" x="1062.79" y="739.82" width="222.88" height="400.09"/>
+      <rect class="cls-7" x="230.51" y="875.86" width="482.48" height="304.29"/>
+      <path class="cls-7" d="M233.52,1231.36h-92.59v-512.62c30.86-30.17,61.72-60.34,92.59-90.52v603.14Z"/>
+      <path class="cls-7" d="M633.37,1131.25h279.76c1.43-202.86,2.87-405.72,4.3-608.57-94.69,20.77-189.37,41.55-284.06,62.32v546.25Z"/>
+      <path class="cls-5" d="M857.96,1220.97h-242.55c-1.24-202.86-2.49-405.72-3.73-608.57,82.09,20.77,164.19,41.55,246.28,62.32v546.25Z"/>
+      <rect class="cls-5" x="957.78" y="489.67" width="146.46" height="603.14"/>
+      <path class="cls-5" d="M1243.55,1371.51c-27.65,0-50.06-78.05-50.06-174.33v-484.29c19.55-68.08,30.51-106.25,50.06-174.33h0c19.55,68.08,30.51,106.25,50.06,174.32v484.29c0,96.28-22.41,174.32-50.06,174.32Z"/>
+      <rect class="cls-5" x="350.48" y="787.77" width="242.55" height="546.25"/>
+      <path class="cls-7" d="M782.32,577.36h-23.75c3.06-85.66,6.12-171.32,9.17-256.99h7.46c2.37,85.66,4.74,171.32,7.11,256.99Z"/>
+      <path class="cls-5" d="M1255.42,625.39h-23.75c3.06-85.66,6.12-171.32,9.17-256.99h7.46c2.37,85.66,4.74,171.32,7.11,256.99Z"/>
+      <rect class="cls-5" x="1336.06" y="646.27" width="241.15" height="603.14"/>
+      <rect class="cls-5" x="1682.6" y="710.13" width="161.92" height="555.29"/>
+      <path class="cls-5" d="M285.63,1204.75h-92.59v-512.62c30.86-30.17,61.72-60.34,92.59-90.52v603.14Z"/>
+      <rect class="cls-1" x="541.72" y="852.1" width="139.93" height="285.08"/>
+      <path class="cls-1" d="M1709.85,1159.44h-139.93v-620.88c13,0,26.01,0,39.01,0,10.88-15.55,21.77-31.1,32.65-46.65,10.88,15.55,21.77,31.1,32.65,46.65,11.87,0,23.75,0,35.62,0v620.88Z"/>
+      <rect class="cls-1" x="1.51" y="763.65" width="69.97" height="447.46"/>
+      <path class="cls-1" d="M1243.55,1114.72h-212.6v-336.37c-11.11-19.9-22.21-39.81-33.32-59.71,11.11.09,22.21.17,33.32.26h132.11c26.83,131.94,53.66,263.88,80.49,395.82Z"/>
+    </g>
+    <path class="cls-2" d="M1949.7,1116.94c-256.9-34.8-599.11-56.04-974.85-56.04s-717.95,21.24-974.85,56.04v303.32h1949.7v-303.32Z"/>
+    <text class="cls-3" transform="translate(575.87 601.61)"><tspan x="0" y="0">EPM</tspan></text>
+    <text class="cls-4" transform="translate(661.64 686.76)"><tspan x="0" y="0">Event Management &amp; Planning</tspan></text>
+  </g>
+</svg>

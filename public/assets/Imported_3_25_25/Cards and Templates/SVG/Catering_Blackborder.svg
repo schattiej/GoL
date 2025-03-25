@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 261.68 363.24">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #231f20;
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke: #e6e7e8;
+      }
+
+      .cls-5 {
+        fill: #edf7f6;
+      }
+
+      .cls-6 {
+        fill: #e6e7e8;
+      }
+
+      .cls-3 {
+        stroke-width: 5px;
+      }
+
+      .cls-7 {
+        fill: #f8991d;
+      }
+
+      .cls-4 {
+        stroke-width: 13px;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="131.62" cy="180.55" fx="131.62" fy="180.55" r="246.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eb8c2d"/>
+      <stop offset=".82" stop-color="#9e4523"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_5" data-name="Layer 5">
+    <path class="cls-1" d="M244.68,361.24H17c-8.28,0-15-6.72-15-12V20C2,8.72,8.72,2,17,2h227.68c8.28,0,15,6.72,15,15v329.24c0,8.28-6.72,15-15,15Z"/>
+    <rect class="cls-5" x="4.2" y="4.12" width="253.29" height="355" rx="15" ry="15"/>
+    <rect class="cls-2" x="8.98" y="7.86" width="245.27" height="345.39" rx="15" ry="15"/>
+    <polygon class="cls-7" points="77.69 179.72 87.14 147.25 118.43 126.76 145.53 125.56 179.88 149.6 183.99 177.73 178.75 211.55 158.6 231.92 126.2 235.68 95.38 221.4 79.78 190.04 77.69 179.72"/>
+    <polygon class="cls-7" points="34.49 150.82 64.85 150.82 63.21 161.67 57.11 167.03 56.5 185.29 57.04 221.43 51.17 225.35 43.97 225.35 40.94 218.47 43.78 166.93 37.36 162.63 34.97 155.34 34.49 150.82"/>
+    <polygon class="cls-7" points="215 124.68 205.21 130.45 199.74 141.65 199.17 156.47 204.82 168.68 208.76 173.95 207.08 206.15 208.12 221.83 213.93 225.35 220.39 224.19 222.96 219.44 221.19 172.04 228.83 162.93 231.29 154.61 230.21 141.87 226.85 133.87 220.9 127.6 215 124.68"/>
+    <circle class="cls-6" cx="132.71" cy="179.72" r="39.72"/>
+    <path class="cls-3" d="M43.84,167.27l-2.02,52.18s0,5.91,7.33,5.91,8.84-5.91,8.84-5.91l-2.27-52.18s9.6-.02,9.6-16.44h-30.82s.25,15.68,9.35,16.44Z"/>
+    <circle class="cls-4" cx="132.71" cy="179.72" r="55.96"/>
+    <path class="cls-3" d="M208.81,172.04l-1.26,47.4s-.25,5.91,7.83,5.91,7.58-5.91,7.58-5.91l-1.77-47.4s10.11-5.56,10.11-21.22-9.09-25.26-16.67-25.26-15.92,9.35-15.92,25.26,10.11,21.22,10.11,21.22Z"/>
+    <rect class="cls-6" x="31.94" y="122.69" width="6.06" height="29.75" rx="2.4" ry="2.4"/>
+    <rect class="cls-6" x="46.87" y="122.31" width="6.06" height="29.75" rx="2.4" ry="2.4"/>
+    <rect class="cls-6" x="61.81" y="122.69" width="6.06" height="29.75" rx="2.4" ry="2.4"/>
+  </g>
+</svg>

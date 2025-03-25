@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 261.68 363.24">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #231f20;
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #e6e7e8;
+      }
+
+      .cls-4 {
+        fill: #edf7f6;
+      }
+
+      .cls-5 {
+        fill: #eddb60;
+      }
+
+      .cls-6 {
+        fill: #e6e7e8;
+      }
+
+      .cls-7 {
+        fill: #f1f2f2;
+        font-family: CenturyGothic-Bold, 'Century Gothic';
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        stroke-width: 9px;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="130.94" cy="182.19" fx="130.94" fy="182.19" r="246.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e3cf55"/>
+      <stop offset=".82" stop-color="#af8c2f"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_5" data-name="Layer 5">
+    <rect class="cls-1" x="2" y="2" width="257.68" height="359.24" rx="14.99" ry="14.99"/>
+    <rect class="cls-4" x="4.29" y="3.86" width="253.29" height="355" rx="15" ry="15"/>
+    <rect class="cls-2" x="8.31" y="9.49" width="245.27" height="345.39" rx="15" ry="15"/>
+    <polygon class="cls-5" points="85.89 214.68 115.75 171.7 118.19 153.76 131.32 140.12 144.86 137.75 156.19 143.2 166.89 155.78 167.57 169.06 161.3 183.22 150.88 189.67 138.76 191.75 128.34 201.79 109.74 214.68 96.83 224.07 87.87 221.96 84.89 213.54 85.89 214.68"/>
+    <path class="cls-3" d="M168.13,163.71c0,4.39-1.09,8.52-3.01,12.14-4.36,8.22-13,13.82-22.95,13.82-14.34,0-25.96-11.62-25.96-25.96,0-8.34,3.93-15.76,10.05-20.51,4.39-3.41,9.92-5.45,15.91-5.45,14.34,0,25.96,11.62,25.96,25.96Z"/>
+    <path class="cls-3" d="M126.26,143.2c-4.73,16.06,10.16,27.52,10.16,27.52,0,0,14.01,9.49,30.06,2.09"/>
+    <path class="cls-3" d="M116.21,171.1l-27.98,37.11s-5.66,6.57-2.25,9.23c1.36,1.06,2.49,2.12,3.37,3.03,1.32,1.36,2.04,2.35,2.04,2.35,0,0,3.42,4.2,9.85-1.31s40.93-31.83,40.93-31.83"/>
+    <path class="cls-3" d="M89.35,220.46l-21.3,21.57s-7.64,12.69,0,20.92,16.02,15.16,27.66,7.99l37.07-36.63s14.48-7.66,25.37,3.27,2.98,25.25,2.98,25.25l-31.74,32.26"/>
+    <rect class="cls-6" x="137.78" y="95.55" width="7.07" height="35.12" rx="3.54" ry="3.54"/>
+    <rect class="cls-6" x="169.2" y="105.23" width="7.07" height="35.12" rx="3.54" ry="3.54" transform="translate(103.14 -77.39) rotate(35.42)"/>
+    <rect class="cls-6" x="188.77" y="131.61" width="7.07" height="35.12" rx="3.54" ry="3.54" transform="translate(276.91 -79.03) rotate(72.54)"/>
+    <rect class="cls-6" x="188.77" y="164.77" width="7.07" height="35.12" rx="3.54" ry="3.54" transform="translate(425.64 56.72) rotate(108.23)"/>
+    <rect class="cls-6" x="170.39" y="190.91" width="7.07" height="35.12" rx="3.54" ry="3.54" transform="translate(436.98 275.63) rotate(144.16)"/>
+    <path class="cls-6" d="M99.22,108.55h0c1.58-1.14,3.79-.79,4.94.8l16.42,22.73c1.14,1.58.79,3.79-.8,4.94-1.58,1.14-3.79.79-4.94-.8l-16.42-22.73c-1.14-1.58-.79-3.79.8-4.94Z"/>
+    <rect class="cls-6" x="87.21" y="132.75" width="7.07" height="35.12" rx="3.54" ry="3.54" transform="translate(261.9 111.14) rotate(108.23)"/>
+    <text class="cls-7" transform="translate(17.86 65.13)"><tspan x="0" y="0">ENTERTAINMENT</tspan></text>
+  </g>
+</svg>

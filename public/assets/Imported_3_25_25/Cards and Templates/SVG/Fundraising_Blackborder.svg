@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 261.68 364.24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#radial-gradient);
+        stroke-width: 5px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-4 {
+        stroke: #e6e7e8;
+      }
+
+      .cls-2 {
+        stroke: #231f20;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 4px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke: #349a46;
+      }
+
+      .cls-4 {
+        stroke-width: 7px;
+      }
+
+      .cls-5 {
+        fill: #e6e7e8;
+      }
+
+      .cls-6 {
+        fill: #349a46;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="149.98" cy="191.68" fx="149.98" fy="191.68" r="259.85" gradientTransform="translate(-14.39 -3.58) scale(.97)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#349a46"/>
+      <stop offset=".82" stop-color="#356732"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_8" data-name="Layer 8">
+    <path class="cls-1" d="M21.21,5.66h217.27c9.38,0,17,7.62,17,17v318.88c0,9.38-7.62,17-17,17H21.21c-8.28,0-15-6.72-15-15V20.66c0-8.28,6.72-15,15-15Z"/>
+    <polygon class="cls-6" points="45.95 187.26 74.92 246.51 199.86 188.93 183.47 157.47 45.95 187.26"/>
+    <rect class="cls-4" x="53.33" y="153.83" width="139.83" height="68.21" rx="3" ry="3" transform="translate(-67.35 68.85) rotate(-24.74)"/>
+    <polygon class="cls-6" points="52.99 168.58 81.94 227.84 205.35 170.96 188.98 139.49 52.99 168.58"/>
+    <rect class="cls-4" x="59.46" y="137.24" width="139.83" height="68.21" rx="3" ry="3" transform="translate(-59.84 69.89) rotate(-24.74)"/>
+    <polyline class="cls-6" points="58.74 152.99 86.42 213.05 211.69 155.31 183.3 93.7"/>
+    <circle class="cls-5" cx="135.31" cy="154.68" r="23.64"/>
+    <rect class="cls-4" x="65.77" y="120.14" width="139.83" height="68.21" rx="3" ry="3" transform="translate(-52.11 70.96) rotate(-24.74)"/>
+    <path class="cls-3" d="M139.15,146.6s-2.37-5.37-7.71-2.92c-.21.09-.4.19-.6.29-4.77,2.47-5.2,6.14-4.21,8.29s3.52,5.78,7.61,3.89,8.85-3.03,10.88,1.36.59,6.93-3.11,8.63c-3.7,1.71-7.04,2.83-9.06-1.56"/>
+    <line class="cls-3" x1="128.77" y1="139.49" x2="130.84" y2="143.98"/>
+    <line class="cls-3" x1="116.9" y1="180.46" x2="114.94" y2="176.2"/>
+    <path class="cls-2" d="M244.7,362.24H16.99c-8.28,0-14.99-6.71-14.99-14.99V16.99c0-8.28,6.71-14.99,14.99-14.99l227.71,1c8.28,0,14.99,6.71,14.99,14.99v329.27c0,8.28-6.71,14.99-14.99,14.99Z"/>
+  </g>
+</svg>

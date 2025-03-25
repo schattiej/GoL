@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 261.68 363.24">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #231f20;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke: #ed1c24;
+      }
+
+      .cls-3 {
+        fill: url(#radial-gradient);
+        stroke: #e6e7e8;
+      }
+
+      .cls-4 {
+        fill: #cb2026;
+      }
+
+      .cls-5 {
+        fill: #edf7f6;
+      }
+
+      .cls-6 {
+        fill: #e6e7e8;
+      }
+
+      .cls-7 {
+        fill: #f1f2f2;
+        font-family: CenturyGothic-Bold, 'Century Gothic';
+        font-size: 30px;
+        font-weight: 700;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="131.47" cy="181.04" fx="131.47" fy="181.04" r="246.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#cd2027"/>
+      <stop offset=".82" stop-color="#9e1d20"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_4" data-name="Layer 4">
+    <rect class="cls-1" x="2" y="2" width="257.68" height="359.24" rx="14.99" ry="14.99"/>
+    <rect class="cls-5" x="4.83" y="2.71" width="253.29" height="355" rx="15" ry="15"/>
+    <rect class="cls-3" x="8.84" y="8.34" width="245.27" height="345.39" rx="15" ry="15"/>
+    <rect class="cls-6" x="63.26" y="140.97" width="136.42" height="110.15" rx="11" ry="11"/>
+    <rect class="cls-6" x="81.14" y="105.17" width="30.14" height="48.51" rx="15.07" ry="15.07"/>
+    <rect class="cls-6" x="151.37" y="105.17" width="30.14" height="48.51" rx="15.07" ry="15.07"/>
+    <rect class="cls-4" x="90.55" y="114.19" width="9.85" height="39.92" rx="4.93" ry="4.93"/>
+    <rect class="cls-4" x="128.65" y="105.27" width="4.38" height="118.74" rx="2.19" ry="2.19" transform="translate(295.48 33.79) rotate(90)"/>
+    <rect class="cls-4" x="161.51" y="114.19" width="9.85" height="39.92" rx="4.93" ry="4.93"/>
+    <rect class="cls-2" x="73.62" y="176.59" width="114.44" height="61.14" rx="2" ry="2"/>
+    <polygon class="cls-4" points="130.84 185.18 125.28 200.72 108.74 200.72 121.12 211.33 116.57 228.13 130.8 218.4 144.74 228.13 140.06 211.45 153.07 200.72 136.15 200.72 130.84 185.18"/>
+  </g>
+  <g id="Layer_5" data-name="Layer 5">
+    <text class="cls-7" transform="translate(88.29 65.15)"><tspan x="0" y="0">EVENT</tspan></text>
+  </g>
+</svg>

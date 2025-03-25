@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 261.68 363.24">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #231f20;
+        stroke-width: 4px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        fill: #a16bad;
+      }
+
+      .cls-5 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-6 {
+        fill: #edf7f6;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #e6e7e8;
+        stroke-width: 10px;
+      }
+
+      .cls-3 {
+        fill: #92278f;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="130.84" cy="182.45" fx="130.84" fy="182.45" r="246.77" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9c499c"/>
+      <stop offset=".82" stop-color="#71297d"/>
+    </radialGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <rect class="cls-6" x="4.2" y="4.12" width="253.29" height="355" rx="15" ry="15"/>
+    <rect class="cls-5" x="8.21" y="9.75" width="245.27" height="345.39" rx="15" ry="15"/>
+    <polygon class="cls-4" points="100.57 126.47 122.95 102.22 148.97 108.28 161.2 140.11 143.31 177.64 182.55 179.73 198.79 221.72 61.27 221.72 81.87 175.73 115.22 178.01 108.65 165 100.57 144.66 100.57 126.47"/>
+    <path class="cls-2" d="M130.37,204.78l-29.8-64.42v-6.57s1.25-31.58,29.8-31.58,30.83,30.57,30.83,30.57v7.33l-30.83,64.67Z"/>
+    <circle class="cls-3" cx="130.88" cy="133.79" r="4.17"/>
+    <path class="cls-2" d="M146.55,175.73h34.11s17.68,37.14,19.45,41.94-4.55,4.8-4.55,4.8H65.96c-7.07,0-4.04-5.81-4.04-5.81l19.96-40.93h33.35"/>
+  </g>
+  <g id="Layer_5" data-name="Layer 5">
+    <path class="cls-1" d="M244.68,361.24H17c-8.28,0-15-6.72-15-12V20C2,8.72,8.72,2,17,2h227.68c8.28,0,15,6.72,15,15v329.24c0,8.28-6.72,15-15,15Z"/>
+  </g>
+</svg>
