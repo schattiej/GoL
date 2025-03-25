@@ -1,33 +1,26 @@
-# Phaser 3 + ESBuild + ES6 Template
-
-This repo contains an example of how to create a game using Phaser 3, ES6 and [ESBuild](https://github.com/evanw/esbuild).  It uses esbuild's built-in server when used in dev or prod mode.
-
-## Dev Environment Software
+## Developer Software Requirements
 
 Before beginning, you will need to have the following installed on your development computer:
-- git (on windows, [git for windows](https://git-scm.com/download/win) is recommended)
-- node.js: available for all major platforms [here](https://nodejs.org/en/download/) (the LTS version is recommended)
-- ffmpeg: optional, used in tutorials for audio-sprite support (recommend latest gpl, n4.4 release from [here](https://github.com/BtbN/FFmpeg-Builds/releases))
 
-A good code editor is also recommended and this repo is designed around [Visual Studio Code](https://code.visualstudio.com/).
+- [Git] [git for windows](https://git-scm.com/download/win) --DO NOT CONFUSED WITH GITHUB--
+- [Node.js]: available for all major platforms [here](https://nodejs.org/en/download/) (the LTS version is recommended)
+- [ffmpeg] [optional]: Used in tutorials for audio-sprite support (recommend latest gpl, n4.4 release from [here](https://github.com/BtbN/FFmpeg-Builds/releases))
+
+[Visual Studio Code](https://code.visualstudio.com/).
 
 ## Getting Started
 
-On GitHub, click the 'Use this template' button above the file list. This will clone the template for you under your own GitHub account. For more details see [this help file](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
+GitHub Link:
+[https://github.com/schattiej/GoL]
 
 Once created, clone/checkout a local copy on your computer and install the dependencies.
 
-Note: If you have forked/cloned this template to your own account, then you'll need to change the URLs below to match _your_ repo's name:
+``` bash
 
-```bash
-git clone https://github.com/UWStout/gdd325-esbuild-phaser3
+git https://github.com/schattiej/GoL
 cd phaser-esbuild-typescript-template
 npm install
 
-# or
-npx degit "UWStout/gdd325-esbuild-phaser3" my-game
-cd my-game
-npm install
 ```
 
 ## How To Build and Run
@@ -61,10 +54,10 @@ For students (and those that are just curious) here's how I have my environment 
   - Set git bash as your default terminal profile
   - Always make sure your eslint is working (look for errors under `output -> ESLint` in the terminal panel)
 
-## Node Package Voulnrability
+## Node Package Vulnerability
 After running "npm install" it will report a high-severity vulnerability.  This comes from the Audiosprite package.  To solve this, we employ 'npm-force-resolutions' which runs automatically after install.  You can run the install process a second time to see that no more vulnerabilities are reported.
 
-We are specifically focing minimist and underscore (used by Audiosprite) to newer versions that are not vulnerable to this attack (see the package.json for details).
+We are specifically forcing minimist and underscore (used by Audiosprite) to newer versions that are not vulnerable to this attack (see the package.json for details).
 
 ## License
 
