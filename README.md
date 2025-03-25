@@ -1,28 +1,26 @@
 ## Developer Software Requirements
-
 Before beginning, you will need to have the following installed on your development computer:
 
-- [Git] [git for windows](https://git-scm.com/download/win) --DO NOT CONFUSED WITH GITHUB--
-- [Node.js]: available for all major platforms [here](https://nodejs.org/en/download/) (the LTS version is recommended)
-- [ffmpeg] [optional]: Used in tutorials for audio-sprite support (recommend latest gpl, n4.4 release from [here](https://github.com/BtbN/FFmpeg-Builds/releases))
-
-[Visual Studio Code](https://code.visualstudio.com/).
+- Git                : [git for windows](https://git-scm.com/download/win) --DO NOT CONFUSED WITH GITHUB--
+- Node.js            : available for all major platforms [here](https://nodejs.org/en/download/) (the LTS version is recommended)
+- ffmpeg [optional]  : Used in tutorials for audio-sprite support (recommend latest gpl, n4.4 release from [here](https://github.com/BtbN/FFmpeg-Builds/releases))
+- Visual Studio Code : (https://code.visualstudio.com/).
 
 ## Getting Started
-
-1. Open the link provided below and clone the repository to your IDE.
+Open the link provided below and clone the repository to your IDE.
 
 GitHub Link:
 [https://github.com/schattiej/GoL]
 
-2. Using the bash terminal, enter the following command
+Open your IDE and gain access to the git bash terminal. Instructions may vary based on IDE used.
+Using the bash terminal, enter the following command:
 
 ``` bash
 npm install   # You will receive lots of warning errors and vulnerability errors, ignore these
 ```
+This should now insert the needed code to run the game locally on your machine.
 
 ## How To Build and Run
-
 Assumes you are using VS Code
 Assumes you are using Git/GitBash Terminal
 
